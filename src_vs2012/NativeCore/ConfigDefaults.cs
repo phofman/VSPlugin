@@ -99,6 +99,12 @@ namespace BlackBerry.NativeCore
             }
         }
 
+        public static string MSBuildExtenderTool
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Get the path to Wiki pages.
         /// </summary>
@@ -174,6 +180,7 @@ namespace BlackBerry.NativeCore
 #else
             GdbHostPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "BlackBerry.GDBHost.exe");
 #endif
+            MSBuildExtenderTool = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "MSBuildExtensions", "MSBuildExtender.exe");
         }
 
         private static void LoadDynamicSettings()

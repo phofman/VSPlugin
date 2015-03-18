@@ -406,6 +406,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Wizards\PuppetMasterWizardEngine.cs" />
+    <Content Include="..\..\ext\MSBuildExtender\MSBuildExtender.exe">
+      <Link>MSBuildExtensions\MSBuildExtender.exe</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -509,6 +513,9 @@
     <None Include="Model\bar-descriptor.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="MSBuildExtensions\app.cfg">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="Resources\TemplateIcons\CascadesProj.ico" />
     <None Include="Resources\TemplateIcons\NewQItem.ico" />
     <Content Include="Templates\ProjectItems\BlackBerry\Cascades\qcontrol.vsz">

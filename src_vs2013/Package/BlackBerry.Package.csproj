@@ -548,6 +548,10 @@
     <Compile Include="..\..\src_vs2012\Package\Wizards\PuppetMasterWizardEngine.cs">
       <Link>Wizards\PuppetMasterWizardEngine.cs</Link>
     </Compile>
+    <Content Include="..\..\ext\MSBuildExtender\MSBuildExtender.exe">
+      <Link>MSBuildExtensions\MSBuildExtender.exe</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="..\..\src_vs2012\Package\Resources\License.txt">
       <Link>Resources\License.txt</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -1019,6 +1023,106 @@
       <Link>Templates\Projects\BlackBerry\Qt\qtproj_playbook.vsz</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-airpackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-airpackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-airpackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-airpackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-barchecker">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-barchecker</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-barchecker.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-barchecker.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-connect">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-connect</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-connect.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-connect.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-custompackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-custompackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-custompackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-custompackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-debugtokenrequest">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-debugtokenrequest</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-debugtokenrequest.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-debugtokenrequest.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-deploy">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-deploy</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-deploy.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-deploy.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-keytool">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-keytool</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-keytool.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-keytool.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-nativepackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-nativepackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-nativepackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-nativepackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-passpackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-passpackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-passpackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-passpackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-pythonpackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-pythonpackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-pythonpackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-pythonpackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-signer">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-signer</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-signer.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-signer.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-uripackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-uripackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-uripackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-uripackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\Package\MSBuildExtensions\app.cfg">
+      <Link>MSBuildExtensions\app.cfg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="Resources\TemplateIcons\CascadesProj.ico" />
     <None Include="Resources\TemplateIcons\NewItem.ico" />

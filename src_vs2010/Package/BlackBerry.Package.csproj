@@ -558,6 +558,10 @@
       <DependentUpon>BackupOptionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Template.Icons.resx" />
+    <Content Include="..\..\ext\MSBuildExtender\MSBuildExtender.exe">
+      <Link>MSBuildExtensions\MSBuildExtender.exe</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="..\..\src_vs2012\Package\Resources\License.txt">
       <Link>Resources\License.txt</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -881,6 +885,10 @@
     </Content>
     <Content Include="..\..\src_vs2012\Package\Templates\Projects\BlackBerry\Qt\qtproj_playbook.vsz">
       <Link>Templates\Projects\BlackBerry\Qt\qtproj_playbook.vsz</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\Package\MSBuildExtensions\app.cfg">
+      <Link>MSBuildExtensions\app.cfg</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="Resources\TemplateIcons\NewItem.ico" />
