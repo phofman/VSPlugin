@@ -73,6 +73,7 @@
             this.chbLimitLogs.TabIndex = 3;
             this.chbLimitLogs.Text = "Limit number of old log files to:";
             this.chbLimitLogs.UseVisualStyleBackColor = true;
+            this.chbLimitLogs.CheckedChanged += new System.EventHandler(this.chbLimitLogs_CheckedChanged);
             // 
             // label1
             // 

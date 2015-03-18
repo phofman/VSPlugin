@@ -118,5 +118,10 @@ namespace BlackBerry.Package.Options
             cmbSlog2Formatter.SelectedIndex = 0;
             txtSlog2BufferSets.Text = "default";
         }
+
+        private void chbLimitLogs_CheckedChanged(object sender, EventArgs e)
+        {
+            numLogLimit.Enabled = chbLimitLogs.Checked;
+        }
     }
 }
