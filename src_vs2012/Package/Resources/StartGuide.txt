@@ -13,6 +13,8 @@ MANUAL steps have to be made before this package works smoothly without errors a
 2) Ensure MSBuild extensions (also distributed separately at https://github.com/phofman/vs-plugin/releases/latest)
    has been copied into "C:\Program Files (x86)\MSBuild".
    Without them it won't be possible to create new project, compile and deploy applications.
+   Those extensions are also part of this package and can be installed by clicking the message inside Error List
+   and granting administrator rights to MSBuild Extender utility.
 
 In case of any problems, please visit the wiki pages at https://github.com/phofman/vs-plugin/wiki/Installation
 or https://github.com/phofman/vs-plugin/wiki/ for general details and documentation.
