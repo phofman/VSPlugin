@@ -329,7 +329,7 @@ namespace BlackBerry.Package.ViewModels
                     else
                     {
                         _activeSimulator.Save();
-                        TraceLog.WriteLine("Set active Target Device: {0}", _activeDevice);
+                        TraceLog.WriteLine("Set active Target Simulator: {0}", _activeSimulator);
                     }
                 }
             }
