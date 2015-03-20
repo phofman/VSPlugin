@@ -68,8 +68,8 @@ set QnxToolsDir=%thisDir%\qnxtools
 set ZipTool=%thisDir%\ext\7zip\7z.exe
 set MsBuild="C:\Windows\Microsoft.NET\Framework\v4.0.30319\MsBuild.exe"
 set MsBuild2013="%ProgFilesRoot%\MSBuild\12.0\Bin\MsBuild.exe"
-set MsBuildCmd=%MsBuild% /property:Configuration=Release /target:Rebuild
-set MsBuild2013Cmd=%MsBuild2013% /property:Configuration=Release /target:Rebuild
+set MsBuildCmd=%MsBuild% /m /property:Configuration=Release /property:Platform="Mixed Platforms" /target:Rebuild
+set MsBuild2013Cmd=%MsBuild2013% /m /property:Configuration=Release /property:Platform="Mixed Platforms" /target:Rebuild
 
 set SolutionPath2010="%thisDir%\src_vs2010\BlackBerry.NativePlugin.sln"
 set SolutionPath2012="%thisDir%\src_vs2012\BlackBerry.NativePlugin.sln"
