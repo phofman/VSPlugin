@@ -29,13 +29,13 @@ namespace BlackBerry.Package
 
         public const int cmdidBlackBerryHelpWelcomePage = 0x1001;
         public const int cmdidBlackBerryHelpSupportForum = 0x1002;
+        public const int cmdidBlackBerryHelpOpenSource = 0x1003;
         public const int cmdidBlackBerryHelpDocNative = 0x1101;
         public const int cmdidBlackBerryHelpDocCascades = 0x1102;
         public const int cmdidBlackBerryHelpDocPlayBook = 0x1103;
         public const int cmdidBlackBerryHelpSamplesNative = 0x1201;
         public const int cmdidBlackBerryHelpSamplesCascades = 0x1202;
         public const int cmdidBlackBerryHelpSamplesPlayBook = 0x1203;
-        public const int cmdidBlackBerryHelpSamplesOpenSource = 0x1204;
         public const int cmdidBlackBerryHelpAbout = 0x1301;
     }
 }

@@ -280,7 +280,7 @@ namespace BlackBerry.Package
                 var helpCmdIDs = new[] {
                                             PackageCommands.cmdidBlackBerryHelpWelcomePage, PackageCommands.cmdidBlackBerryHelpSupportForum,
                                             PackageCommands.cmdidBlackBerryHelpDocNative, PackageCommands.cmdidBlackBerryHelpDocCascades, PackageCommands.cmdidBlackBerryHelpDocPlayBook,
-                                            PackageCommands.cmdidBlackBerryHelpSamplesNative, PackageCommands.cmdidBlackBerryHelpSamplesCascades, PackageCommands.cmdidBlackBerryHelpSamplesPlayBook, PackageCommands.cmdidBlackBerryHelpSamplesOpenSource,
+                                            PackageCommands.cmdidBlackBerryHelpSamplesNative, PackageCommands.cmdidBlackBerryHelpSamplesCascades, PackageCommands.cmdidBlackBerryHelpSamplesPlayBook, PackageCommands.cmdidBlackBerryHelpOpenSource,
                                             PackageCommands.cmdidBlackBerryHelpAbout
                                        };
                 foreach (var cmdID in helpCmdIDs)
@@ -409,29 +409,32 @@ namespace BlackBerry.Package
 
             switch (cmdID)
             {
+                case PackageCommands.cmdidBlackBerryHelpWelcomePage:
+                    OpenUrl("http://developer.blackberry.com/cascades/momentics/");
+                    break;
                 case PackageCommands.cmdidBlackBerryHelpSupportForum:
                     OpenUrl("http://supportforums.blackberry.com/t5/Developer-Support-Forums/ct-p/blackberrydev");
                     break;
                 case PackageCommands.cmdidBlackBerryHelpDocNative:
-                    OpenUrl("http://developer.blackberry.com/native/");
+                    OpenUrl("http://developer.blackberry.com/native/documentation/core/com.qnx.doc.native_sdk.quickstart/topic/intro_to_native_sdk.html");
                     break;
-                //case PackageCommands.cmdidBlackBerryHelpDocCascades:
-                //    OpenUrl("http://developer.blackberry.com/native/documentation/cascades/dev/index.html");
-                //    break;
-                //case PackageCommands.cmdidBlackBerryHelpDocPlayBook:
-                //    OpenUrl("http://developer.blackberry.com/playbook/native/documentation/");
-                //    break;
+                case PackageCommands.cmdidBlackBerryHelpDocCascades:
+                    OpenUrl("http://developer.blackberry.com/native/documentation/cascades/dev/index.html");
+                    break;
+                case PackageCommands.cmdidBlackBerryHelpDocPlayBook:
+                    OpenUrl("http://developer.blackberry.com/playbook/native/documentation/");
+                    break;
                 case PackageCommands.cmdidBlackBerryHelpSamplesNative:
                     OpenUrl("http://developer.blackberry.com/native/sampleapps/");
                     break;
-                //case PackageCommands.cmdidBlackBerryHelpSamplesCascades:
-                //    OpenUrl("http://developer.blackberry.com/native/sampleapps/");
-                //    break;
-                //case PackageCommands.cmdidBlackBerryHelpSamplesPlayBook:
-                //    OpenUrl("http://developer.blackberry.com/playbook/native/sampleapps/");
-                //    break;
-                case PackageCommands.cmdidBlackBerryHelpSamplesOpenSource:
-                    OpenUrl("https://github.com/blackberry/VSPlugin");
+                case PackageCommands.cmdidBlackBerryHelpSamplesCascades:
+                    OpenUrl("http://developer.blackberry.com/native/sampleapps/");
+                    break;
+                case PackageCommands.cmdidBlackBerryHelpSamplesPlayBook:
+                    OpenUrl("http://developer.blackberry.com/playbook/native/sampleapps/");
+                    break;
+                case PackageCommands.cmdidBlackBerryHelpOpenSource:
+                    OpenUrl(ConfigDefaults.GithubProjectSourceCode);
                     break;
                 case PackageCommands.cmdidBlackBerryHelpAbout:
                     {
