@@ -29,8 +29,10 @@ namespace BlackBerry.Package.Helpers
             if (_uiShell == null)
             {
                 _uiShell = Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell;
+#if _DEBUG
                 if (_uiShell == null)
                     throw new InvalidOperationException("Unable to initialize UiShell");
+#endif
             }
         }
 

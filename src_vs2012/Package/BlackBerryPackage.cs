@@ -331,6 +331,11 @@ namespace BlackBerry.Package
         {
             if (disposing)
             {
+                if (_standardOutputWindow != null)
+                {
+                    _standardOutputWindow.Dispose();
+                    _standardOutputWindow = null;
+                }
                 if (_mainTraceWindow != null)
                 {
                     _mainTraceWindow.Dispose();
