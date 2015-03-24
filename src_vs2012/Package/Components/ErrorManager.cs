@@ -1,5 +1,6 @@
 ﻿using System;
 using EnvDTE;
+using EnvDTE80;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -107,6 +108,20 @@ namespace BlackBerry.Package.Components
         public void Show()
         {
             _provider.Show();
+
+            var dte = _serviceProvider.GetService(typeof(SDTE)) as DTE2;
+            if (dte != null)
+            {
+                try
+                {
+                    dte.ToolWindows.ErrorList.ShowErrors = true;
+                    dte.ToolWindows.ErrorList.ShowWarnings = true;
+                }
+                catch
+                {
+                    // PH: sometimes throws exception in VS2010
+                }
+            }
         }
     }
 }
