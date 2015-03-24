@@ -1,8 +1,19 @@
 Changes:
 
 v3.4.0 (2015-03-20):
- * incorporates all bug-fixes released as BlackBerry plug-in 3.0 Gold for Visual Studio (http://developer.blackberry.com/native/downloads/)
-
+ * incorporates bug-fixes released as BlackBerry plug-in 3.0 Gold for Visual Studio (http://developer.blackberry.com/native/downloads/)
+ * fixed crash, when evaluating incorrect expressions (blackberry/VSPlugin/#676)
+ * continuing import after solution save rejection (blackberry/VSPlugin/#680)
+ * removing correctly cached developer-info from memory (blackberry/VSPlugin/#693)
+ * fixed missing public key on first attempt to connection to device (blackberry/VSPlugin/#702)
+ * TargetNavigator updates Connect/Disconnect (blackberry/VSPlugin/#703)
+ * fixed developer's certificate export error (blackberry/VSPlugin/#684)
+ * tweaked 'Yes/No' dialogs to support escape button (blackberry/VSPlugin/#698)
+ * fixed wrong log entry, when activating simulator (blackberry/VSPlugin/#719)
+ * disabling counter of log-files as expected (blackberry/VSPlugin/#715)
+ * added feature to automatically update MSBuild platforms (#41)
+ * new project wizard will also help to install missing MSBuild platform
+ * digitally signed the released VSIX package
 
 v3.3.1 (2015-01-14)
  * small UI tweaks of project-import dialog
