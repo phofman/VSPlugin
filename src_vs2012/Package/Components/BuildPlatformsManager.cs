@@ -390,14 +390,16 @@ namespace BlackBerry.Package.Components
         /// <summary>
         /// Checks the current plugin and Visual Studio state for most common errors to minimize developer's frustration, why things are not working.
         /// </summary>
-        public void VerifyCommonErrors()
+        public int VerifyCommonErrors()
         {
+            int criticalCount = 0;
             _errorManager.Clear();
 
             // check if appropriate platform exists and matches expected version:
             var buildTasksAssemblyPath = Path.Combine(ConfigDefaults.MSBuildVCTargetsPath, "Platforms", "BlackBerry", "BlackBerry.BuildTasks.dll");
             if (!File.Exists(buildTasksAssemblyPath))
             {
+                criticalCount++;
                 _errorManager.Add(TaskErrorCategory.Error, "MSBuild \"BlackBerry\" build platform was not found. Building projects won't be possible at all. Install it automatically [double-click] (will ask for admin-rights) or visit " + ConfigDefaults.GithubProjectWikiInstallation + " for details, how to install it manually.", InstallMSBuildBlackBerryPlatform);
             }
             else
@@ -410,6 +412,7 @@ namespace BlackBerry.Package.Components
                     // verify versions:
                     if (installedVersion.Major != expectedVersion.Major || installedVersion.Minor != expectedVersion.Minor || installedVersion.Build != expectedVersion.Build)
                     {
+                        criticalCount++;
                         _errorManager.Add(TaskErrorCategory.Warning, "Invalid version of existing MSBuild \"BlackBerry\" build platform (installed: " + ToShortVersion(installedVersion) + ", expected: " + ToShortVersion(expectedVersion) + "). Some features might simply stop working. Install it automatically [double-click] (will ask for admin-rights) or visit " + ConfigDefaults.GithubProjectWikiInstallation + " for details, how to upgrade it manually.", InstallMSBuildBlackBerryPlatform);
                     }
                 }
@@ -471,6 +474,8 @@ namespace BlackBerry.Package.Components
             {
                 _errorManager.Show();
             }
+
+            return criticalCount;
         }
 
         /// <summary>
@@ -559,7 +564,28 @@ namespace BlackBerry.Package.Components
         {
             // request admin rights and update the MSBuild
             var installerRunner = new MSBuildExtenderRunner(ConfigDefaults.MSBuildExtenderTool, ConfigDefaults.MSBuildExtenderUnifiedVsVersion, true);
+            installerRunner.Dispatcher = NativeCore.Tools.EventDispatcher.From(System.Windows.Application.Current.MainWindow);
+            installerRunner.Finished += InstallerOnFinished;
             installerRunner.ExecuteAsync();
+        }
+
+        private void InstallerOnFinished(object sender, ToolRunnerEventArgs e)
+        {
+            var executed = (bool) e.Tag;
+
+            if (executed)
+            {
+                // update the list of common errors, when installing MSBuild platform has finished
+                int criticalCount = VerifyCommonErrors();
+
+                if (criticalCount == 0)
+                {
+                    MessageBoxHelper.Show(
+                        "It's recommended to restart Visual Studio at this point to avoid any misbehaviours because of cached data. You can skip it, if you haven't opened a solution yet.",
+                        "MSBuild has been updated and all should work fine now.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void OpenInstallationPage(object sender, EventArgs e)
