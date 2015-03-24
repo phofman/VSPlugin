@@ -562,6 +562,126 @@
       <Link>MSBuildExtensions\MSBuildExtender.exe</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="..\..\qnxtools\lib\apache-mime4j-0.6.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\apache-mime4j-0.6.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\BarAir.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\BarAir.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\BarChecker.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\BarChecker.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\BarDeploy.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\BarDeploy.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\BarLibrary.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\BarLibrary.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\BarPackager.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\BarPackager.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\BarSigner.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\BarSigner.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\commons-codec-1.4.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\commons-codec-1.4.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\commons-logging-1.1.1.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\commons-logging-1.1.1.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\Connect.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\Connect.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\DebugTokenRequest.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\DebugTokenRequest.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\EccpressoAll.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\EccpressoAll.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\EccpressoJDK15ECC.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\EccpressoJDK15ECC.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\httpclient-4.0.3.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\httpclient-4.0.3.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\httpcore-4.0.1.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\httpcore-4.0.1.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\httpmime-4.0.3.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\httpmime-4.0.3.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\jqconnDoor.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\jqconnDoor.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\KeyTool.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\KeyTool.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\TrustpointAll.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\TrustpointAll.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\TrustpointJDK15.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\TrustpointJDK15.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\lib\TrustpointProviders.jar">
+      <Link>MSBuildExtensions\Common\QnxTools\lib\TrustpointProviders.jar</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\samples\icons\blackberry-tablet-default-icon.png">
+      <Link>MSBuildExtensions\Common\QnxTools\samples\icons\blackberry-tablet-default-icon.png</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\cl.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\cl.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\debugger_general.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\debugger_general.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\directories.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\directories.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\general.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\general.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\lib.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\lib.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\link.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\link.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\packager.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\packager.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\ProjectItemsSchema.xml">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\ProjectItemsSchema.xml</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="..\..\src_vs2012\Package\Resources\License.txt">
       <Link>Resources\License.txt</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -891,6 +1011,130 @@
       <Link>MSBuildExtensions\app.cfg</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-airpackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-airpackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-airpackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-airpackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-barchecker">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-barchecker</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-barchecker.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-barchecker.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-connect">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-connect</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-connect.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-connect.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-custompackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-custompackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-custompackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-custompackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-debugtokenrequest">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-debugtokenrequest</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-debugtokenrequest.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-debugtokenrequest.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-deploy">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-deploy</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-deploy.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-deploy.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-keytool">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-keytool</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-keytool.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-keytool.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-nativepackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-nativepackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-nativepackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-nativepackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-passpackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-passpackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-passpackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-passpackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-pythonpackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-pythonpackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-pythonpackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-pythonpackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-signer">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-signer</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-signer.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-signer.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-uripackager">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-uripackager</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\qnxtools\bin\blackberry-uripackager.bat">
+      <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-uripackager.bat</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.default.props">
+      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.default.props</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.Packager.targets">
+      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.Packager.targets</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.props">
+      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.props</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.targets">
+      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.targets</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\BlackBerry\Microsoft.CppBuild.BlackBerry.targets">
+      <Link>MSBuildExtensions\BlackBerry\Microsoft.CppBuild.BlackBerry.targets</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.props">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.props</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.targets">
+      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.targets</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="Resources\TemplateIcons\NewItem.ico" />
     <None Include="Resources\TemplateIcons\NewQItem.ico" />
     <None Include="Resources\TemplateIcons\CascadesProj.ico" />
@@ -900,6 +1144,10 @@
     </Content>
     <Content Include="..\..\src_vs2012\Package\Templates\VCWizards\BlackBerry\Shared\Utils\bbutil.h">
       <Link>Templates\VCWizards\BlackBerry\Shared\Utils\bbutil.h</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BuildTasks\bin\$(Configuration)\BlackBerry.BuildTasks.dll">
+      <Link>MSBuildExtensions\BlackBerry\BlackBerry.BuildTasks.dll</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\VCWizards\BlackBerry\opengl-default.vcxproj">

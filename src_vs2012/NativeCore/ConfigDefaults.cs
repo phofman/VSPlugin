@@ -99,10 +99,32 @@ namespace BlackBerry.NativeCore
             }
         }
 
+        /// <summary>
+        /// Gets the path to the MSBuild extender utility (embedded inside the VSIX).
+        /// </summary>
         public static string MSBuildExtenderTool
         {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// Gets the version of the Visual Studio passed to the MSBuild extender utility.
+        /// </summary>
+        public static string MSBuildExtenderUnifiedVsVersion
+        {
+            get
+            {
+#if PLATFORM_VS2010
+                return "vs2010";
+#elif PLATFORM_VS2012
+                return "vs2012";
+#elif PLATFORM_VS2013
+                return "vs2013";
+#else
+#               error Define the version of Visual Studio.
+#endif
+            }
         }
 
         /// <summary>

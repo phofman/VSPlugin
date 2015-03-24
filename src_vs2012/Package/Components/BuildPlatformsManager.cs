@@ -26,6 +26,7 @@ using BlackBerry.NativeCore.Diagnostics;
 using BlackBerry.NativeCore.Helpers;
 using BlackBerry.NativeCore.Model;
 using BlackBerry.NativeCore.Services;
+using BlackBerry.NativeCore.Tools;
 using BlackBerry.Package.Dialogs;
 using BlackBerry.Package.Helpers;
 using BlackBerry.Package.Options;
@@ -397,7 +398,7 @@ namespace BlackBerry.Package.Components
             var buildTasksAssemblyPath = Path.Combine(ConfigDefaults.MSBuildVCTargetsPath, "Platforms", "BlackBerry", "BlackBerry.BuildTasks.dll");
             if (!File.Exists(buildTasksAssemblyPath))
             {
-                _errorManager.Add(TaskErrorCategory.Error, "MSBuild \"BlackBerry\" build platform was not found. Building projects won't be possible at all. Visit " + ConfigDefaults.GithubProjectWikiInstallation + " [double-click] for details, how to install it.", OpenInstallationPage);
+                _errorManager.Add(TaskErrorCategory.Error, "MSBuild \"BlackBerry\" build platform was not found. Building projects won't be possible at all. Install it automatically [double-click] (will ask for admin-rights) or visit " + ConfigDefaults.GithubProjectWikiInstallation + " for details, how to install it manually.", InstallMSBuildBlackBerryPlatform);
             }
             else
             {
@@ -409,7 +410,7 @@ namespace BlackBerry.Package.Components
                     // verify versions:
                     if (installedVersion.Major != expectedVersion.Major || installedVersion.Minor != expectedVersion.Minor || installedVersion.Build != expectedVersion.Build)
                     {
-                        _errorManager.Add(TaskErrorCategory.Warning, "Invalid version of existing MSBuild \"BlackBerry\" build platform (installed: " + ToShortVersion(installedVersion) + ", expected: " + ToShortVersion(expectedVersion) + "). Some features might simply stop working. Visit " + ConfigDefaults.GithubProjectWikiInstallation + " [double-click] for details, how to upgrade it.", OpenInstallationPage);
+                        _errorManager.Add(TaskErrorCategory.Warning, "Invalid version of existing MSBuild \"BlackBerry\" build platform (installed: " + ToShortVersion(installedVersion) + ", expected: " + ToShortVersion(expectedVersion) + "). Some features might simply stop working. Install it automatically [double-click] (will ask for admin-rights) or visit " + ConfigDefaults.GithubProjectWikiInstallation + " for details, how to upgrade it manually.", InstallMSBuildBlackBerryPlatform);
                     }
                 }
                 catch (Exception ex)
@@ -552,6 +553,13 @@ namespace BlackBerry.Package.Components
         private static string ToShortVersion(Version v)
         {
             return string.Concat("v", v.Major, ".", v.Minor, ".", v.Build);
+        }
+
+        private void InstallMSBuildBlackBerryPlatform(object sender, EventArgs e)
+        {
+            // request admin rights and update the MSBuild
+            var installerRunner = new MSBuildExtenderRunner(ConfigDefaults.MSBuildExtenderTool, ConfigDefaults.MSBuildExtenderUnifiedVsVersion, true);
+            installerRunner.ExecuteAsync();
         }
 
         private void OpenInstallationPage(object sender, EventArgs e)
