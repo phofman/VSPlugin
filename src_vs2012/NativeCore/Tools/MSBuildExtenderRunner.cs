@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -10,6 +11,10 @@ namespace BlackBerry.NativeCore.Tools
     /// </summary>
     public sealed class MSBuildExtenderRunner
     {
+        private const int ERROR_CANCELLED = 0x4c7;
+
+        public event EventHandler<ToolRunnerEventArgs> Finished;
+
         private readonly string _fileName;
         private readonly string _defaultConfigFilePath;
 
@@ -29,6 +34,12 @@ namespace BlackBerry.NativeCore.Tools
         }
 
         #region Properties
+
+        public IEventDispatcher Dispatcher
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Gets or sets the working directory for the tool.
@@ -80,7 +91,24 @@ namespace BlackBerry.NativeCore.Tools
             startInfo.Arguments = GetArguments();
             startInfo.Verb = "runas";
 
-            Process.Start(startInfo);
+            try
+            {
+                var process = Process.Start(startInfo);
+
+                if (process != null)
+                {
+                    process.EnableRaisingEvents = true;
+                    process.Exited += OnProcessExited;
+                }
+            }
+            catch (Win32Exception ex)
+            {
+                // was it cancelled by user, when asking for admin permissions?
+                if (ex.NativeErrorCode != ERROR_CANCELLED)
+                    throw;
+
+                NotifyFinished(false, int.MinValue);
+            }
         }
 
         private string GetArguments()
@@ -114,6 +142,34 @@ namespace BlackBerry.NativeCore.Tools
             }
 
             return result.ToString();
+        }
+
+        private void OnProcessExited(object sender, EventArgs e)
+        {
+            var process = sender as Process;
+            if (process != null)
+            {
+                NotifyFinished(true, process.ExitCode);
+            }
+        }
+
+        private void NotifyFinished(bool executed, int exitCode)
+        {
+            var finishedHandler = Finished;
+            var dispatcher = Dispatcher;
+
+            if (finishedHandler != null)
+            {
+                // perform a cross-thread notification (in case we want to update UI directly from the handler)
+                if (dispatcher != null)
+                {
+                    dispatcher.Invoke(finishedHandler, this, new ToolRunnerEventArgs(exitCode, null, null, executed));
+                }
+                else
+                {
+                    finishedHandler(this, new ToolRunnerEventArgs(exitCode, null, null, executed));
+                }
+            }
         }
     }
 }
