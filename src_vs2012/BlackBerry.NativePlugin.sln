@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBerry.BuildTasks", "BuildTasks\BlackBerry.BuildTasks.csproj", "{328CAD98-F4E5-444A-B5DF-AD102C67BA3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBerry.Package", "Package\BlackBerry.Package.csproj", "{3D6EFFAF-FF39-497D-B6F8-0B6169E90C6D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{328CAD98-F4E5-444A-B5DF-AD102C67BA3C} = {328CAD98-F4E5-444A-B5DF-AD102C67BA3C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBerry.DebugEngine", "DebugEngine\BlackBerry.DebugEngine.csproj", "{59A7B188-E307-4495-A3AF-4ED76B086A87}"
 EndProject
