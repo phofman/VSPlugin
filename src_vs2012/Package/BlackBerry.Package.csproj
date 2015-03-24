@@ -498,42 +498,6 @@
       <Link>MSBuildExtensions\Common\QnxTools\samples\icons\blackberry-tablet-default-icon.png</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\BuildTasks\bin\$(Configuration)\BlackBerry.BuildTasks.dll">
-      <Link>MSBuildExtensions\BlackBerry\BlackBerry.BuildTasks.dll</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\cl.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\cl.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\debugger_general.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\debugger_general.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\directories.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\directories.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\general.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\general.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\lib.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\lib.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\link.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\link.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\packager.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\packager.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\1033\ProjectItemsSchema.xml">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\1033\ProjectItemsSchema.xml</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Resources\License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -728,34 +692,6 @@
     </Content>
     <Content Include="..\..\qnxtools\bin\blackberry-uripackager.bat">
       <Link>MSBuildExtensions\Common\QnxTools\bin\blackberry-uripackager.bat</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.Common.props">
-      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.Common.props</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.default.props">
-      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.default.props</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.Packager.targets">
-      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.Packager.targets</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.props">
-      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.props</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.targets">
-      <Link>MSBuildExtensions\BlackBerry\Microsoft.Cpp.BlackBerry.targets</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.props">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.props</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\BuildTasks\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.targets">
-      <Link>MSBuildExtensions\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.targets</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="Model\bar-descriptor.xsd">
@@ -1149,6 +1085,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BuildTasks\BlackBerry.BuildTasks.csproj">
+      <Project>{328CAD98-F4E5-444A-B5DF-AD102C67BA3C}</Project>
+      <Name>BlackBerry.BuildTasks</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <VSIXSubPath>MSBuildExtensions</VSIXSubPath>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
     <ProjectReference Include="..\DebugEngine\BlackBerry.DebugEngine.csproj">
       <Project>{59a7b188-e307-4495-a3af-4ed76b086a87}</Project>
       <Name>BlackBerry.DebugEngine</Name>
