@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.VCProjectEngine;
 
 namespace BlackBerry.Package.Helpers
@@ -58,6 +60,20 @@ namespace BlackBerry.Package.Helpers
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Forces specified package to load.
+        /// </summary>
+        public static bool ForcePackageLoad(Guid packageGuid)
+        {
+            IVsShell shell = Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(SVsShell)) as IVsShell;
+            if (shell == null)
+                return false;
+
+            IVsPackage package;
+            ErrorHandler.ThrowOnFailure(shell.LoadPackage(ref packageGuid, out package));
+            return true;
         }
     }
 }

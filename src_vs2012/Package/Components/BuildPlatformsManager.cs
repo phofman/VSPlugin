@@ -400,7 +400,7 @@ namespace BlackBerry.Package.Components
             if (!File.Exists(buildTasksAssemblyPath))
             {
                 criticalCount++;
-                _errorManager.Add(TaskErrorCategory.Error, "MSBuild \"BlackBerry\" build platform was not found. Building projects won't be possible at all. Install it automatically [double-click] (will ask for admin-rights) or visit " + ConfigDefaults.GithubProjectWikiInstallation + " for details, how to install it manually.", InstallMSBuildBlackBerryPlatform);
+                _errorManager.Add(TaskErrorCategory.Error, "MSBuild \"BlackBerry\" build platform was not found. Building projects won't be possible at all. Install it automatically [double-click] (will ask for admin-rights) or visit \"" + ConfigDefaults.GithubProjectWikiInstallation + "\" for details, how to install it manually.", InstallMSBuildBlackBerryPlatform);
             }
             else
             {
@@ -413,7 +413,7 @@ namespace BlackBerry.Package.Components
                     if (installedVersion.Major != expectedVersion.Major || installedVersion.Minor != expectedVersion.Minor || installedVersion.Build != expectedVersion.Build)
                     {
                         criticalCount++;
-                        _errorManager.Add(TaskErrorCategory.Warning, "Invalid version of existing MSBuild \"BlackBerry\" build platform (installed: " + ToShortVersion(installedVersion) + ", expected: " + ToShortVersion(expectedVersion) + "). Some features might simply stop working. Install it automatically [double-click] (will ask for admin-rights) or visit " + ConfigDefaults.GithubProjectWikiInstallation + " for details, how to upgrade it manually.", InstallMSBuildBlackBerryPlatform);
+                        _errorManager.Add(TaskErrorCategory.Warning, "Invalid version of existing MSBuild \"BlackBerry\" build platform (installed: " + ToShortVersion(installedVersion) + ", expected: " + ToShortVersion(expectedVersion) + "). Some features might simply stop working. Install it automatically [double-click] (will ask for admin-rights) or visit \"" + ConfigDefaults.GithubProjectWikiInstallation + "\" for details, how to upgrade it manually.", InstallMSBuildBlackBerryPlatform);
                     }
                 }
                 catch (Exception ex)
@@ -459,7 +459,7 @@ namespace BlackBerry.Package.Components
 
                 if (string.IsNullOrEmpty(ConfigDefaults.NdkDirectory) || !Directory.Exists(ConfigDefaults.NdkDirectory))
                 {
-                    _errorManager.Add(TaskErrorCategory.Warning, "Customized NDK for Visual Studio (bbndk_vs) was not found. It won't be possible to automatically download new versions of BlackBerry NativeCore SDKs, simulators nor runtime-libraries for debugging. Visit " + ConfigDefaults.GithubProjectWikiInstallation + " [double-click] for details, how to install it.", OpenInstallationPage);
+                    _errorManager.Add(TaskErrorCategory.Warning, "Customized NDK for Visual Studio (bbndk_vs) was not found. It won't be possible to automatically download new versions of BlackBerry NativeCore SDKs, simulators nor runtime-libraries for debugging. Visit \"" + ConfigDefaults.GithubProjectWikiInstallation + "\" [double-click] for details, how to install it.", OpenInstallationPage);
                 }
             }
 

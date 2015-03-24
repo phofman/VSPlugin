@@ -47,6 +47,11 @@ namespace BlackBerry.Package.Wizards
             }
         }
 
+        private static void EnforcePackageLoading()
+        {
+            DteHelper.ForcePackageLoad(new Guid(GuidList.guidVSNDK_PackageString));
+        }
+
         /// <summary>
         /// Method that creates new project for existing or new solution.
         /// </summary>
@@ -56,8 +61,9 @@ namespace BlackBerry.Package.Wizards
 
             if (!BuildPlatformsManager.IsMSBuildPlatformInstalled)
             {
+                EnforcePackageLoading();
                 MessageBoxHelper.Show("More info at: " + ConfigDefaults.GithubProjectWikiInstallation,
-                    "Unable to create any BlackBerry project.\r\nPlease make sure whether \"BlackBerry\" build platform has been added to MSBuild.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Unable to create any BlackBerry project.\r\nTo install \"BlackBerry\" MSBuild platform simply double-click on the error message appeared in Error List below.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return wizardResult.wizardResultFailure;
             }
 
@@ -237,8 +243,9 @@ namespace BlackBerry.Package.Wizards
 
             if (!BuildPlatformsManager.IsMSBuildPlatformInstalled)
             {
+                EnforcePackageLoading();
                 MessageBoxHelper.Show("More info at: " + ConfigDefaults.GithubProjectWikiInstallation,
-                    "Unable to create any BlackBerry project item.\r\nPlease make sure whether \"BlackBerry\" build platform has been added to MSBuild.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Unable to create any BlackBerry project item.\r\nTo install \"BlackBerry\" MSBuild platform simply double-click on the error message appeared in Error List below.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return wizardResult.wizardResultFailure;
             }
 
