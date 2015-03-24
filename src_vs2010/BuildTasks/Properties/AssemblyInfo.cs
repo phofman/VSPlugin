@@ -20,7 +20,11 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 using BlackBerry.NativeCore;
 
+#if DEBUG
+[assembly: AssemblyTitle("BlackBerry Native SDK Build Tasks (Debug)")]
+#else
 [assembly: AssemblyTitle("BlackBerry Native SDK Build Tasks")]
+#endif
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BlackBerry")]
