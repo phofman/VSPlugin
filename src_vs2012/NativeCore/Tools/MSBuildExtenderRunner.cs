@@ -77,6 +77,12 @@ namespace BlackBerry.NativeCore.Tools
             set;
         }
 
+        public object Tag
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         /// <summary>

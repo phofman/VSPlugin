@@ -115,6 +115,7 @@ namespace BlackBerry.Package
     // The package itself will be automatically loaded if needed.
     [ProvideService(typeof(IDeviceDiscoveryService), ServiceName = "BlackBerry Device Discovery")]
     [ProvideService(typeof(IAttachDiscoveryService), ServiceName = "BlackBerry Process-Attach Executable Discovery")]
+    [ProvideService(typeof(IMSBuildPlatformService), ServiceName = "BlackBerry MSBuild Platform Manipulation Service")]
 
     // This set of attributes registers QML language service to allow colorizing and IntelliSense support.
     [ProvideService(typeof(QmlLanguageService), ServiceName = "QML")]
@@ -211,6 +212,8 @@ namespace BlackBerry.Package
             _buildPlatformsManager.Navigate += OpenUrl;
             _buildPlatformsManager.OpenSettingsPage += ShowOptionPage;
             _buildPlatformsManager.Initialize();
+
+            serviceContainer.AddService(typeof(IMSBuildPlatformService), _buildPlatformsManager, true);
             TraceLog.WriteLine(" * registered build-platforms manager");
 
             // Add our command handlers for menu (commands must exist in the .vsct file)

@@ -46,7 +46,7 @@ namespace BlackBerry.Package.Components
     /// Manager class helpful in hijacking the Visual Studio's UI to initiate the build and deployment of BlackBerry project.
     /// It exposes some detection mechanisms for external usages.
     /// </summary>
-    internal sealed class BuildPlatformsManager
+    internal sealed class BuildPlatformsManager : IMSBuildPlatformService
     {
         #region Internal Classes
 
@@ -562,17 +562,48 @@ namespace BlackBerry.Package.Components
 
         private void InstallMSBuildBlackBerryPlatform(object sender, EventArgs e)
         {
+            UpdateMSBuildBlackBerryPlatform(true, null);
+        }
+
+        private void UpdateMSBuildBlackBerryPlatform(bool install, Action<bool> completionHandler)
+        {
             // request admin rights and update the MSBuild
-            var installerRunner = new MSBuildExtenderRunner(ConfigDefaults.MSBuildExtenderTool, ConfigDefaults.MSBuildExtenderUnifiedVsVersion, true);
+            var installerRunner = new MSBuildExtenderRunner(ConfigDefaults.MSBuildExtenderTool, ConfigDefaults.MSBuildExtenderUnifiedVsVersion, install);
             installerRunner.Dispatcher = NativeCore.Tools.EventDispatcher.From(System.Windows.Application.Current.MainWindow);
-            installerRunner.Finished += InstallerOnFinished;
+            installerRunner.Tag = completionHandler;
+
+            if (install)
+            {
+                installerRunner.Finished += RunnerOnInstallFinished;
+            }
+            else
+            {
+                installerRunner.Finished += RunnerOnRemovalFinished;
+            }
+
+            // run
             installerRunner.ExecuteAsync();
         }
 
-        private void InstallerOnFinished(object sender, ToolRunnerEventArgs e)
+        private void RunnerOnInstallFinished(object sender, ToolRunnerEventArgs e)
         {
+            var runner = (MSBuildExtenderRunner) sender;
             var executed = (bool) e.Tag;
 
+            runner.Finished -= RunnerOnInstallFinished;
+
+            // execute notification:
+            if (runner.Tag != null)
+            {
+                var action = runner.Tag as Action<bool>;
+                if (action != null)
+                {
+                    action(executed);
+                }
+                runner.Tag = null;
+            }
+
+            // and display the summary
             if (executed)
             {
                 // update the list of common errors, when installing MSBuild platform has finished
@@ -584,6 +615,48 @@ namespace BlackBerry.Package.Components
                         "It's recommended to restart Visual Studio at this point to avoid any misbehaviours because of cached data. You can skip it, if you haven't opened a solution yet.",
                         "MSBuild has been updated and all should work fine now.",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBoxHelper.Show("Please close all open instances of Visual Studio and retry.", "MSBuild update failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void RunnerOnRemovalFinished(object sender, ToolRunnerEventArgs e)
+        {
+            var runner = (MSBuildExtenderRunner)sender;
+            var executed = (bool)e.Tag;
+
+            runner.Finished -= RunnerOnRemovalFinished;
+
+            // execute notification:
+            if (runner.Tag != null)
+            {
+                var action = runner.Tag as Action<bool>;
+                if (action != null)
+                {
+                    action(executed);
+                }
+                runner.Tag = null;
+            }
+
+            // and display the summary
+            if (executed)
+            {
+                // update the list of common errors, when installing MSBuild platform has finished
+                int criticalCount = VerifyCommonErrors();
+
+                if (criticalCount != 0)
+                {
+                    MessageBoxHelper.Show(
+                        "Please close Visual Studio to avoid any instabilities.",
+                        "MSBuild has been updated and \"BlackBerry\" platform should be removed by now.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBoxHelper.Show("Some files seems to be in use. Please close all open instances of Visual Studio and retry.", "MSBuild update failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1337,5 +1410,37 @@ namespace BlackBerry.Package.Components
 
             return false;
         }
+
+        #region IMSBuildPlatformService Implementation
+
+        /// <summary>
+        /// Requests installation of specified platform.
+        /// </summary>
+        int IMSBuildPlatformService.ScheduleInstallation(string name, Action<bool> completionHandler)
+        {
+            if (string.CompareOrdinal(name, "BlackBerry") == 0)
+            {
+                UpdateMSBuildBlackBerryPlatform(true, completionHandler);
+                return 0;
+            }
+
+            return 1;
+        }
+
+        /// <summary>
+        /// Schedules removal of specified platform.
+        /// </summary>
+        int IMSBuildPlatformService.ScheduleRemoval(string name, Action<bool> completionHandler)
+        {
+            if (string.CompareOrdinal(name, "BlackBerry") == 0)
+            {
+                UpdateMSBuildBlackBerryPlatform(false, completionHandler);
+                return 0;
+            }
+
+            return 1;
+        }
+
+        #endregion
     }
 }
