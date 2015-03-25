@@ -443,7 +443,7 @@ namespace BlackBerry.Package
                     OpenUrl("http://developer.blackberry.com/playbook/native/sampleapps/");
                     break;
                 case PackageCommands.cmdidBlackBerryHelpOpenSource:
-                    OpenUrl(ConfigDefaults.GithubProjectSourceCode);
+                    OpenUrl("https://github.com/phofman?tab=repositories");
                     break;
                 case PackageCommands.cmdidBlackBerryHelpAbout:
                     {

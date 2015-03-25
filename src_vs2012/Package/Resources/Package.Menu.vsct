@@ -161,7 +161,7 @@
             <Button guid="guidVSNDK_PackageCmdSet" id="cmdidBlackBerryHelpOpenSource" priority="0x0300" type="Button">
                 <Parent guid="guidVSNDK_PackageCmdSet" id="cmdidBlackBerryHelpGroup_Start" />
                 <Strings>
-                    <ButtonText>&amp;Open source project</ButtonText>
+                    <ButtonText>&amp;Open source projects</ButtonText>
                 </Strings>
             </Button>
 
