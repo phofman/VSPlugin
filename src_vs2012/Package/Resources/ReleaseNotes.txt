@@ -1,6 +1,6 @@
 Changes:
 
-v3.4.0 (2015-03-20):
+v3.4.0 (2015-03-25):
  * incorporates bug-fixes released as BlackBerry plug-in 3.0 Gold for Visual Studio (http://developer.blackberry.com/native/downloads/)
  * fixed crash, when evaluating incorrect expressions (blackberry/VSPlugin/#676)
  * continuing import after solution save rejection (blackberry/VSPlugin/#680)
@@ -13,6 +13,8 @@ v3.4.0 (2015-03-20):
  * disabling counter of log-files as expected (blackberry/VSPlugin/#715)
  * added feature to automatically update MSBuild platforms (#41)
  * new project wizard will also help to install missing MSBuild platform
+ * added dedicated options page to remove installed MSBuild platform
+ * updated some links
  * digitally signed the released VSIX package
 
 v3.3.1 (2015-01-14)
