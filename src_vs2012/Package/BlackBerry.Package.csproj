@@ -347,6 +347,15 @@
     <Compile Include="Options\LogsOptionPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Options\MSBuildOptionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Options\MSBuildOptionControl.Designer.cs">
+      <DependentUpon>MSBuildOptionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\MSBuildOptionPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Options\SigningOptionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -387,6 +396,9 @@
     </Compile>
     <Compile Include="ViewModels\Common\NullToVisibilityConverter.cs" />
     <Compile Include="ViewModels\ImportProjectViewModel.cs" />
+    <Compile Include="ViewModels\MSBuildOptionViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewModels\PackageViewModel.cs" />
     <Compile Include="ViewModels\SigningOptionViewModel.cs" />
     <Compile Include="ViewModels\TargetNavigatorViewModel.cs" />
@@ -747,6 +759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Options\BackupOptionControl.resx">
       <DependentUpon>BackupOptionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\MSBuildOptionControl.resx">
+      <DependentUpon>MSBuildOptionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Template.Icons.resx">
       <SubType>Designer</SubType>

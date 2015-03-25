@@ -110,6 +110,7 @@ namespace BlackBerry.Package
     [ProvideOptionPage(typeof(TargetsOptionPage), OptionsCategoryName, "Targets", 1001, 1005, true)]
     [ProvideOptionPage(typeof(SigningOptionPage), OptionsCategoryName, "Signing", 1001, 1006, true)]
     [ProvideOptionPage(typeof(BackupOptionPage), OptionsCategoryName, "Backup", 1001, 1007, true)]
+    [ProvideOptionPage(typeof(MSBuildOptionPage), OptionsCategoryName, "MSBuild", 1001, 1008, true)]
 
     // This attribute registers public services exposed by this package.
     // The package itself will be automatically loaded if needed.

@@ -424,6 +424,18 @@
       <Link>Options\LogsOptionPage.cs</Link>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="..\..\src_vs2012\Package\Options\MSBuildOptionControl.cs">
+      <Link>Options\MSBuildOptionControl.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\Package\Options\MSBuildOptionControl.designer.cs">
+      <Link>Options\MSBuildOptionControl.designer.cs</Link>
+      <DependentUpon>MSBuildOptionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\Package\Options\MSBuildOptionPage.cs">
+      <Link>Options\MSBuildOptionPage.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="..\..\src_vs2012\Package\Options\SigningOptionControl.cs">
       <Link>Options\SigningOptionControl.cs</Link>
       <SubType>UserControl</SubType>
@@ -496,6 +508,9 @@
     </Compile>
     <Compile Include="..\..\src_vs2012\Package\ViewModels\ImportProjectViewModel.cs">
       <Link>ViewModels\ImportProjectViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\Package\ViewModels\MSBuildOptionViewModel.cs">
+      <Link>ViewModels\MSBuildOptionViewModel.cs</Link>
     </Compile>
     <Compile Include="..\..\src_vs2012\Package\ViewModels\PackageViewModel.cs">
       <Link>ViewModels\PackageViewModel.cs</Link>
@@ -1070,6 +1085,10 @@
     <EmbeddedResource Include="..\..\src_vs2012\Package\Options\BackupOptionControl.resx">
       <Link>Options\BackupOptionControl.resx</Link>
       <DependentUpon>BackupOptionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\src_vs2012\Package\Options\MSBuildOptionControl.resx">
+      <Link>Options\MSBuildOptionControl.resx</Link>
+      <DependentUpon>MSBuildOptionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\src_vs2012\Package\Resources\Template.Strings.resx">
       <Link>Resources\Template.Strings.resx</Link>
