@@ -55,7 +55,8 @@ namespace BlackBerry.NativeCore.QConn.Requests
 
         private static byte[] SHA512(byte[] data)
         {
-            using (var sha = new SHA512CryptoServiceProvider())
+            // PH: could use SHA512CryptoServiceProvider, but it's not supported on Win XP SP3
+            using (var sha = new SHA512Managed())
             {
                 return sha.ComputeHash(data);
             }
