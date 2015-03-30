@@ -1,0 +1,3 @@
+[submodule "ext/zip"]
+	path = ext/zip
+	url = git@github.com:phofman/zip.git
