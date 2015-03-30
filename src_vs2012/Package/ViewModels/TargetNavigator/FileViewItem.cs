@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.IO.Packaging;
+using System.IO.Compression;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
@@ -391,7 +391,7 @@ namespace BlackBerry.Package.ViewModels.TargetNavigator
             try
             {
                 var monitor = shouldCompress
-                    ? _service.DownloadAsync(_path.Path, new ZipPackageVisitor(destinationPath, CompressionOption.Maximum, destinationPath))
+                    ? _service.DownloadAsync(_path.Path, new ZipPackageVisitor(destinationPath, CompressionLevel.Optimal, destinationPath))
                     : _service.DownloadAsync(_path.Path, destinationPath, destinationPath);
                 ViewModel.DownloadStarted(monitor);
 

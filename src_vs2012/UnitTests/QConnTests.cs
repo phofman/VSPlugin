@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.IO.Packaging;
+using System.IO.Compression;
 using System.Text;
 using System.Threading;
 using BlackBerry.NativeCore.Components;
@@ -309,7 +309,7 @@ namespace UnitTests
             Assert.IsNotNull(qclient.FileService);
 
             // download all files from the folder:
-            var visitor = new ZipPackageVisitor(Path.Combine(Defaults.NdkDirectory, "test.zip"), CompressionOption.Maximum);
+            var visitor = new ZipPackageVisitor(Path.Combine(Defaults.NdkDirectory, "test.zip"), CompressionLevel.Optimal);
 
             SetupProgressMonitor(visitor);
             //qclient.FileService.DownloadAsync("/accounts/1000/appdata/com.example.FallingBlocks.testDev_llingBlocks37d009c_/app/", visitor);
@@ -337,7 +337,7 @@ namespace UnitTests
             Assert.IsNotNull(qclient.FileService);
 
             // download all files from the folder:
-            var visitor = new ZipPackageVisitor(Path.Combine(Defaults.NdkDirectory, "test-parallel.zip"), CompressionOption.NotCompressed);
+            var visitor = new ZipPackageVisitor(Path.Combine(Defaults.NdkDirectory, "test-parallel.zip"), CompressionLevel.Optimal);
 
             SetupProgressMonitor(visitor);
             qclient.FileService.DownloadAsync("/tmp", visitor);
@@ -434,7 +434,7 @@ namespace UnitTests
             Assert.IsNotNull(qclient.FileService);
 
             // package local folder:
-            var visitor = new ZipPackageVisitor(Path.Combine(Defaults.NdkDirectory, "tmp_tools.zip"), CompressionOption.Maximum);
+            var visitor = new ZipPackageVisitor(Path.Combine(Defaults.NdkDirectory, "tmp_tools.zip"), CompressionLevel.Optimal);
             var enumerator = new LocalEnumerator(@"C:\Tools");
 
             SetupProgressMonitor(visitor);

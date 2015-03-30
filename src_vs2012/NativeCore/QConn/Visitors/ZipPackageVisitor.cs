@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.IO.Packaging;
-using System.Text;
+using System.IO.Compression;
 using BlackBerry.NativeCore.Helpers;
 using BlackBerry.NativeCore.QConn.Model;
 using BlackBerry.NativeCore.QConn.Services;
@@ -14,16 +13,16 @@ namespace BlackBerry.NativeCore.QConn.Visitors
     public sealed class ZipPackageVisitor : BaseVisitorMonitor, IFileServiceVisitor
     {
         private readonly string _fileName;
-        private readonly CompressionOption _compression;
+        private readonly CompressionLevel _compression;
         private string _basePath;
-        private Package _package;
-        private PackagePart _currentPart;
+        private ZipArchive _package;
+        private ZipArchiveEntry _currentPart;
         private Stream _currentStream;
 
         /// <summary>
         /// Init constructor.
         /// </summary>
-        public ZipPackageVisitor(string fileName, CompressionOption compression)
+        public ZipPackageVisitor(string fileName, CompressionLevel compression)
         {
             if (string.IsNullOrEmpty(fileName))
                 throw new ArgumentNullException("fileName");
@@ -35,7 +34,7 @@ namespace BlackBerry.NativeCore.QConn.Visitors
         /// <summary>
         /// Init constructor.
         /// </summary>
-        public ZipPackageVisitor(string fileName, CompressionOption compression, object tag)
+        public ZipPackageVisitor(string fileName, CompressionLevel compression, object tag)
             : this(fileName, compression)
         {
             Tag = tag;
@@ -46,7 +45,7 @@ namespace BlackBerry.NativeCore.QConn.Visitors
         public void Begin(TargetServiceFile service, TargetFile descriptor)
         {
             Reset();
-            _package = Package.Open(_fileName, FileMode.Create);
+            _package = ZipFile.Open(_fileName, ZipArchiveMode.Create);
             _basePath = GetInitialBasePath(descriptor);
         }
 
@@ -73,14 +72,13 @@ namespace BlackBerry.NativeCore.QConn.Visitors
 
         public void FileOpening(TargetFile file)
         {
-            string shortName;
-            _currentPart = CreatePart(file.Path, out shortName);
+            _currentPart = CreatePart(file.Path);
 
             if (_currentPart == null)
                 throw new InvalidOperationException("Unable to create package part to store file content");
 
-            _currentStream = _currentPart.GetStream();
-            NotifyProgressNew(file, DecodeNameForProgress(shortName), null, TransferOperation.Downloading);
+            _currentStream = _currentPart.Open();
+            NotifyProgressNew(file, DecodeNameForProgress(_currentPart.FullName), null, TransferOperation.Downloading);
         }
 
         private static string DecodeNameForProgress(string path)
@@ -124,10 +122,8 @@ namespace BlackBerry.NativeCore.QConn.Visitors
 
         public void UnknownEntering(TargetFile other)
         {
-            string shortName;
-
             // create 0-length entry:
-            CreatePart(other.Path, out shortName);
+            CreatePart(other.Path);
         }
 
         public void Failure(TargetFile descriptor, Exception ex, string message)
@@ -135,34 +131,30 @@ namespace BlackBerry.NativeCore.QConn.Visitors
             NotifyFailed(descriptor, ex, message);
         }
 
-        private PackagePart CreatePart(string fullName, out string shortName)
+        private ZipArchiveEntry CreatePart(string fullName)
         {
             if (_package == null)
                 throw new ObjectDisposedException("PackagingFileServiceVisitor");
 
-            var uri = PackUriHelper.CreatePartUri(GetRelativeUri(fullName, out shortName));
-
-            if (_package.PartExists(uri))
-            {
-                _package.DeletePart(uri);
-            }
-
-            return _package.CreatePart(uri, string.Empty, _compression);
+            var shortName = GetRelativeUri(fullName);
+            return _package.CreateEntry(shortName, _compression);
         }
 
-        private Uri GetRelativeUri(string fullName, out string shortName)
+        private string GetRelativeUri(string fullName)
         {
             if (string.IsNullOrEmpty(fullName))
                 throw new ArgumentNullException("fullName");
 
             if (fullName.StartsWith(_basePath))
             {
-                shortName = fullName.Substring(_basePath.Length);
-                return new Uri(shortName, UriKind.Relative);
+                int length = _basePath.Length;
+                if (fullName.Length > length && (fullName[length] == Path.DirectorySeparatorChar || fullName[length] == Path.AltDirectorySeparatorChar))
+                    length++;
+
+                return fullName.Substring(length);
             }
 
-            shortName = fullName;
-            return new Uri(fullName, UriKind.Relative);
+            return fullName;
         }
 
         #endregion
@@ -177,7 +169,7 @@ namespace BlackBerry.NativeCore.QConn.Visitors
             _currentPart = null;
             if (_package != null)
             {
-                _package.Close();
+                _package.Dispose();
                 _package = null;
             }
         }

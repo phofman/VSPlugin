@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.IO.Packaging;
+using System.IO.Compression;
 using System.Text;
 using BlackBerry.NativeCore.Diagnostics;
 using BlackBerry.NativeCore.Helpers;
@@ -680,11 +680,15 @@ namespace BlackBerry.NativeCore.Model
 
             try
             {
-                using (var package = Package.Open(outputFile, FileMode.Create))
+                using (var package = ZipFile.Open(outputFile, ZipArchiveMode.Create))
                 {
                     foreach (var name in fileNames)
                     {
-                        Append(package, name, Path.Combine(DataPath, name));
+                        var fullPathName = Path.Combine(DataPath, name);
+                        if (File.Exists(fullPathName))
+                        {
+                            package.CreateEntryFromFile(fullPathName, name);
+                        }
                     }
                 }
 
@@ -694,45 +698,6 @@ namespace BlackBerry.NativeCore.Model
             {
                 TraceLog.WriteException(ex, "Unable to export profile to file: \"{0}\"", outputFile);
                 return false;
-            }
-        }
-
-        /// <summary>
-        /// Appends file to the ZIP package.
-        /// </summary>
-        private static void Append(Package package, string name, string fullPathName)
-        {
-            if (File.Exists(fullPathName))
-            {
-                Uri uri = PackUriHelper.CreatePartUri(new Uri(name, UriKind.Relative));
-                PackagePart part = package.CreatePart(uri, string.Empty);
-
-                if (part != null)
-                {
-                    using (var fileStream = new FileStream(fullPathName, FileMode.Open, FileAccess.Read))
-                    {
-                        CopyStream(fileStream, part.GetStream());
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Copy a stream from one stream to another.
-        /// </summary>
-        private static void CopyStream(Stream source, Stream target)
-        {
-            if (source == null)
-                throw new ArgumentNullException("source");
-            if (target == null)
-                throw new ArgumentNullException("target");
-
-            var buffer = new byte[0x1000];
-            int bytesRead;
-
-            while ((bytesRead = source.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                target.Write(buffer, 0, bytesRead);
             }
         }
 
@@ -755,11 +720,12 @@ namespace BlackBerry.NativeCore.Model
                     Token = null;
 
                     // extract all files that are within the backup package:
-                    using (var package = Package.Open(inputFile, FileMode.Open, FileAccess.ReadWrite))
+                    using (var package = ZipFile.OpenRead(inputFile))
                     {
-                        foreach (var part in package.GetParts())
+                        foreach (var part in package.Entries)
                         {
-                            var name = ExtractFile(part, DataPath);
+                            var name = Path.Combine(DataPath, part.FullName);
+                            part.ExtractToFile(name, true);
                             if (name != null && name.EndsWith(".p12"))
                             {
                                 p12FileName = Path.GetFileName(name);
@@ -784,36 +750,6 @@ namespace BlackBerry.NativeCore.Model
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Extract file under specified directory.
-        /// </summary>
-        public static string ExtractFile(PackagePart part, string folder)
-        {
-            // initially create file under the folder specified
-            string filePath = part.Uri.OriginalString.Replace('/', Path.DirectorySeparatorChar);
-
-            // remove trailing directory separator:
-            if (!string.IsNullOrEmpty(filePath) && filePath[0] == Path.DirectorySeparatorChar)
-            {
-                filePath = filePath.TrimStart(Path.DirectorySeparatorChar);
-            }
-
-            filePath = Path.Combine(folder, filePath);
-            var dirName = Path.GetDirectoryName(filePath);
-            if (!string.IsNullOrEmpty(dirName))
-            {
-                Directory.CreateDirectory(dirName);
-            }
-
-            // extract file:
-            using (var output = File.Create(filePath))
-            {
-                CopyStream(part.GetStream(), output);
-            }
-
-            return filePath;
         }
 
         /// <summary>

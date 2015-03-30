@@ -7,7 +7,7 @@ namespace BlackBerry.Package.Options
 {
     public partial class BackupOptionControl : UserControl
     {
-        private BackupOptionViewModel _vm = new BackupOptionViewModel();
+        private readonly BackupOptionViewModel _vm = new BackupOptionViewModel();
 
         public BackupOptionControl()
         {

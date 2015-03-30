@@ -44,6 +44,24 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\ext\zip\src\CompressionLevel.cs">
+      <Link>ZipArchive\CompressionLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ext\zip\src\ShellHelper.cs">
+      <Link>ZipArchive\ShellHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ext\zip\src\ZipArchive.cs">
+      <Link>ZipArchive\ZipArchive.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ext\zip\src\ZipArchiveEntry.cs">
+      <Link>ZipArchive\ZipArchiveEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ext\zip\src\ZipArchiveMode.cs">
+      <Link>ZipArchive\ZipArchiveMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ext\zip\src\ZipFile.cs">
+      <Link>ZipArchive\ZipFile.cs</Link>
+    </Compile>
     <Compile Include="..\..\src_vs2012\NativeCore\Components\TargetConnectionEventArgs.cs">
       <Link>Components\TargetConnectionEventArgs.cs</Link>
     </Compile>
