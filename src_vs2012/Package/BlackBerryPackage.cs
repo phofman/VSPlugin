@@ -173,7 +173,20 @@ namespace BlackBerry.Package
             Targets.TraceOptions(logOptions.DebuggedOnly, logOptions.LogsInterval, logOptions.SLog2Level, logOptions.SLog2Formatter, logOptions.GetSLog2BufferSets(), logOptions.InjectLogs, TraceLog.CategoryDevice);
 
             // create dedicated trace-logs output window pane (available in combo-box at regular Visual Studio Output Window):
-            var outputWindowService = GetService(typeof(SVsOutputWindow)) as IVsOutputWindow;
+            var windowService = GetService(typeof(SVsOutputWindow));
+
+#if PLATFORM_VS2010
+            // wait for some time, until the service is created correctly:
+            int count = 0;
+            while (windowService == null && count < 30)
+            {
+                count++;
+                System.Threading.Thread.Sleep(100);
+                windowService = GetService(typeof(SVsOutputWindow));
+            }
+#endif
+
+            var outputWindowService = windowService as IVsOutputWindow;
             _mainTraceWindow = new BlackBerryPaneTraceListener("BlackBerry", TraceLog.Category, true, outputWindowService, GuidList.GUID_TraceMainOutputWindowPane);
 #if DEBUG
             _gdbTraceWindow = new BlackBerryPaneTraceListener("BlackBerry - GDB", TraceLog.CategoryGDB, true, outputWindowService, GuidList.GUID_TraceGdbOutputWindowPane);
