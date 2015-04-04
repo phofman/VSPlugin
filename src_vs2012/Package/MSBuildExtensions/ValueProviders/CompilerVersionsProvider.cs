@@ -7,7 +7,7 @@ using Microsoft.Build.Framework.XamlTypes;
 
 namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
 {
-    [Export(typeof(IDynamicEnumValuesProvider)), DynamicEnumCategory("CompilerSelector")]
+    [Export(typeof(IDynamicEnumValuesProvider)), DynamicEnumCategory("CompilerVersionSelector")]
     public sealed class CompilerVersionsProvider : IDynamicEnumValuesProvider
     {
         public Task<IDynamicEnumValuesGenerator> GetProviderAsync(IList<NameValuePair> options)
