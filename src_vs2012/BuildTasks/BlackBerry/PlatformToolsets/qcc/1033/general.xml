@@ -74,9 +74,18 @@
                        Description="Specifies the toolset used for building the current configuration; If not set, the default toolset is used"
                        F1Keyword="VC.Project.VCConfiguration.PlatformToolset"
                        Category="General" />
-
+  <DynamicEnumProperty Name="TargetCompilerVersion" DisplayName="Platform Compiler Version" EnumProvider="CompilerVersionSelector"
+                     Description="Overrides the default compiler version used by toolset" Visible="True"
+                     Category="General" />
+  <EnumProperty Name="TargetCompilerName" DisplayName="Platform Compiler Name"
+                Description="Overrides the default target compiler used by toolset"
+                Category="General">
+    <EnumValue Name="" DisplayName="default" Description="Default compiler" />
+    <EnumValue Name="gpp" DisplayName="g++" Description="g++ target compiler" />
+  </EnumProperty>
+  
   <EnumProperty Name="ConfigurationType" DisplayName="Configuration Type"
-                Description="Specifies the type of output this configuration generates."
+                Description="Specifies the type of output this configuration generates"
                 Category="ProjectDefaults"
                 F1Keyword="VC.Project.VCConfiguration.ConfigurationType">
     <EnumValue Name="Application" DisplayName="Application (BAR file)" Description="Application" />

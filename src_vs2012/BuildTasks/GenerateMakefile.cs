@@ -269,9 +269,9 @@ namespace BlackBerry.BuildTasks
                 template.TargetBarFile = ConfigurationType == "Application" ? TargetName + ".bar" : string.Empty;
                 template.TargetCompiler = TargetCompiler;
                 template.TargetCompilerVersion = TargetCompilerVersion;
-                template.CompilerFlags = string.Concat("-V\"", TargetCompilerVersion,
+                template.CompilerFlags = string.Concat("-V", TargetCompilerVersion,
                                                        string.IsNullOrEmpty(TargetCompilerVersion) || string.IsNullOrEmpty(TargetCompiler) ? string.Empty : ",",
-                                                       TargetCompiler, "\"");
+                                                       TargetCompiler);
                 template.CompileItems = toCompile;
                 template.CompileItemsAsC = toCompileAsC;
                 template.CompileItemsAsCpp = toCompileAsCpp;
