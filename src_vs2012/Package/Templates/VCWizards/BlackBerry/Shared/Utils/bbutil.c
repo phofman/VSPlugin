@@ -845,7 +845,7 @@ int bbutil_load_texture(const char* filename, int* width, int* height, float* te
             fprintf(stderr,"Unsupported PNG color type (%d) for texture: %s", (int)color_type, filename);
             fclose(fp);
             png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-            return NULL;
+            return EXIT_FAILURE;
     }
 
     // Update the png info struct.
