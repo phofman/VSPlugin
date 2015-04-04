@@ -172,7 +172,7 @@
     <value>StaticLib</value>
   </data>
   <data name="5060" xml:space="preserve">
-    <value>NativeCore - Shared Library</value>
+    <value>Native Core - Shared Library</value>
   </data>
   <data name="5061" xml:space="preserve">
     <value>Creates a C/C++ shared library</value>
