@@ -71,13 +71,13 @@ Simulator-Debug: "<#= TargetFile #>"
         case "Application":
             {
                 // Invoke linker
-                #>qcc -o "<#= OutDir #><#= TargetFile #>" $(OBJS) $(USER_OBJS) $(LIBS) <#= CompilerFlags #> <#
+                #>qcc <#= CompilerFlags #> $(OBJS) $(USER_OBJS) $(LIBS) <#
 
                 if (LinkItem.GetMetadata("CompileAs") == "CompileAsC") { #>-lang-c <# } else { #>-lang-c++ <# }
                 if (LinkItem.GetMetadata("GenerateDebugInformation") == "true") { #>-g <# }
 
                 // For added security, remap some sections of ELF as read-only.
-                #>-Wl,-z,relro,-z,now <#
+                #>-Wl,-z,relro,-z,now -o "<#= OutDir #><#= TargetFile #>" <#
 
                 WriteDependencyLibrariesReferences();
                 WriteCollection(GetRootedDirs(ProjectDir, LinkItem.GetMetadata("AdditionalLibraryDirectories").Split(';')), "-L");
@@ -137,7 +137,7 @@ FORCE:
 
         // Now add a compile rule for this item.
         #><#= filename #>.o: <#= shortPath #>
-	qcc -o $@ <#= GetFullPath8Dot3(compileItem) #> <#= CompilerFlags #> -c -Wp,-MMD,$(basename $@).d -Wp,-MT,$@ <#
+	qcc <#= CompilerFlags #> -o $@ <#= GetFullPath8Dot3(compileItem) #> -c -Wp,-MMD,$(basename $@).d -Wp,-MT,$@ <#
 
         if (compileItem.GetMetadata("CompileAs") == "CompileAsC")
         {
