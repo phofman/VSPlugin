@@ -110,7 +110,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
       <RuntimeTypeInfo          Condition="'%(ClCompile.RuntimeTypeInfo)'           == ''">false</RuntimeTypeInfo>
       <ShortEnums               Condition="'%(ClCompile.ShortEnums)'                == ''">false</ShortEnums>
       <CompileAs                Condition="'%(ClCompile.CompileAs)'                 == ''">Default</CompileAs>
-      <EnhancedSecurity         Condition="'%(ClCompile.EnhancedSecurity)' == ''">true</EnhancedSecurity>
+      <EnhancedSecurity         Condition="'%(ClCompile.EnhancedSecurity)'          == ''">true</EnhancedSecurity>
     </ClCompile>
   </ItemDefinitionGroup>
   

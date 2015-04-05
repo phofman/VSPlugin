@@ -1,4 +1,6 @@
-﻿#if PLATFORM_VS2012
+﻿#if PLATFORM_VS2010
+using Microsoft.VisualStudio.Project.Contracts.PropertyPages.VS2010ONLY;
+#elif PLATFORM_VS2012
 using Microsoft.VisualStudio.Project.Properties;
 #elif PLATFORM_VS2013
 using Microsoft.VisualStudio.ProjectSystem.Properties;

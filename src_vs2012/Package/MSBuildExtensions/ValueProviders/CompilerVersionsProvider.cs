@@ -1,21 +1,27 @@
-﻿#if PLATFORM_VS2012
+﻿#if PLATFORM_VS2010
+using Microsoft.VisualStudio.Project.Contracts.PropertyPages.VS2010ONLY;
+#elif PLATFORM_VS2012
 using Microsoft.VisualStudio.Project.Designers.Properties;
 using Microsoft.VisualStudio.Project.Utilities.PropertyPages;
 #elif PLATFORM_VS2013
 using Microsoft.VisualStudio.ProjectSystem.Designers.Properties;
 using Microsoft.VisualStudio.ProjectSystem.Utilities.PropertyPages;
+using System.Threading.Tasks;
 #endif
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Threading.Tasks;
 using Microsoft.Build.Framework.XamlTypes;
+using Microsoft.VisualStudio.Project.Framework;
 
 namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
 {
     [Export(typeof(IDynamicEnumValuesProvider)), DynamicEnumCategory("CompilerVersionSelector")]
+#if PLATFORM_VS2010
+    [ProjectScope(ProjectScopeRequired.ConfiguredProject)]
+#endif
     public sealed class CompilerVersionsProvider : IDynamicEnumValuesProvider
     {
-#if PLATFORM_VS2012
+#if PLATFORM_VS2010 || PLATFORM_VS2012
         public IDynamicEnumValuesGenerator GetProvider(IList<NameValuePair> options)
         {
             return new CompilerVersionsGenerator();

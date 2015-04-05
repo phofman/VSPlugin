@@ -28,6 +28,10 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   <PropertyGroup>
     <!-- Enable incremental build by enable file tracking in tasks-->
     <TrackFileAccess Condition="'$(TrackFileAccess)' == ''">true</TrackFileAccess>
+    <TargetCompilerStd Condition="$(TargetCompilerName.EndsWith('10')) and '$(ConfigurationAppType)' == 'Regular'">c++0x</TargetCompilerStd>
+    <TargetCompilerStd Condition="$(TargetCompilerName.EndsWith('11')) and '$(ConfigurationAppType)' == 'Regular'">c++11</TargetCompilerStd>
+    <TargetCompilerName Condition="$(TargetCompilerName.EndsWith('10')) or $(TargetCompilerName.EndsWith('11'))">$(TargetCompilerName.Substring(0,$(TargetCompilerName.IndexOf('1'))))</TargetCompilerName>
+    <TargetCompiler Condition="$(TargetCompilerName) != '' and '$(ConfigurationAppType)' == 'Regular'">$(TargetCompiler)_$(TargetCompilerName)</TargetCompiler>
   </PropertyGroup>
 
   <!-- This target is called as the first one to prepare the environment, expected variables must be set by the PlatformToolset -->
@@ -103,6 +107,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
       Platform        ="$(TargetCPU)"
       TargetCompiler        ="$(TargetCompiler)"
       TargetCompilerVersion ="$(TargetCompilerVersion)"
+      TargetCompilerStd     ="$(TargetCompilerStd)"
       AdditionalIncludeDirectories ="$(IncludePath)"
       AdditionalLibraryDirectories ="$(LibraryPath)"
       ExcludeDirectories    ="$(ExcludePath)"
@@ -159,6 +164,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
       Platform        ="$(TargetCPU)"
       TargetCompiler        ="$(TargetCompiler)"
       TargetCompilerVersion ="$(TargetCompilerVersion)"
+      TargetCompilerStd     ="$(TargetCompilerStd)"
       AdditionalIncludeDirectories ="$(IncludePath)"
       AdditionalLibraryDirectories ="$(LibraryPath)"
       ExcludeDirectories    ="$(ExcludePath)"
