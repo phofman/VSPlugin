@@ -10,7 +10,6 @@
     <Category Name="Code Generation" DisplayName="Code Generation" />
     <Category Name="Language" DisplayName="Language" />
     <Category Name="Output Files" DisplayName="Output Files" />
-    <Category Name="Advanced" DisplayName="Advanced" />
     <Category Name="Command Line" DisplayName="Command Line" Subtype="CommandLine" />
   </Rule.Categories>
   <Rule.DataSource>
@@ -91,20 +90,18 @@
   <!-- Language -->
   <BoolProperty Name="RuntimeTypeInfo" DisplayName="Enable Run-Time Type Information" Category="Language"  Switch="frtti" ReverseSwitch="fno-rtti" />
   <BoolProperty Name="ShortEnums" DisplayName="Short Enums" Category="Language" Switch="fshort-enums" ReverseSwitch="fno-short-enums" />
-
+  <EnumProperty Name="CompileAs" DisplayName="Compile As"
+                Description="Select compile language option for .c and .cpp files (-lang-c, -lang-c++)."
+                Category="Language" F1Keyword="VC.Project.VCCLCompilerTool.CompileAs">
+    <EnumValue Name="CompileAsC" Switch="lang-c" DisplayName="Compile as C Code" Description="Compile as C Code" />
+    <EnumValue Name="CompileAsCpp" Switch="lang-c++" DisplayName="Compile as C++ Code" Description="Compile as C++ Code" />
+  </EnumProperty>
+  
   <!-- Output Files -->
   <StringProperty Subtype="file" Name="ObjectFileName" DisplayName="Object File Name"
                   Description="Specifies a name to override the default object file name; can be file or directory name (-o[name])."
                   Category="Output Files" Switch="o" F1Keyword="VC.Project.VCCLCompilerTool.ObjectFile">
   </StringProperty>
-  
-  <!-- Advanced -->
-  <EnumProperty Name="CompileAs" DisplayName="Compile As"
-                Description="Select compile language option for .c and .cpp files (-lang-c, -lang-c++)."
-                Category="Advanced" F1Keyword="VC.Project.VCCLCompilerTool.CompileAs">
-    <EnumValue Name="CompileAsC" Switch="lang-c" DisplayName="Compile as C Code" Description="Compile as C Code" />
-    <EnumValue Name="CompileAsCpp" Switch="lang-c++" DisplayName="Compile as C++ Code" Description="Compile as C++ Code" />
-  </EnumProperty>
 
   <!-- Command Line -->
   <StringProperty Name="AdditionalOptions" DisplayName="Additional Options" Description="Additional Options" Category="Command Line" F1Keyword="vc.project.AdditionalOptionsPage" />
