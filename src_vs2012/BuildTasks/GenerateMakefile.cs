@@ -176,6 +176,12 @@ namespace BlackBerry.BuildTasks
             get;
         }
 
+        public string TargetCompilerStd
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Getter/Setter for Platform property
         /// </summary>
@@ -223,7 +229,7 @@ namespace BlackBerry.BuildTasks
             ITaskItem additionalInfo;
             var linkInfo = LinkItems != null && LinkItems.Length > 0 ? LinkItems[0] : null;
 
-            SplitCompileItems(CompileItems, ExcludeDirectories, out toCompile, out toCompileAsC, out toCompileAsCpp);
+            SplitCompileItems(CompileItems, ExcludeDirectories, !string.IsNullOrEmpty(TargetCompilerStd), out toCompile, out toCompileAsC, out toCompileAsCpp);
             additionalInfo = toCompile != null && toCompile.Length > 0 ? toCompile[0] : null;
 
             using (var outputFile = new StreamWriter(ProjectDir + "config.pri"))
@@ -256,7 +262,7 @@ namespace BlackBerry.BuildTasks
             ITaskItem[] toCompile;
             ITaskItem[] toCompileAsC;
             ITaskItem[] toCompileAsCpp;
-            SplitCompileItems(CompileItems, ExcludeDirectories, out toCompile, out toCompileAsC, out toCompileAsCpp);
+            SplitCompileItems(CompileItems, ExcludeDirectories, !string.IsNullOrEmpty(TargetCompilerStd), out toCompile, out toCompileAsC, out toCompileAsCpp);
 
             using (var outputFile = new StreamWriter(IntDir + "makefile"))
             {
@@ -269,9 +275,10 @@ namespace BlackBerry.BuildTasks
                 template.TargetBarFile = ConfigurationType == "Application" ? TargetName + ".bar" : string.Empty;
                 template.TargetCompiler = TargetCompiler;
                 template.TargetCompilerVersion = TargetCompilerVersion;
+                template.TargetCompilerStd = TargetCompilerStd;
                 template.CompilerFlags = string.Concat("-V", TargetCompilerVersion,
                                                        string.IsNullOrEmpty(TargetCompilerVersion) || string.IsNullOrEmpty(TargetCompiler) ? string.Empty : ",",
-                                                       TargetCompiler);
+                                                       TargetCompiler, !string.IsNullOrEmpty(TargetCompilerStd) ? " -Wc,-std=" : string.Empty, TargetCompilerStd);
                 template.CompileItems = toCompile;
                 template.CompileItemsAsC = toCompileAsC;
                 template.CompileItemsAsCpp = toCompileAsCpp;
@@ -283,7 +290,7 @@ namespace BlackBerry.BuildTasks
             }
         }
 
-        private static void SplitCompileItems(ITaskItem[] compileItems, string[] excludedDirectories, out ITaskItem[] toCompile, out ITaskItem[] toCompileAsC, out ITaskItem[] toCompileAsCpp)
+        private static void SplitCompileItems(ITaskItem[] compileItems, string[] excludedDirectories, bool hasCppStd, out ITaskItem[] toCompile, out ITaskItem[] toCompileAsC, out ITaskItem[] toCompileAsCpp)
         {
             if (compileItems == null)
                 throw new ArgumentNullException("compileItems");
@@ -303,7 +310,7 @@ namespace BlackBerry.BuildTasks
                     listCompile.Add(item);
 
                     // and devide into C vs C++ sets:
-                    if (IsCompileAsC(item))
+                    if (IsCompileAsC(item, hasCppStd))
                         listCompileAsC.Add(item);
                     else
                         listCompileAsCpp.Add(item);
@@ -315,9 +322,11 @@ namespace BlackBerry.BuildTasks
             toCompileAsCpp = listCompileAsCpp.ToArray();
         }
 
-        private static bool IsCompileAsC(ITaskItem item)
+        private static bool IsCompileAsC(ITaskItem item, bool hasCppStd)
         {
-            return item.GetMetadata("CompileAs") == "CompileAsC";
+            var compileAs = item.GetMetadata("CompileAs");
+
+            return compileAs == "CompileAsC" && !hasCppStd;
         }
 
         private static ITaskItem[] FilterByExtension(IEnumerable<ITaskItem> items, string[] extensions, string[] excludedItemSpecs, out ITaskItem excludedItem)

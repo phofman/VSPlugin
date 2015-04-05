@@ -73,7 +73,7 @@ Simulator-Debug: "<#= TargetFile #>"
                 // Invoke linker
                 #>qcc <#= CompilerFlags #> $(OBJS) $(USER_OBJS) $(LIBS) <#
 
-                if (LinkItem.GetMetadata("CompileAs") == "CompileAsC") { #>-lang-c <# } else { #>-lang-c++ <# }
+                if (LinkItem.GetMetadata("CompileAs") == "CompileAsC" && string.IsNullOrEmpty(TargetCompilerStd)) { #>-lang-c <# } else { #>-lang-c++ <# }
                 if (LinkItem.GetMetadata("GenerateDebugInformation") == "true") { #>-g <# }
 
                 // For added security, remap some sections of ELF as read-only.
@@ -139,7 +139,7 @@ FORCE:
         #><#= filename #>.o: <#= shortPath #>
 	qcc <#= CompilerFlags #> -o $@ <#= GetFullPath8Dot3(compileItem) #> -c -Wp,-MMD,$(basename $@).d -Wp,-MT,$@ <#
 
-        if (compileItem.GetMetadata("CompileAs") == "CompileAsC")
+        if (compileItem.GetMetadata("CompileAs") == "CompileAsC" && string.IsNullOrEmpty(TargetCompilerStd))
         {
              #>-lang-c <#
         }

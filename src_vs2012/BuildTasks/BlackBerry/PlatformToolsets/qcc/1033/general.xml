@@ -34,8 +34,7 @@
   <StringProperty Name="TargetName" DisplayName="Target Name"
                   Description="Specifies a file name that this project will generate."
                   F1Keyword="VC.Project.VCConfiguration.TargetName"
-                  Category="General" Default="$(ProjectName)"
-                  >
+                  Category="General" Default="$(ProjectName)">
     <StringProperty.DataSource>
       <DataSource Persistence="ProjectFile" Label="" />
     </StringProperty.DataSource>
@@ -43,8 +42,7 @@
   <StringProperty Name="TargetExt" DisplayName="Target Extension"
                   Description="Specifies a file extension that this project will generate. (Example: .exe or .dll)"
                   F1Keyword="VC.Project.VCConfiguration.TargetExt"
-                  Category="General"
-                  >
+                  Category="General">
     <StringProperty.DataSource>
       <DataSource Persistence="ProjectFile" Label="" />
     </StringProperty.DataSource>
@@ -80,10 +78,12 @@
   <EnumProperty Name="TargetCompilerName" DisplayName="Platform Compiler Name"
                 Description="Overrides the default target compiler used by toolset"
                 Category="General">
-    <EnumValue Name="" DisplayName="default" Description="Default compiler" />
+    <EnumValue Name="" DisplayName="Default" Description="Default compiler" />
     <EnumValue Name="gpp" DisplayName="g++" Description="g++ target compiler" />
+    <EnumValue Name="gpp10" DisplayName="g++ (C++0x)" Description="g++ for C++0x target compiler" />
+    <EnumValue Name="gpp11" DisplayName="g++ (C++11)" Description="g++ for C++11 target compiler" />
   </EnumProperty>
-  
+
   <EnumProperty Name="ConfigurationType" DisplayName="Configuration Type"
                 Description="Specifies the type of output this configuration generates"
                 Category="ProjectDefaults"

@@ -51,6 +51,12 @@ namespace BlackBerry.BuildTasks.Templates
             set;
         }
 
+        public string TargetCompilerStd
+        {
+            get;
+            set;
+        }
+
         public string CompilerFlags
         {
             get;

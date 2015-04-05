@@ -206,7 +206,7 @@ LIBS :=
             #line 74 "T:\vs-plugin\src_vs2012\BuildTasks\Templates\MakefileTemplate.tt"
 
 
-                if (LinkItem.GetMetadata("CompileAs") == "CompileAsC") { 
+                if (LinkItem.GetMetadata("CompileAs") == "CompileAsC" && string.IsNullOrEmpty(TargetCompilerStd)) { 
             
             #line default
             #line hidden
@@ -449,7 +449,7 @@ LIBS :=
             #line 140 "T:\vs-plugin\src_vs2012\BuildTasks\Templates\MakefileTemplate.tt"
 
 
-        if (compileItem.GetMetadata("CompileAs") == "CompileAsC")
+        if (compileItem.GetMetadata("CompileAs") == "CompileAsC" && string.IsNullOrEmpty(TargetCompilerStd))
         {
              
             

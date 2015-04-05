@@ -21,7 +21,7 @@ namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
             var ndk = PackageViewModel.Instance != null ? PackageViewModel.Instance.ActiveNDK : null;
 
             // add the default item, to let the toolset select appropriate the compiler version:
-            result.Add(new DynamicEnumValue("", "default", "Default compiler version evaluated and used by toolset", true));
+            result.Add(new DynamicEnumValue("", "Default", "Default compiler version evaluated and used by toolset", true));
 
             if (ndk != null && Directory.Exists(ndk.HostPath))
             {
