@@ -1,5 +1,9 @@
-﻿using Microsoft.Build.Framework.XamlTypes;
+﻿#if PLATFORM_VS2012
+using Microsoft.VisualStudio.Project.Properties;
+#elif PLATFORM_VS2013
 using Microsoft.VisualStudio.ProjectSystem.Properties;
+#endif
+using Microsoft.Build.Framework.XamlTypes;
 using System.Collections.Generic;
 
 namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
