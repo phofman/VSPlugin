@@ -1,5 +1,6 @@
 ﻿#if PLATFORM_VS2010
 using Microsoft.VisualStudio.Project.Contracts.PropertyPages.VS2010ONLY;
+using Microsoft.VisualStudio.Project.Framework;
 #elif PLATFORM_VS2012
 using Microsoft.VisualStudio.Project.Designers.Properties;
 using Microsoft.VisualStudio.Project.Utilities.PropertyPages;
@@ -11,7 +12,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Microsoft.Build.Framework.XamlTypes;
-using Microsoft.VisualStudio.Project.Framework;
 
 namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
 {
