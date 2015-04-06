@@ -23,6 +23,10 @@
 #include <stdbool.h>
 #include <math.h>
 
+extern "C" {
+    extern pid_t    getpid(void);
+}
+
 #include "$Name$.h"
 
 #ifdef USING_GL11
@@ -762,10 +766,11 @@ void bbutil_measure_text(font_t* font, const char* msg, float* width, float* hei
 
 int bbutil_load_texture(const char* filename, int* width, int* height, float* tex_x, float* tex_y, unsigned int *tex)
 {
-    int i;
+    unsigned int i;
     GLuint format;
     //header for testing if it is a png
     png_byte header[8];
+    unsigned int tex_width, tex_height;
 
     if (!tex) {
         return EXIT_FAILURE;
@@ -882,8 +887,6 @@ int bbutil_load_texture(const char* filename, int* width, int* height, float* te
     //read the png into image_data through row_pointers
     png_read_image(png_ptr, row_pointers);
 
-    int tex_width, tex_height;
-
     tex_width = nextp2(image_width);
     tex_height = nextp2(image_height);
 
@@ -956,8 +959,8 @@ int bbutil_calculate_dpi(screen_context_t ctx)
             bbutil_terminate();
             return EXIT_FAILURE;
         }
-        double diagonal_pixels = sqrt(screen_resolution[0] * screen_resolution[0] + screen_resolution[1] * screen_resolution[1]);
-        double diagonal_inches = 0.0393700787 * sqrt(screen_phys_size[0] * screen_phys_size[0] + screen_phys_size[1] * screen_phys_size[1]);
+        double diagonal_pixels = sqrt((double)(screen_resolution[0] * screen_resolution[0] + screen_resolution[1] * screen_resolution[1]));
+        double diagonal_inches = 0.0393700787 * sqrt((double)(screen_phys_size[0] * screen_phys_size[0] + screen_phys_size[1] * screen_phys_size[1]));
         return (int)(diagonal_pixels / diagonal_inches + 0.5);
 
     }

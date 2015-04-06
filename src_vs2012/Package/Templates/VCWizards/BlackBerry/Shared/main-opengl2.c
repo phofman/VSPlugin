@@ -12,6 +12,9 @@
 #include <GLES2/gl2.h>
 
 #include <math.h>
+#ifndef M_PI
+#   define M_PI           3.14159265358979323846  /* pi */
+#endif
 
 #include "bbutil.h"
 
@@ -203,9 +206,9 @@ static int initialize()
         GLfloat top = 1.0f;
         GLfloat zNear = -1.0f;
         GLfloat zFar = 1.0f;
-        GLfloat ortho[16] = { 2.0 / (right-left), 0, 0, 0,
-                              0, 2.0 / (top-bottom), 0, 0,
-                              0, 0, -2.0 / (zFar - zNear), 0,
+        GLfloat ortho[16] = { (GLfloat)(2.0 / (right - left)), 0, 0, 0,
+                              0, (GLfloat)(2.0 / (top-bottom)), 0, 0,
+                              0, 0, (GLfloat)(-2.0 / (zFar - zNear)), 0,
                               -(right+left)/(right-left), -(top+bottom)/(top-bottom), -(zFar+zNear)/(zFar-zNear), 1};
         glUniformMatrix4fv(projectionLoc, 1, false, ortho);
     }
