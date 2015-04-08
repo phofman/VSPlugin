@@ -23,10 +23,6 @@
 #include <stdbool.h>
 #include <math.h>
 
-extern "C" {
-    extern pid_t    getpid(void);
-}
-
 #include "$Name$.h"
 
 #ifdef USING_GL11
@@ -42,6 +38,16 @@ extern "C" {
 #include FT_FREETYPE_H
 
 #include "png.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+    extern pid_t    getpid(void);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 EGLDisplay egl_disp;
 EGLSurface egl_surf;
