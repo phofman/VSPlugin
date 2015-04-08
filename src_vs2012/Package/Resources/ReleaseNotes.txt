@@ -1,5 +1,12 @@
 Changes:
 
+v3.5.0 (2015-04-08):
+ * added support for C++11 (g++,4.8.2+) for non-Cascades applications (#40)
+ * ported projects to use new ZipArchive API (#20) for .NET 4.5
+ * fixed connectivity issues of TargetNavigator on Windows XP
+ * improved MSBuildExtender to work smoothly on Windows XP
+ * fixed typos and warnings in some new-project files
+
 v3.4.0 (2015-03-25):
  * incorporates bug-fixes released as BlackBerry plug-in 3.0 Gold for Visual Studio (http://developer.blackberry.com/native/downloads/)
  * fixed crash, when evaluating incorrect expressions (blackberry/VSPlugin/#676)

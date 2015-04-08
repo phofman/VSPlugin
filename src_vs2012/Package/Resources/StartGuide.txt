@@ -15,8 +15,9 @@ MANUAL steps have to be made before this package works smoothly without errors a
 
 2) Ensure MSBuild extensions are installed.
    Since the version *v3.4* of this plugin, they are automatically populated from inside Visual Studio by custom utility
-   called *CodeTitans MSBuild Platform Installer*, however administrator privileges are required to complete the process.
-   It is enough to double-click the error message appearing in "Error List" window to initiate.
+   called *CodeTitans MSBuild Platform Installer*. However administrator privileges are required to complete the process.
+   It is enough to double-click the error message about missing/incompatible version of MSBuild extensions for BlackBerry
+   installed, appearing in "Error List" window to initiate and complete the process.
 
    For convenience those extensions are also distributed separately at https://github.com/phofman/vs-plugin/releases/latest.
    They need to be copied into "C:\Program Files (x86)\MSBuild".
