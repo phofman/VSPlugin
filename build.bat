@@ -65,7 +65,7 @@ set ProgFilesRoot=%ProgramFiles(x86)%
 if "%ProgFilesRoot%" == "" set ProgFilesRoot=%ProgramFiles%
 set QnxToolsDir=%thisDir%\qnxtools
 
-set ZipTool=%thisDir%\ext\7zip\7z.exe
+set ZipTool=%thisDir%\ext\7zip\7za.exe
 set MsBuild="C:\Windows\Microsoft.NET\Framework\v4.0.30319\MsBuild.exe"
 set MsBuild2013="%ProgFilesRoot%\MSBuild\12.0\Bin\MsBuild.exe"
 set MsBuildCmd=%MsBuild% /m /property:Configuration=Release /property:Platform="Mixed Platforms" /target:Rebuild
