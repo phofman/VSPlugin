@@ -14,6 +14,10 @@ using System.IO;
 
 namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
 {
+    /// <summary>
+    /// Generator for values into dynamic-enum.
+    /// Scans the active NDK and populates list with all available versions of the compiler.
+    /// </summary>
     sealed class CompilerVersionsGenerator : IDynamicEnumValuesGenerator
     {
         public bool AllowCustomValues

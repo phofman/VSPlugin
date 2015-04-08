@@ -10,6 +10,9 @@ using System.Collections.Generic;
 
 namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
 {
+    /// <summary>
+    /// Helper class that holds values returned by dynamic-enum generator and exposes them via IEnumValue interface.
+    /// </summary>
     sealed class DynamicEnumValue : IEnumValue
     {
         public DynamicEnumValue()

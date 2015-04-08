@@ -15,6 +15,10 @@ using Microsoft.Build.Framework.XamlTypes;
 
 namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
 {
+    /// <summary>
+    /// Dynamic-enum provider class, that can be used inside MSBuild rules files (by category) and is automatically
+    /// picked-up by Visual Studio to suggest values presented for developer in a combo-box.
+    /// </summary>
     [Export(typeof(IDynamicEnumValuesProvider)), DynamicEnumCategory("CompilerVersionSelector")]
 #if PLATFORM_VS2010
     [ProjectScope(ProjectScopeRequired.ConfiguredProject)]
