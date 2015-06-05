@@ -12,8 +12,8 @@ All assets in this repository, unless otherwise stated through sub-directory LIC
 Please visit the [Wiki](https://github.com/phofman/vs-plugin/wiki) for detailed documentation.
 
 ###Supported platforms
- * all known and modern BlackBerry devices (BB10 phones and PlayBook)
- * integrates inside Visual Studio 2010/2012/2013
+ * all known and modern BlackBerry devices (BB10 phones and PlayBook) and simulators
+ * integrates inside Visual Studio 2010/2012/2013 including Community Edition
  * works on Windows XP/7/8
 
 ###Delivered via Visual Studio Gallery
