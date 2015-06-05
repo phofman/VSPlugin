@@ -9,7 +9,7 @@ All assets in this repository, unless otherwise stated through sub-directory LIC
 
 #Key Features
 
-Please visit the [Wiki](http://github.com/phofman/vs-plugin/wiki) for detailed documentation.
+Please visit the [Wiki](https://github.com/phofman/vs-plugin/wiki) for detailed documentation.
 
 ###Supported platforms
  * all known and modern BlackBerry devices (BB10 phones and PlayBook)
@@ -71,5 +71,5 @@ And almost all aspect of the project can be changed or tuned. Also if you dislik
  * and more!
 
 ## Reference materials
-* [How to Contribute](http://github.com/phofman/vs-plugin/wiki/Contributions)
+* [How to Contribute](https://github.com/phofman/vs-plugin/wiki/Contribution)
 * Who is behind the project - [CodeTitans.pl](http://www.codetitans.pl)
