@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.Project.Contracts.PropertyPages.VS2010ONLY;
 #elif PLATFORM_VS2012
 using Microsoft.VisualStudio.Project.Designers.Properties;
 using Microsoft.VisualStudio.Project.Properties;
-#elif PLATFORM_VS2013
+#elif PLATFORM_VS2013 || PLATFORM_VS2015
 using Microsoft.VisualStudio.ProjectSystem.Designers.Properties;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 using System.Threading.Tasks;
@@ -38,7 +38,7 @@ namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
         }
 #endif
 
-#if PLATFORM_VS2013
+#if PLATFORM_VS2013 || PLATFORM_VS2015
         public Task<ICollection<IEnumValue>> GetListedValuesAsync()
         {
             return Task.FromResult<ICollection<IEnumValue>>(LoadList());

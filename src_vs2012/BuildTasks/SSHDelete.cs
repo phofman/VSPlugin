@@ -297,7 +297,7 @@ namespace BlackBerry.BuildTasks
         /// Getter/Setter for the DeleteFiles property
         /// </summary>
         public
-#if PLATFORM_VS2013
+#if PLATFORM_VS2013 || PLATFORM_VS2015
             new
 #endif
             ITaskItem[] DeleteFiles

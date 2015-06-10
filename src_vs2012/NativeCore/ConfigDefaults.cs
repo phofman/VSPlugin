@@ -62,15 +62,18 @@ namespace BlackBerry.NativeCore
         /// It will not be used in release builds, as then the assumption is that the DE is next to the package.
         /// </summary>
         public const string DebugEngineDebugablePath =
-#               if PLATFORM_VS2010
+#if PLATFORM_VS2010
                     @"T:\vs-plugin\src_vs2010\DebugEngine\bin\Debug\BlackBerry.DebugEngine.dll";
-#               elif PLATFORM_VS2012
+#elif PLATFORM_VS2012
                     @"T:\vs-plugin\src_vs2012\DebugEngine\bin\Debug\BlackBerry.DebugEngine.dll";
-#               elif PLATFORM_VS2013
+#elif PLATFORM_VS2013
                     @"T:\vs-plugin\src_vs2013\DebugEngine\bin\Debug\BlackBerry.DebugEngine.dll";
-#               else
+#elif PLATFORM_VS2015
+                    @"T:\vs-plugin\src_vs2015\DebugEngine\bin\Debug\BlackBerry.DebugEngine.dll";
+#else
 #                   error Define path to debug version of the DebugEngine.dll to make the debugging working.
-#               endif
+#endif
+
 #endif
 
         /// <summary>
@@ -93,6 +96,8 @@ namespace BlackBerry.NativeCore
                 return Path.Combine(programFilesX86, "MSBuild", "Microsoft.Cpp", "v4.0", "V110");
 #elif PLATFORM_VS2013
                 return Path.Combine(programFilesX86, "MSBuild", "Microsoft.Cpp", "v4.0", "V120");
+#elif PLATFORM_VS2015
+                return Path.Combine(programFilesX86, "MSBuild", "Microsoft.Cpp", "v4.0", "V140");
 #else
 #               error Define MSBuild path for current version of Visual Studio.
 #endif
@@ -121,6 +126,8 @@ namespace BlackBerry.NativeCore
                 return "vs2012";
 #elif PLATFORM_VS2013
                 return "vs2013";
+#elif PLATFORM_VS2015
+                return "vs2015";
 #else
 #               error Define the version of Visual Studio.
 #endif
@@ -196,6 +203,8 @@ namespace BlackBerry.NativeCore
                 GdbHostPath = @"T:\vs-plugin\src_vs2012\Debug\BlackBerry.GDBHost.exe";
 #           elif PLATFORM_VS2013
                 GdbHostPath = @"T:\vs-plugin\src_vs2013\Debug\BlackBerry.GDBHost.exe";
+#           elif PLATFORM_VS2015
+                GdbHostPath = @"T:\vs-plugin\src_vs2015\Debug\BlackBerry.GDBHost.exe";
 #           else
 #               error Define path to debug version of the GDBHost.dll to make the debugging working.
 #           endif

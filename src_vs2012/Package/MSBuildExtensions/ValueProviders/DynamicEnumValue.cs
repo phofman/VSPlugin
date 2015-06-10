@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.Project.Contracts.PropertyPages.VS2010ONLY;
 #elif PLATFORM_VS2012
 using Microsoft.VisualStudio.Project.Properties;
-#elif PLATFORM_VS2013
+#elif PLATFORM_VS2013 || PLATFORM_VS2015
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 #endif
 using Microsoft.Build.Framework.XamlTypes;
