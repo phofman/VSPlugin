@@ -719,16 +719,37 @@ namespace BlackBerry.NativeCore.Model
                     DeletePassword();
                     Token = null;
 
+                    if (!Directory.Exists(DataPath))
+                        Directory.CreateDirectory(DataPath);
+
                     // extract all files that are within the backup package:
                     using (var package = ZipFile.OpenRead(inputFile))
                     {
+                        string prefix = null;
                         foreach (var part in package.Entries)
                         {
-                            var name = Path.Combine(DataPath, part.FullName);
-                            part.ExtractToFile(name, true);
-                            if (name != null && name.EndsWith(".p12"))
+                            var partName = part.FullName;
+                            // is it a folder?
+                            if (partName.Length > 0 && (partName[partName.Length - 1] == Path.DirectorySeparatorChar || partName[partName.Length - 1] == Path.AltDirectorySeparatorChar))
                             {
-                                p12FileName = Path.GetFileName(name);
+                                prefix = part.FullName;
+                                continue;
+                            }
+
+                            if (!string.IsNullOrEmpty(prefix) && partName.StartsWith(prefix, StringComparison.Ordinal))
+                            {
+                                partName = partName.Substring(prefix.Length);
+                            }
+
+                            if (!string.IsNullOrEmpty(partName))
+                            {
+                                var name = Path.Combine(DataPath, partName);
+
+                                part.ExtractToFile(name, true);
+                                if (name.EndsWith(".p12"))
+                                {
+                                    p12FileName = Path.GetFileName(name);
+                                }
                             }
                         }
                     }
