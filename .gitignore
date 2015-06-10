@@ -57,6 +57,20 @@ src_vs2013/Package/BlackBerry.Package.csproj.user
 src_vs2013/Tasks/BlackBerry.Tasks.csproj.user
 src_vs2013/UnitTests/UnitTests.csproj.user
 
+src_vs2015/.vs/
+src_vs2015/BuildTasks/BlackBerry.BuildTasks.csproj.user
+src_vs2015/BlackBerry.NativePlugin.sdf
+src_vs2015/BlackBerry.NativePlugin.opensdf
+src_vs2015/BlackBerry.NativePlugin.sln.DotSettings
+src_vs2015/BlackBerry.NativePlugin.sln.DotSettings.user
+src_vs2015/BlackBerry.NativePlugin.v14.suo
+src_vs2015/DebugEngine/BlackBerry.DebugEngine.csproj.user
+src_vs2015/GDBHost/BlackBerry.GDBHost.vcxproj.user
+src_vs2015/NativeCore/BlackBerry.NativeCore.csproj.user
+src_vs2015/Package/BlackBerry.Package.csproj.user
+src_vs2015/Tasks/BlackBerry.Tasks.csproj.user
+src_vs2015/UnitTests/UnitTests.csproj.user
+
 
 # build temp outputs
 _BuildResults/
@@ -120,5 +134,23 @@ src_vs2013/Package/bin/
 src_vs2013/Package/obj/
 src_vs2013/UnitTests/bin/
 src_vs2013/UnitTests/obj/
+
+src_vs2015/Debug/
+src_vs2015/Release/
+src_vs2015/ipch/
+src_vs2015/BuildTasks/bin/
+src_vs2015/BuildTasks/obj/
+src_vs2015/DebugEngine/bin/
+src_vs2015/DebugEngine/obj/
+src_vs2015/GDBHost/Debug/
+src_vs2015/GDBHost/Release/
+src_vs2015/NativeCore/bin/
+src_vs2015/NativeCore/obj/
+src_vs2015/Package/bin/
+src_vs2015/Package/obj/
+src_vs2015/UnitTests/bin/
+src_vs2015/UnitTests/obj/
+
+
 
 

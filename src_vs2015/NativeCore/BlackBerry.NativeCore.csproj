@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5649EBB2-AD37-4286-A7E9-A3F3BDA79664}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlackBerry.NativeCore</RootNamespace>
+    <AssemblyName>BlackBerry.NativeCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PLATFORM_VS2015;MAKE_CONFIG_DEFAULTS_PUBLIC</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;PLATFORM_VS2015;MAKE_CONFIG_DEFAULTS_PUBLIC</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\src_vs2012\NativeCore\Resources\Instructions.txt">
+      <Link>Resources\Instructions.txt</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src_vs2012\NativeCore\Components\TargetConnectionEventArgs.cs">
+      <Link>Components\TargetConnectionEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Components\Targets.cs">
+      <Link>Components\Targets.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Components\TargetStatus.cs">
+      <Link>Components\TargetStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Components\TokenProcessor.cs">
+      <Link>Components\TokenProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Components\UpdateManager.cs">
+      <Link>Components\UpdateManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Components\UpdateManagerCompletedEventArgs.cs">
+      <Link>Components\UpdateManagerCompletedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\ConfigDefaults.cs">
+      <Link>ConfigDefaults.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\GdbProcessor.cs">
+      <Link>Debugger\GdbProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\GdbWrapper.cs">
+      <Link>Debugger\GdbWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\IGdbSender.cs">
+      <Link>Debugger\IGdbSender.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Instruction.cs">
+      <Link>Debugger\Instruction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\InstructionCollection.cs">
+      <Link>Debugger\InstructionCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Model\BreakpointInfo.cs">
+      <Link>Debugger\Model\BreakpointInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Model\IResult.cs">
+      <Link>Debugger\Model\IResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Model\ProcessInfo.cs">
+      <Link>Debugger\Model\ProcessInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Request.cs">
+      <Link>Debugger\Request.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\RequestGroup.cs">
+      <Link>Debugger\RequestGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\RequestsFactory.cs">
+      <Link>Debugger\RequestsFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Requests\BreakRequest.cs">
+      <Link>Debugger\Requests\BreakRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Requests\CliRequest.cs">
+      <Link>Debugger\Requests\CliRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Requests\MiRequest.cs">
+      <Link>Debugger\Requests\MiRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Requests\ProcessListRequest.cs">
+      <Link>Debugger\Requests\ProcessListRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\Response.cs">
+      <Link>Debugger\Response.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\ResponseParsedEventArgs.cs">
+      <Link>Debugger\ResponseParsedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\ResponseReceivedEventArgs.cs">
+      <Link>Debugger\ResponseReceivedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Debugger\ResponseType.cs">
+      <Link>Debugger\ResponseType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Diagnostics\BlackBerryTraceListener.cs">
+      <Link>Diagnostics\BlackBerryTraceListener.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Diagnostics\QTraceLog.cs">
+      <Link>Diagnostics\QTraceLog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Diagnostics\TimeTracker.cs">
+      <Link>Diagnostics\TimeTracker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Diagnostics\TraceLog.cs">
+      <Link>Diagnostics\TraceLog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Helpers\BitHelper.cs">
+      <Link>Helpers\BitHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Helpers\DeviceHelper.cs">
+      <Link>Helpers\DeviceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Helpers\GlobalHelper.cs">
+      <Link>Helpers\GlobalHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Helpers\NameValueCollectionHelper.cs">
+      <Link>Helpers\NameValueCollectionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Helpers\PathHelper.cs">
+      <Link>Helpers\PathHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\ApiInfo.cs">
+      <Link>Model\ApiInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\ApiInfoArray.cs">
+      <Link>Model\ApiInfoArray.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\ApiLevelAction.cs">
+      <Link>Model\ApiLevelAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\ApiLevelListTypes.cs">
+      <Link>Model\ApiLevelListTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\ApiLevelTarget.cs">
+      <Link>Model\ApiLevelTarget.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\ApiLevelTask.cs">
+      <Link>Model\ApiLevelTask.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\AuthorInfo.cs">
+      <Link>Model\AuthorInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\CertificateInfo.cs">
+      <Link>Model\CertificateInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\CskTokenInfo.cs">
+      <Link>Model\CskTokenInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DebugTokenInfo.cs">
+      <Link>Model\DebugTokenInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DeveloperDefinition.cs">
+      <Link>Model\DeveloperDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DeviceDebugTokenInfo.cs">
+      <Link>Model\DeviceDebugTokenInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DeviceDefinition.cs">
+      <Link>Model\DeviceDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DeviceDefinitionType.cs">
+      <Link>Model\DeviceDefinitionType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DeviceFamilyType.cs">
+      <Link>Model\DeviceFamilyType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DeviceInfo.cs">
+      <Link>Model\DeviceInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\DeviceTheme.cs">
+      <Link>Model\DeviceTheme.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\GdbInfo.cs">
+      <Link>Model\GdbInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\ImportProjectInfo.cs">
+      <Link>Model\ImportProjectInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\NdkDefinition.cs">
+      <Link>Model\NdkDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\NdkInfo.cs">
+      <Link>Model\NdkInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\PermissionInfo.cs">
+      <Link>Model\PermissionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\RuntimeDefinition.cs">
+      <Link>Model\RuntimeDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\RuntimeInfo.cs">
+      <Link>Model\RuntimeInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\SimulatorInfo.cs">
+      <Link>Model\SimulatorInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Model\Size.cs">
+      <Link>Model\Size.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\NativeMethods.cs">
+      <Link>NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\HResult.cs">
+      <Link>QConn\HResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\CapturedLogsEventArgs.cs">
+      <Link>QConn\Model\CapturedLogsEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\DataReaderBigEndian.cs">
+      <Link>QConn\Model\DataReaderBigEndian.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\DataReaderLittleEndian.cs">
+      <Link>QConn\Model\DataReaderLittleEndian.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\DecryptedChallenge.cs">
+      <Link>QConn\Model\DecryptedChallenge.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\EncryptionChallenge.cs">
+      <Link>QConn\Model\EncryptionChallenge.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\Endianess.cs">
+      <Link>QConn\Model\Endianess.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\IDataReader.cs">
+      <Link>QConn\Model\IDataReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\SystemInfoProcess.cs">
+      <Link>QConn\Model\SystemInfoProcess.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\TargetFile.cs">
+      <Link>QConn\Model\TargetFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\TargetFileDescriptor.cs">
+      <Link>QConn\Model\TargetFileDescriptor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\TargetLogEntry.cs">
+      <Link>QConn\Model\TargetLogEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\TargetProcess.cs">
+      <Link>QConn\Model\TargetProcess.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\TargetProcessSLog2Info.cs">
+      <Link>QConn\Model\TargetProcessSLog2Info.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\TargetSystemType.cs">
+      <Link>QConn\Model\TargetSystemType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\Token.cs">
+      <Link>QConn\Model\Token.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\TransferOperation.cs">
+      <Link>QConn\Model\TransferOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\VisitorCompletionEventArgs.cs">
+      <Link>QConn\Model\VisitorCompletionEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\VisitorEventArgs.cs">
+      <Link>QConn\Model\VisitorEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\VisitorFailureEventArgs.cs">
+      <Link>QConn\Model\VisitorFailureEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Model\VisitorProgressChangedEventArgs.cs">
+      <Link>QConn\Model\VisitorProgressChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\QConnAuthenticationEventArgs.cs">
+      <Link>QConn\QConnAuthenticationEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\QConnClient.cs">
+      <Link>QConn\QConnClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\QConnConnection.cs">
+      <Link>QConn\QConnConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\QConnDoor.cs">
+      <Link>QConn\QConnDoor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\QConnException.cs">
+      <Link>QConn\QConnException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\QDataSource.cs">
+      <Link>QConn\QDataSource.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetAuthenticateChallengeRequest.cs">
+      <Link>QConn\Request\SecureTargetAuthenticateChallengeRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetAuthenticateRequest.cs">
+      <Link>QConn\Request\SecureTargetAuthenticateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetChallengeRequest.cs">
+      <Link>QConn\Request\SecureTargetChallengeRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetCloseRequest.cs">
+      <Link>QConn\Request\SecureTargetCloseRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetDecryptedChallengeRequest.cs">
+      <Link>QConn\Request\SecureTargetDecryptedChallengeRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetEncryptedRequest.cs">
+      <Link>QConn\Request\SecureTargetEncryptedRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetHelloRequest.cs">
+      <Link>QConn\Request\SecureTargetHelloRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetKeepAliveRequest.cs">
+      <Link>QConn\Request\SecureTargetKeepAliveRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetRequest.cs">
+      <Link>QConn\Request\SecureTargetRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetSendSshPublicKeyRequest.cs">
+      <Link>QConn\Request\SecureTargetSendSshPublicKeyRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Requests\SecureTargetStartServicesRequest.cs">
+      <Link>QConn\Request\SecureTargetStartServicesRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetAuthenticateChallengeResponse.cs">
+      <Link>QConn\Response\SecureTargetAuthenticateChallengeResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetEncryptedChallengeResponse.cs">
+      <Link>QConn\Response\SecureTargetEncryptedChallengeResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetFeedback.cs">
+      <Link>QConn\Response\SecureTargetFeedback.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetFeedbackMismatchedVersion.cs">
+      <Link>QConn\Response\SecureTargetFeedbackMismatchedVersion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetFeedbackNoPasswordRequired.cs">
+      <Link>QConn\Response\SecureTargetFeedbackNoPasswordRequired.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetFeedbackOK.cs">
+      <Link>QConn\Response\SecureTargetFeedbackOK.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetFeedbackRejected.cs">
+      <Link>QConn\Response\SecureTargetFeedbackRejected.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetResponse.cs">
+      <Link>QConn\Response\SecureTargetResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Response\SecureTargetResult.cs">
+      <Link>QConn\Response\SecureTargetResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\SecureTargetConnectionException.cs">
+      <Link>QConn\SecureTargetConnectionException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Services\TargetService.cs">
+      <Link>QConn\Services\TargetService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Services\TargetServiceConsoleLog.cs">
+      <Link>QConn\Services\TargetServiceConsoleLog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Services\TargetServiceControl.cs">
+      <Link>QConn\Services\TargetServiceControl.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Services\TargetServiceFile.cs">
+      <Link>QConn\Services\TargetServiceFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Services\TargetServiceLauncher.cs">
+      <Link>QConn\Services\TargetServiceLauncher.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Services\TargetServiceSysInfo.cs">
+      <Link>QConn\Services\TargetServiceSysInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\BaseFileServiceEnumerator.cs">
+      <Link>QConn\Visitors\BaseFileServiceEnumerator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\BaseVisitorMonitor.cs">
+      <Link>QConn\Visitors\BaseVisitorMonitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\BufferVisitor.cs">
+      <Link>QConn\Visitors\BufferVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\IFileServiceEnumerator.cs">
+      <Link>QConn\Visitors\IFileServiceEnumerator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\IFileServiceVisitor.cs">
+      <Link>QConn\Visitors\IFileServiceVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\IFileServiceVisitorMonitor.cs">
+      <Link>QConn\Visitors\IFileServiceVisitorMonitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\LocalCopyVisitor.cs">
+      <Link>QConn\Visitors\LocalCopyVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\LocalEnumerator.cs">
+      <Link>QConn\Visitors\LocalEnumerator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\LoggingVisitor.cs">
+      <Link>QConn\Visitors\LoggingVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\TargetCopyVisitor.cs">
+      <Link>QConn\Visitors\TargetCopyVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\TargetEnumerator.cs">
+      <Link>QConn\Visitors\TargetEnumerator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\QConn\Visitors\ZipPackageVisitor.cs">
+      <Link>QConn\Visitors\ZipPackageVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Services\IAttachDiscoveryService.cs">
+      <Link>Services\IAttachDiscoveryService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Services\IDeviceDiscoveryService.cs">
+      <Link>Services\IDeviceDiscoveryService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Services\IMSBuildPlatformService.cs">
+      <Link>Services\IMSBuildPlatformService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\ApiLevelListLoadRunner.cs">
+      <Link>Tools\ApiLevelListLoadRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\ApiLevelUpdateLogEventArgs.cs">
+      <Link>Tools\ApiLevelUpdateLogEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\ApiLevelUpdateRunner.cs">
+      <Link>Tools\ApiLevelUpdateRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\ApplicationRemoveRunner.cs">
+      <Link>Tools\ApplicationRemoveRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\BBToolRunner.cs">
+      <Link>Tools\BBToolRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\DebugTokenCreateRunner.cs">
+      <Link>Tools\DebugTokenCreateRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\DebugTokenInfoRunner.cs">
+      <Link>Tools\DebugTokenInfoRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\DebugTokenUploadRunner.cs">
+      <Link>Tools\DebugTokenUploadRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\DeviceConnectRunner.cs">
+      <Link>Tools\DeviceConnectRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\DeviceInfoRunner.cs">
+      <Link>Tools\DeviceInfoRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\EventDispatcher.cs">
+      <Link>Tools\EventDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\GdbHostRunner.cs">
+      <Link>Tools\GdbHostRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\GdbRunner.cs">
+      <Link>Tools\GdbRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\IEventDispatcher.cs">
+      <Link>Tools\IEventDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\KeyToolGenRunner.cs">
+      <Link>Tools\KeyToolGenRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\KeyToolInfoRunner.cs">
+      <Link>Tools\KeyToolInfoRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\KeyToolRegisterRunner.cs">
+      <Link>Tools\KeyToolRegisterRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\KeyToolRemoveRunner.cs">
+      <Link>Tools\KeyToolRemoveRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\MSBuildExtenderRunner.cs">
+      <Link>Tools\MSBuildExtenderRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\SshCreateKeyRunner.cs">
+      <Link>Tools\SshCreateKeyRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\ToolRunner.cs">
+      <Link>Tools\ToolRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\ToolRunnerEventArgs.cs">
+      <Link>Tools\ToolRunnerEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src_vs2012\NativeCore\Tools\ToolRunnerStartupEventArgs.cs">
+      <Link>Tools\ToolRunnerStartupEventArgs.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

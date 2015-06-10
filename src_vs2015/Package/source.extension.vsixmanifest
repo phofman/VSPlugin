@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" ?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="08caa30b-124a-411b-a589-f1a907ec0131" Version="3.5.0" Language="en-US" Publisher="CodeTitans" />
+    <DisplayName>BlackBerry Native Plugin for Visual Studio 2015</DisplayName>
+    <Description xml:space="preserve">Package providing Cascades and Native SDK support inside Visual Studio for PlayBook and BlackBerry 10 devices</Description>
+    <MoreInfo>http://github.com/phofman/vs-plugin</MoreInfo>
+    <License>Resources\License.txt</License>
+    <GettingStartedGuide>Resources\StartGuide.txt</GettingStartedGuide>
+    <ReleaseNotes>Resources\ReleaseNotes.txt</ReleaseNotes>
+    <Icon>Resources\TemplateIcons\EmptyProj.ico</Icon>
+    <Tags>BlackBerry NDK</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[14.0,15.0)" />
+    <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Community" />
+    <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Enterprise" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    <Dependency d:Source="Installed" Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" Version="[14.0,15.0)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+  </Assets>
+</PackageManifest>
