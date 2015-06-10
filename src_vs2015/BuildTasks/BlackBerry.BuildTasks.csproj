@@ -162,11 +162,11 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.props">
-      <Link>BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.props</Link>
+      <Link>BlackBerry\PlatformToolsets\qcc\Toolset.props</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.targets">
-      <Link>BlackBerry\PlatformToolsets\qcc\Microsoft.Cpp.BlackBerry.qcc.targets</Link>
+      <Link>BlackBerry\PlatformToolsets\qcc\Toolset.targets</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src_vs2012\BuildTasks\BlackBerry\Microsoft.Cpp.BlackBerry.Common.props">
