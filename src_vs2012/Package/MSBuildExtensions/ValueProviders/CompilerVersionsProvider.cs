@@ -19,10 +19,10 @@ namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
     /// Dynamic-enum provider class, that can be used inside MSBuild rules files (by category) and is automatically
     /// picked-up by Visual Studio to suggest values presented for developer in a combo-box.
     /// </summary>
-    [Export(typeof(IDynamicEnumValuesProvider))]
 #if PLATFORM_VS2015
     [ExportDynamicEnumValuesProvider("CompilerVersionSelector")]
 #else
+    [Export(typeof(IDynamicEnumValuesProvider))]
     [DynamicEnumCategory("CompilerVersionSelector")]
 #endif
 #if PLATFORM_VS2010
