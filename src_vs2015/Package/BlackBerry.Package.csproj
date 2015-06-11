@@ -427,8 +427,7 @@
     <Resource Include="..\..\src_vs2012\Package\Resources\Navigator\thread.png">
       <Link>Resources\Navigator\thread.png</Link>
     </Resource>
-    <VSCTCompile Include="..\..\src_vs2012\Package\Resources\Package.vsct">
-      <Link>Resources\Package.vsct</Link>
+    <VSCTCompile Include="Resources\Package.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
     </VSCTCompile>

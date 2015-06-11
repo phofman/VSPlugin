@@ -57,6 +57,10 @@ namespace BlackBerry.Package
     /// register itself and its components with the shell.
     /// </summary>
     [PackageRegistration(UseManagedResourcesOnly = true)]
+#if PLATFORM_VS2015
+    // Instruct Visual Studio to search for referenced assemblies also inside this package.
+    [ProvideBindingPath]
+#endif
     // Register the editor factory
     [XmlEditorDesignerViewRegistration("BarDescriptor", BarDescriptorEditorFactory.DefaultExtension, LogicalViewID.Designer, 0x60, DesignerLogicalViewEditor = typeof(BarDescriptorEditorFactory),
         Namespace = "http://www.qnx.com/schemas/application/1.0", MatchExtensionAndNamespace = true)]
