@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Security;
 using System.Text;
 using System.Security.Cryptography;
 
@@ -10,7 +9,7 @@ namespace BlackBerry.NativeCore.Helpers
     /// <summary>
     /// Class providing common helper functions.
     /// </summary>
-    public static class GlobalHelper
+    static class GlobalHelper
     {
         /// <summary>
         /// Checks if user is online. Needs to be online for UpdateManager to work.
