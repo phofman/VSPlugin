@@ -4,7 +4,7 @@
     <Identity Id="db9f9c5f-fb27-4297-ab44-fa8774e962ca" Version="3.5.0" Language="en-US" Publisher="CodeTitans" />
     <DisplayName>BlackBerry Native Plugin for Visual Studio 2013</DisplayName>
     <Description xml:space="preserve">Package providing Cascades and Native SDK support inside Visual Studio for PlayBook and BlackBerry 10 devices</Description>
-    <MoreInfo>http://github.com/blackberry/VSPlugin</MoreInfo>
+    <MoreInfo>http://github.com/phofman/vs-plugin</MoreInfo>
     <License>Resources\License.txt</License>
     <GettingStartedGuide>Resources\StartGuide.txt</GettingStartedGuide>
     <ReleaseNotes>Resources\ReleaseNotes.txt</ReleaseNotes>

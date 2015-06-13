@@ -176,6 +176,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="..\NativeCore\Helpers\GlobalHelper.cs">
+      <Link>Helpers\GlobalHelper.cs</Link>
+    </Compile>
     <Compile Include="BlackBerryPackage.cs" />
     <Compile Include="Components\BuildPlatformsManager.cs" />
     <Compile Include="Components\ErrorManager.cs" />

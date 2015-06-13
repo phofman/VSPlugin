@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.Project.Contracts.PropertyPages.VS2010ONLY;
 using Microsoft.VisualStudio.Project.Framework;
 #elif PLATFORM_VS2012
 using Microsoft.VisualStudio.Project.Designers.Properties;
+using Microsoft.VisualStudio.Project.Utilities;
 using Microsoft.VisualStudio.Project.Utilities.PropertyPages;
 #elif PLATFORM_VS2013 || PLATFORM_VS2015
 using Microsoft.VisualStudio.ProjectSystem.Designers.Properties;
@@ -20,12 +21,14 @@ namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
     /// Dynamic-enum provider class, that can be used inside MSBuild rules files (by category) and is automatically
     /// picked-up by Visual Studio to suggest values presented for developer in a combo-box.
     /// </summary>
-    [Export(ExportContractNames.Scopes.UnconfiguredProject, typeof(IDynamicEnumValuesProvider))]
 #if PLATFORM_VS2010
+    [Export(typeof(IDynamicEnumValuesProvider))]
     [ProjectScope(ProjectScopeRequired.ConfiguredProject)]
 #elif PLATFORM_VS2012 || PLATFORM_VS2013
+    [Export(ExportContractNames.Scopes.UnconfiguredProject, typeof(IDynamicEnumValuesProvider))]
     [DynamicEnumCategory("CompilerVersionSelector")]
 #elif PLATFORM_VS2015
+    [Export(ExportContractNames.Scopes.UnconfiguredProject, typeof(IDynamicEnumValuesProvider))]
     [AppliesTo(ProjectCapabilities.AlwaysApplicable)]
     [ExportDynamicEnumValuesProvider("CompilerVersionSelector")]
 #else

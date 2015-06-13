@@ -145,6 +145,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\src_vs2012\NativeCore\Helpers\GlobalHelper.cs">
+      <Link>Helpers\GlobalHelper.cs</Link>
+    </Compile>
     <Compile Include="..\..\src_vs2012\Package\BlackBerryPackage.cs">
       <Link>BlackBerryPackage.cs</Link>
     </Compile>
