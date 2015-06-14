@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using EnvDTE;
 using EnvDTE80;
@@ -31,6 +32,71 @@ namespace BlackBerry.Package.Helpers
                 project = obj as Project;
             }
             return project;
+        }
+
+        /// <summary>
+        /// Gets the list of all projects within the solution.
+        /// </summary>
+        public static Project[] GetProjects(IVsSolution solution)
+        {
+            if (solution == null)
+                throw new ArgumentNullException("solution");
+
+            var result = new List<Project>();
+
+            var hierarchy = solution as IVsHierarchy;
+            if (hierarchy != null)
+            {
+                // list projects:
+                object pVar;
+                int hr = hierarchy.GetProperty((uint) VSConstants.VSITEMID.Root, (int) __VSHPROPID.VSHPROPID_FirstChild, out pVar);
+                if (hr == VSConstants.S_OK)
+                {
+                    while (pVar != null && hr == VSConstants.S_OK)
+                    {
+                        uint itemID = (uint) (int) pVar;
+                        if (itemID == VSConstants.VSITEMID_NIL)
+                            break;
+
+                        var nestedHierarchy = GetNestedHierarchy(hierarchy, itemID);
+
+                        if (nestedHierarchy != null
+                            && nestedHierarchy.GetProperty((uint) VSConstants.VSITEMID.Root, (int) __VSHPROPID.VSHPROPID_ConfigurationProvider, out pVar) == VSConstants.S_OK)
+                        {
+                            var project = GetProject(nestedHierarchy);
+                            if (project != null && !string.IsNullOrEmpty(project.FullName))
+                            {
+                                result.Add(project);
+                            }
+                        }
+
+                        // move to next item in hierarchy:
+                        hr = hierarchy.GetProperty(itemID, (int)__VSHPROPID.VSHPROPID_NextSibling, out pVar);
+                    }
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        /// <summary>
+        /// Gets the nested hierarchy for the hierarchy item.
+        /// </summary>
+        private static IVsHierarchy GetNestedHierarchy(IVsHierarchy hierarchy, uint itemID)
+        {
+            IntPtr nestedHierarchyObject;
+            uint nestedItemId;
+            var hierarchyGuid = typeof(IVsHierarchy).GUID;
+            int hr = hierarchy.GetNestedHierarchy(itemID, ref hierarchyGuid, out nestedHierarchyObject, out nestedItemId);
+            if (hr == VSConstants.S_OK && nestedHierarchyObject != IntPtr.Zero)
+            {
+                var nestedHierarchy = Marshal.GetObjectForIUnknown(nestedHierarchyObject) as IVsHierarchy;
+                Marshal.Release(nestedHierarchyObject);
+
+                return nestedHierarchy;
+            }
+
+            return null;
         }
 
         /// <summary>

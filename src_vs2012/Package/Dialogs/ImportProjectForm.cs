@@ -11,6 +11,7 @@ using BlackBerry.Package.Model.Integration;
 using BlackBerry.Package.ViewModels;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.VCProjectEngine;
 
 namespace BlackBerry.Package.Dialogs
@@ -21,7 +22,7 @@ namespace BlackBerry.Package.Dialogs
         private readonly char[] Separators = { ' ', '\t', ';' };
 
         private readonly ImportProjectViewModel _vm;
-        private Solution _solution;
+        private IVsSolution _solution;
         private string _newProjectName;
 
         public ImportProjectForm()
@@ -158,7 +159,7 @@ namespace BlackBerry.Package.Dialogs
         /// <summary>
         /// Initializes the UI with 'new projects' section and projects from the current solution.
         /// </summary>
-        public void AddTargetProjects(Solution solution)
+        public void AddTargetProjects(IVsSolution solution)
         {
             cmbProjects.Items.Clear();
             cmbProjects.Items.Add(new ComboBoxItem("New Native Core project", null));
@@ -167,7 +168,7 @@ namespace BlackBerry.Package.Dialogs
             _solution = solution;
             if (solution != null)
             {
-                foreach (Project project in solution.Projects)
+                foreach (Project project in ProjectHelper.GetProjects(solution))
                 {
                     if (BuildPlatformsManager.IsBlackBerryProject(project))
                     {
@@ -332,14 +333,14 @@ namespace BlackBerry.Package.Dialogs
         /// <summary>
         /// Checks, if project with specified name is already inside the solution.
         /// </summary>
-        private static bool SolutionHasProject(Solution solution, string projectName)
+        private static bool SolutionHasProject(IVsSolution solution, string projectName)
         {
             if (solution == null)
                 return false;
             if (string.IsNullOrEmpty(projectName))
                 return false;
 
-            foreach (Project project in solution.Projects)
+            foreach (Project project in ProjectHelper.GetProjects(solution))
             {
                 if (string.Compare(projectName, project.Name, StringComparison.OrdinalIgnoreCase) == 0)
                     return true;

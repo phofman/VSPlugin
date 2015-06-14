@@ -528,7 +528,7 @@ namespace BlackBerry.Package
             var form = new ImportProjectForm();
 
             // configure dialog to display info about current solution:
-            form.AddTargetProjects(_dte.Solution);
+            form.AddTargetProjects((IVsSolution)GetService(typeof(SVsSolution)));
 
             // ask for .cproject location:
             if (form.UpdateSourceProject())
