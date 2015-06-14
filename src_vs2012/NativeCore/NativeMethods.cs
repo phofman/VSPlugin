@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -114,6 +115,47 @@ namespace BlackBerry.NativeCore
             } while (false);
 
             return null;
+        }
+
+        /// <summary>
+        /// Converts the existing path from any case formatting, to the one on the disk.
+        /// </summary>
+        public static string RecapitalizePath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                throw new ArgumentNullException("path");
+
+            if (File.Exists(path))
+                return RecapitalizePath(new FileInfo(path));
+            if (Directory.Exists(path))
+                return RecapitalizePath(new DirectoryInfo(path));
+
+            // unable to do anything good:
+            return path;
+        }
+
+        private static string RecapitalizePath(DirectoryInfo info)
+        {
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            var parentInfo = info.Parent;
+            if (parentInfo == null)
+                return info.Name;
+
+            return Path.Combine(RecapitalizePath(parentInfo), parentInfo.GetDirectories(info.Name)[0].Name);
+        }
+
+        static string RecapitalizePath(FileInfo info)
+        {
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            DirectoryInfo dirInfo = info.Directory;
+            if (dirInfo == null)
+                return info.FullName;
+
+            return Path.Combine(RecapitalizePath(dirInfo), dirInfo.GetFiles(info.Name)[0].Name);
         }
     }
 }

@@ -282,12 +282,13 @@ namespace BlackBerry.NativeCore
         private static string GetEmbeddedToolsLocation()
         {
             var executingAssemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var path = Path.Combine(Path.GetDirectoryName(executingAssemblyLocation), "QnxTools", "bin");
+            var path = Path.Combine(Path.GetDirectoryName(executingAssemblyLocation), "MSBuildExtensions", "Common", "QnxTools", "bin");
 
             // HACK: somehow the location is written in capitals, what doesn't look good on UI
             // so convert it to short path and back to long, to force to OS to provide the location
             // using the true folder names
-            return NativeMethods.GetLongPathName(NativeMethods.GetShortPathName(path));
+            var result = NativeMethods.GetLongPathName(NativeMethods.GetShortPathName(path));
+            return !string.IsNullOrEmpty(result) ? result : NativeMethods.RecapitalizePath(path);
         }
 
         private static string GetNdkDefaultLocation()
