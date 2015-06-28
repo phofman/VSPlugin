@@ -45,26 +45,14 @@
   <configuration name="Device-Debug">
     <platformArchitecture>armle-v7</platformArchitecture>
     <asset path="Device-Debug/$ProjectName$" entry="true" type="Qnx/Elf">$ProjectName$</asset>
-    <asset path="QtLibs/armle-v7/libQtCore.so.4.8.3" type="Qnx/Elf">lib/libQtCore.so.4</asset>
-    <asset path="QtLibs/armle-v7/libQtGui.so.4.8.3" type="Qnx/Elf">lib/libQtGui.so.4</asset>
-    <asset path="QtLibs/armle-v7/libQtOpenGL.so.4.8.3" type="Qnx/Elf">lib/libQtOpenGL.so.4</asset>
-    <asset path="QtLibs/armle-v7/platforms/libblackberry.so" type="Qnx/Elf">lib/platforms/libblackberry.so</asset>
   </configuration>
   <configuration name="Device-Release">
     <platformArchitecture>armle-v7</platformArchitecture>
     <asset path="Device-Release/$ProjectName$" entry="true" type="Qnx/Elf">$ProjectName$</asset>
-    <asset path="QtLibs/armle-v7/libQtCore.so.4.8.3" type="Qnx/Elf">lib/libQtCore.so.4</asset>
-    <asset path="QtLibs/armle-v7/libQtGui.so.4.8.3" type="Qnx/Elf">lib/libQtGui.so.4</asset>
-    <asset path="QtLibs/armle-v7/libQtOpenGL.so.4.8.3" type="Qnx/Elf">lib/libQtOpenGL.so.4</asset>
-    <asset path="QtLibs/armle-v7/platforms/libblackberry.so" type="Qnx/Elf">lib/platforms/libblackberry.so</asset>
   </configuration>
   <configuration name="Simulator-Debug">
     <platformArchitecture>x86</platformArchitecture>
     <asset path="Simulator-Debug/$ProjectName$" entry="true" type="Qnx/Elf">$ProjectName$</asset>
-    <asset path="QtLibs/x86/libQtCore.so.4.8.3" type="Qnx/Elf">lib/libQtCore.so.4</asset>
-    <asset path="QtLibs/x86/libQtGui.so.4.8.3" type="Qnx/Elf">lib/libQtGui.so.4</asset>
-    <asset path="QtLibs/x86/libQtOpenGL.so.4.8.3" type="Qnx/Elf">lib/libQtOpenGL.so.4</asset>
-    <asset path="QtLibs/x86/platforms/libblackberry.so" type="Qnx/Elf">lib/platforms/libblackberry.so</asset>
   </configuration>
 
   <!--  The icon for the application, which should be 86x86. -->
@@ -77,8 +65,5 @@
 
   <!-- Ensure that shared libraries in the package are found at run-time. -->
   <env var="LD_LIBRARY_PATH" value="app/native/lib"/>
-  <env var="QML_IMPORT_PATH" value="app/native/imports"/>
-  <env var="QT_PLUGIN_PATH" value="app/native/plugins"/>
-  <env var="QT_QPA_FONTDIR" value="/usr/fonts/font_repository/monotype"/>
 
 </qnx>
