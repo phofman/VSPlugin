@@ -529,8 +529,8 @@ LIBS :=
             #line 164 "T:\vs-plugin\src_vs2012\BuildTasks\Templates\MakefileTemplate.tt"
  }
 
-        WriteCollection(AdditionalIncludeDirectories, "-I");
         WriteCollection(GetRootedDirs(ProjectDir, compileItem.GetMetadata("AdditionalIncludeDirectories").Replace('\\', '/').Split(';')), "-I");
+        WriteCollection(AdditionalIncludeDirectories, "-I");
         WriteCollection(compileItem.GetMetadata("UndefinePreprocessorDefinitions").Split(';'), "-U");
         WriteCollection(compileItem.GetMetadata("PreprocessorDefinitions").Split(';'), "-D");
         Write(compileItem.GetMetadata("AdditionalOptions"));

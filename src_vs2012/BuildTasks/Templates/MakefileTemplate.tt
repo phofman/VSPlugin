@@ -163,8 +163,8 @@ FORCE:
         // For now we use the safe, cross-platform "-fPIC"
         if (ConfigurationType == "DynamicLibrary") { #>-fPIC <# }
 
-        WriteCollection(AdditionalIncludeDirectories, "-I");
         WriteCollection(GetRootedDirs(ProjectDir, compileItem.GetMetadata("AdditionalIncludeDirectories").Replace('\\', '/').Split(';')), "-I");
+        WriteCollection(AdditionalIncludeDirectories, "-I");
         WriteCollection(compileItem.GetMetadata("UndefinePreprocessorDefinitions").Split(';'), "-U");
         WriteCollection(compileItem.GetMetadata("PreprocessorDefinitions").Split(';'), "-D");
         Write(compileItem.GetMetadata("AdditionalOptions"));
