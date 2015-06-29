@@ -13,6 +13,7 @@ if "%~1" == "" (
   set ActionBuildVS2010=1
   set ActionBuildVS2012=1
   set ActionBuildVS2013=1
+  set ActionBuildVS2015=1
   set PackageVersion=
 ) else (
   set ActionClean=1
@@ -20,18 +21,20 @@ if "%~1" == "" (
   set ActionBuildVS2010=0
   set ActionBuildVS2012=0
   set ActionBuildVS2013=0
+  set ActionBuildVS2015=0
   set PackageVersion=
 )
 
 :args_parsing
 set arg=%~1
 if "%arg%" == ""                  (goto args_parsing_done)
-if /i "%arg%" == "/all"           set ActionBuildVS2010=1 && set ActionBuildVS2012=1 && set ActionBuildVS2013=1
+if /i "%arg%" == "/all"           set ActionBuildVS2010=1 && set ActionBuildVS2012=1 && set ActionBuildVS2013=1 && set ActionBuildVS2015=1
 if /i "%arg%" == "/noclean"       set ActionClean=0
 if /i "%arg%" == "/no-clean"      set ActionClean=0
 if /i "%arg%" == "vs2010"         set ActionBuildVS2010=1
 if /i "%arg%" == "vs2012"         set ActionBuildVS2012=1
 if /i "%arg%" == "vs2013"         set ActionBuildVS2013=1
+if /i "%arg%" == "vs2015"         set ActionBuildVS2015=1
 if /i "%arg:~0,5%" == "/out:"     set CustomOutputDir=%arg:~5%
 if /i "%arg:~0,8%" == "/package"  set ActionClean=1 && set ActionBuildPackage=1
 if /i "%arg:~0,9%" == "/package:" set PackageVersion=%arg:~9%
@@ -68,12 +71,15 @@ set QnxToolsDir=%thisDir%\qnxtools
 set ZipTool=%thisDir%\ext\7zip\7za.exe
 set MsBuild="C:\Windows\Microsoft.NET\Framework\v4.0.30319\MsBuild.exe"
 set MsBuild2013="%ProgFilesRoot%\MSBuild\12.0\Bin\MsBuild.exe"
+set MsBuild2015="%ProgFilesRoot%\MSBuild\14.0\Bin\MsBuild.exe"
 set MsBuildCmd=%MsBuild% /m /property:Configuration=Release /property:Platform="Mixed Platforms" /target:Rebuild
 set MsBuild2013Cmd=%MsBuild2013% /m /property:Configuration=Release /property:Platform="Mixed Platforms" /target:Rebuild
+set MsBuild2015Cmd=%MsBuild2015% /m /property:Configuration=Release /property:Platform="Any CPU" /target:Rebuild
 
 set SolutionPath2010="%thisDir%\src_vs2010\BlackBerry.NativePlugin.sln"
 set SolutionPath2012="%thisDir%\src_vs2012\BlackBerry.NativePlugin.sln"
 set SolutionPath2013="%thisDir%\src_vs2013\BlackBerry.NativePlugin.sln"
+set SolutionPath2015="%thisDir%\src_vs2015\BlackBerry.NativePlugin.sln"
 
 set PackageResults=%BuildResults%\Package
 set PackageNamePrefix=BBNDK-
@@ -143,6 +149,19 @@ set /a actionNo += 1
 :skip_vs2013
 
 REM ********************************************************************************************
+REM Build VS2015
+REM ********************************************************************************************
+if %ActionBuildVS2015% equ 0 (goto skip_vs2015)
+
+echo %actionNo%: Building Solution for Visual Studio 2015
+%MsBuild2015Cmd% %SolutionPath2015% /p:OutputPath="%BuildResults%\VS2015" /p:VisualStudioVersion=14.0 > "%BuildResults%\VS2015_buildlog.txt"
+if errorlevel 1 ( exit /b %errorlevel% )
+echo %actionNo%: Build - DONE
+set /a actionNo += 1
+
+:skip_vs2015
+
+REM ********************************************************************************************
 REM Release Package ZIP files creation
 REM ********************************************************************************************
 if %ActionBuildPackage% equ 0 (goto skip_package)
@@ -168,6 +187,10 @@ if exist "%BuildResults%\VS2013\BlackBerry" (
   xcopy "%BuildResults%\VS2013\BlackBerry" "%PackageResults%\Microsoft.Cpp\v4.0\V120\Platforms\BlackBerry\" /e /i /y /q
   copy "%BuildResults%\VS2013\BlackBerry.BuildTasks.dll" "%PackageResults%\Microsoft.Cpp\v4.0\V120\Platforms\BlackBerry\BlackBerry.BuildTasks.dll"
 )
+if exist "%BuildResults%\VS2015\BlackBerry" (
+  xcopy "%BuildResults%\VS2015\BlackBerry" "%PackageResults%\Microsoft.Cpp\v4.0\V140\Platforms\BlackBerry\" /e /i /y /q
+  copy "%BuildResults%\VS2015\BlackBerry.BuildTasks.dll" "%PackageResults%\Microsoft.Cpp\v4.0\V140\Platforms\BlackBerry\BlackBerry.BuildTasks.dll"
+)
 
 echo   Compressing...
 %ZipTool% a -tzip -mx9 "%PackageResults%\MSBuild_Platforms_v%PackageVersion%.zip" "%PackageResults%\BlackBerry" "%PackageResults%\Microsoft.Cpp" > nul
@@ -192,6 +215,10 @@ if exist "%BuildResults%\VS2012\BlackBerry.Package.vsix" (
 )
 if exist "%BuildResults%\VS2013\BlackBerry.Package.vsix" (
   copy /B "%BuildResults%\VS2013\BlackBerry.Package.vsix" "%PackageResults%\%PackageNamePrefix%plugin_vs2013_v%PackageVersion%.vsix"
+  if errorlevel 1 ( exit /b %errorlevel% )
+)
+if exist "%BuildResults%\VS2015\BlackBerry.Package.vsix" (
+  copy /B "%BuildResults%\VS2015\BlackBerry.Package.vsix" "%PackageResults%\%PackageNamePrefix%plugin_vs2015_v%PackageVersion%.vsix"
   if errorlevel 1 ( exit /b %errorlevel% )
 )
 
