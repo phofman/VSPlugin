@@ -370,9 +370,10 @@
     <None Include="..\..\src_vs2012\Package\Resources\TemplateIcons\CascadesProj.ico">
       <Link>Resources\TemplateIcons\CascadesProj.ico</Link>
     </None>
-    <None Include="..\..\src_vs2012\Package\Resources\TemplateIcons\EmptyProj.ico">
+    <Content Include="..\..\src_vs2012\Package\Resources\TemplateIcons\EmptyProj.ico">
       <Link>Resources\TemplateIcons\EmptyProj.ico</Link>
-    </None>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="..\..\src_vs2012\Package\Resources\TemplateIcons\NewItem.ico">
       <Link>Resources\TemplateIcons\NewItem.ico</Link>
     </None>
