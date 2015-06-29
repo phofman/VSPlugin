@@ -13,14 +13,15 @@ Please visit the [Wiki](https://github.com/phofman/vs-plugin/wiki) for detailed 
 
 ###Supported platforms
  * all known and modern BlackBerry devices (BB10 phones and PlayBook) and simulators
- * integrates inside Visual Studio 2010/2012/2013 including Community Edition
- * works on Windows XP/7/8
+ * integrates inside Visual Studio 2010/2012/2013/2015 including Community Edition
+ * works on Windows XP/7/8/10
 
 ###Delivered via Visual Studio Gallery
 There are following releases available for installation:
 * for [Visual Studio 2010](https://visualstudiogallery.msdn.microsoft.com/91f71ea5-32eb-41f0-8229-cba59c1bfdca)
 * for [Visual Studio 2012](https://visualstudiogallery.msdn.microsoft.com/de47fd53-e7ae-4bd6-a59a-73a6bf8efae3)
 * for [Visual Studio 2013](https://visualstudiogallery.msdn.microsoft.com/9a03ae7e-b786-41a7-a63b-dc0d9fe818d2)
+* for [Visual Studio 2015](https://visualstudiogallery.msdn.microsoft.com/2b21e9d1-a54b-4d58-878f-2d53604e85b1)
 
 ###New Project and New Project-Item
 ![New Project](/media/info/feature-new-project.png)
