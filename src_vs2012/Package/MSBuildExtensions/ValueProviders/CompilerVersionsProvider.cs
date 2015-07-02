@@ -24,8 +24,9 @@ namespace BlackBerry.Package.MSBuildExtensions.ValueProviders
 #if PLATFORM_VS2010
     [Export(typeof(IDynamicEnumValuesProvider))]
     [ProjectScope(ProjectScopeRequired.ConfiguredProject)]
+    [DynamicEnumCategory("CompilerVersionSelector")]
 #elif PLATFORM_VS2012 || PLATFORM_VS2013
-    [Export(ExportContractNames.Scopes.UnconfiguredProject, typeof(IDynamicEnumValuesProvider))]
+    [Export(typeof(IDynamicEnumValuesProvider))]
     [DynamicEnumCategory("CompilerVersionSelector")]
 #elif PLATFORM_VS2015
     [Export(ExportContractNames.Scopes.UnconfiguredProject, typeof(IDynamicEnumValuesProvider))]
