@@ -47,7 +47,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
   <Target Name="_BuildBarContent" DependsOnTargets="Link;">
     <ItemGroup>
-      <BuildBar Include="@(None)" />
+      <BuildBar Include="vsndk-buildbar.flag" />
     </ItemGroup>
   </Target>
 
@@ -60,7 +60,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   -->
   <Target Name="BuildBar" DependsOnTargets="Link;" >
     <ItemGroup>
-      <BuildBar Include="@(None)" />
+      <BuildBar Include="vsndk-buildbar.flag" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -187,7 +187,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
   <Target Name="Deploy" Condition="'$(ConfigurationType)'=='Application'">
     <ItemGroup>
-      <BuildBar Include="@(None)" />
+      <BuildBar Include="vsndk-buildbar.flag" />
     </ItemGroup>
 
     <Error Condition="$(TargetDeviceIP) == ''" Text=" Target device ip is not set. See menu BlackBerry -> Options -> Targets" />
@@ -239,7 +239,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
   <Target Name="FirstDeploy">
     <ItemGroup>
-      <BuildBar Include="@(None)" />
+      <BuildBar Include="vsndk-buildbar.flag" />
     </ItemGroup>
 
     <BBDeploy
@@ -257,7 +257,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
   <Target Name="OptimizedDeploy">
     <ItemGroup>
-      <BuildBar Include="@(None)" />
+      <BuildBar Include="vsndk-buildbar.flag" />
     </ItemGroup>
 
     <!-- Get the target file map. -->
