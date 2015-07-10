@@ -1,7 +1,13 @@
-﻿#include <QtGui/QApplication>
+﻿#include <stdlib.h>
+
+#include <QtGui/QApplication>
 #include <QtGui/QPushButton>
 #include <QtGui/QWidget>
 
+
+#ifndef HAS_QT_CORE
+#error Missing Qt core libraries. Launch NuGet Package Manager Console and type 'Install-Package codetitans-playbook-qt4-core'.
+#endif
 
 /**
  * Get int value from environment variable.
