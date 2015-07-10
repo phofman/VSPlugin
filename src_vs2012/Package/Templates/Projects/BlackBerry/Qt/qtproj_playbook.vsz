@@ -6,3 +6,5 @@ Param="FILTERS = assets;config;src;trans"
 Param="FILE = Shared/Assets/QtPlayBook/bar-descriptor.xml -> bar-descriptor.xml"
 Param="FILE = Shared/Assets/QtPlayBook/main.cpp -> src/main.cpp"
 Param="FILE = * Shared/Assets/QtPlayBook/README.txt -> README.txt"
+Param="COMPILER-OPTION = -Wno-psabi"
+
