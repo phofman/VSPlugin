@@ -290,7 +290,7 @@ namespace BlackBerry.Package.Wizards
             var templatePath = Path.Combine(WizardDataFolder, GetSourceName(templateDefinition, out flags));
             var destinationPath = GetDestinationName(itemName, templateDefinition, tokenProcessor);
 
-            // update tokens withing the file and copy to destination:
+            // update tokens within the file and copy to destination:
             tokenProcessor.UntokenFile(templatePath, destinationPath);
 
             // then add that file to the project items:

@@ -25,6 +25,8 @@ namespace BlackBerry.NativeCore.Components
     /// </summary>
     public sealed class TokenProcessor
     {
+        private readonly static string[] ProcessesExtensions = new[] { ".txt", ".c", ".cpp", ".cs", ".h", ".hpp", ".xml", ".xsd", ".qml", ".vsct", ".pri", ".pro", ".js" };
+
         #region Token Classes
 
         private abstract class ActionToken
@@ -360,14 +362,8 @@ namespace BlackBerry.NativeCore.Components
             if (!Directory.Exists(destinationFolder))
                 Directory.CreateDirectory(destinationFolder);
 
-            // Open the file. Check to see if the File is binary or text.
-            // NOTE: This is not correct because GetBinaryType will return true
-            // only if the file is executable, not if it is a dll, a library or
-            // any other type of binary file.
-
-            // PH: FIXME: No idea, why someone checks for exe/dll binary kind here (x86/x64/DOS/...)...
-            uint binaryType;
-            if (!NativeMethods.GetBinaryType(source, out binaryType))
+            // open the file, check to see if the file is binary or text:
+            if (IsTextFile(source))
             {
                 Encoding encoding;
                 StringBuilder buffer;
@@ -392,6 +388,15 @@ namespace BlackBerry.NativeCore.Components
                 File.Copy(source, destination);
 
             return destination;
+        }
+
+        private static bool IsTextFile(string source)
+        {
+            if (string.IsNullOrEmpty(source))
+                return false;
+
+            var extension = Path.GetExtension(source).ToLower();
+            return Array.IndexOf(ProcessesExtensions, extension) >= 0;
         }
 
         private void Untoken(StringBuilder buffer)

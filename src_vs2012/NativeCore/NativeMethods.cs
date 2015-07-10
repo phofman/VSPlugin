@@ -11,15 +11,6 @@ namespace BlackBerry.NativeCore
     static class NativeMethods
     {
         /// <summary>
-        /// Indicates type of the Windows Exe binary (x86 or x64) or not executable at all.
-        /// </summary>
-        /// <param name="applicationName">Full path to the file to check</param>
-        /// <param name="binaryType">If file is binary the bitness of the app is indicated by lpBinaryType value.</param>
-        /// <returns>True if the file is binary false otherwise</returns>
-        [DllImport("kernel32.dll", CharSet=CharSet.Auto)]
-        public static extern bool GetBinaryType([MarshalAs(UnmanagedType.LPTStr)] string applicationName, out uint binaryType);
-
-        /// <summary>
         /// Interface to unmanaged code for getting the ShortPathName for a given directory.
         /// </summary>
         /// <param name="path">Path to be converted</param>
