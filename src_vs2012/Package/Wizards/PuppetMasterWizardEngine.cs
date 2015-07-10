@@ -99,6 +99,7 @@ namespace BlackBerry.Package.Wizards
                     var dependencyParamName = "dependency";
                     var dependencyDirectoryParamName = "dependency-dir";
                     var defineParamName = "define";
+                    var compilerOptionName = "compiler-option";
 
                     if (!string.IsNullOrEmpty(projectNumber))
                     {
@@ -107,6 +108,7 @@ namespace BlackBerry.Package.Wizards
                         dependencyParamName = string.Concat(dependencyParamName, ProjectNumberSeparator, projectNumber);
                         dependencyDirectoryParamName = string.Concat(dependencyDirectoryParamName, ProjectNumberSeparator, projectNumber);
                         defineParamName = string.Concat(defineParamName, ProjectNumberSeparator, projectNumber);
+                        compilerOptionName = string.Concat(compilerOptionName, ProjectNumberSeparator, projectNumber);
                     }
 
                     // add project items:
@@ -144,6 +146,12 @@ namespace BlackBerry.Package.Wizards
                         {
                             // HINT: you can specify per-platform settings using '@':
                             ProjectHelper.AddPreprocessorDefines(vcProject, null, GetTag(projectNumber, PlatformSeparator), subItem.Value);
+                        }
+
+                        // compiler options:
+                        if (vcProject != null && IsMatchingKey(subItem.Key, compilerOptionName))
+                        {
+                            ProjectHelper.AddAdditionalCompilerOptions(vcProject, null, GetTag(projectNumber, PlatformSeparator), subItem.Value);
                         }
                     }
 

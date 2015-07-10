@@ -257,6 +257,17 @@ namespace BlackBerry.Package.Helpers
         }
 
         /// <summary>
+        /// Adds additional set of compiler-specific options at the end of existing list in project properties.
+        /// </summary>
+        public static void AddAdditionalCompilerOptions(VCProject project, string platformName, string configurationName, params string[] values)
+        {
+            if (project == null)
+                throw new ArgumentNullException("project");
+
+            SetValue(project, "CL", "AdditionalOptions", platformName, configurationName, string.Join(" ", values).Trim(), true, ' ', "%(AdditionalOptions)");
+        }
+
+        /// <summary>
         /// Updates build-output directories in project properties.
         /// </summary>
         public static void SetBuildOutputDirectory(VCProject project, string platformName, string configurationName, string value)
