@@ -1,0 +1,21 @@
+VSWIZARD 7.0
+Wizard={0cb934ba-06c8-4919-9498-bc6517940bcd}
+Param="TITLE = BlackBerry Qt4 for PlayBook Application"
+Param="PROJECT = native-default.vcxproj"
+Param="FILTERS = assets;config;src;trans"
+Param="FILE = * Shared/Assets/QtPlayBook/README.txt -> README.txt"
+Param="FILE = Shared/Assets/QtPlayBook/main-qml.cpp -> src/main.cpp"
+Param="FILE = Shared/Assets/QtSamples/bar-descriptor.xml -> bar-descriptor.xml"
+Param="FILE = Shared/Assets/QtSamples/icon.png -> assets/icon.png"
+Param="FILE = Shared/Assets/QtSamples/Calculator/start.qml -> assets/start.qml"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/Button.qml -> assets/CalculatorCore/Button.qml"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/Display.qml -> assets/CalculatorCore/Display.qml"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/calculator.js -> assets/CalculatorCore/calculator.js"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/images/button-.png -> assets/CalculatorCore/images/button-.png"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/images/button-blue.png -> assets/CalculatorCore/images/button-blue.png"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/images/button-green.png -> assets/CalculatorCore/images/button-green.png"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/images/button-purple.png -> assets/CalculatorCore/images/button-purple.png"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/images/button-red.png -> assets/CalculatorCore/images/button-red.png"
+Param="FILE = Shared/Assets/QtSamples/Calculator/CalculatorCore/images/display.png -> assets/CalculatorCore/images/display.png"
+Param="COMPILER-OPTION = -Wno-psabi"
+

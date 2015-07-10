@@ -7,7 +7,7 @@ and matching headers. Unfortunately those libraries don't load at all on the dev
 Please install following NuGet packages (NuGet 2.6+ required) to download respective Qt binaries and headers.
 The locations of dependant libraries are automatically placed inside bar-descriptor.xml.
 
-Qt-4.8.3 (last one with PlayBook supported):
+Qt-4.8.3 (last version with official PlayBook support):
  * Install-Package codetitans-playbook-qt4-core
  * Install-Package codetitans-playbook-qt4-qml
  * Install-Package codetitans-playbook-qt4-labs
