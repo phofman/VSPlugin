@@ -611,6 +611,12 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\lib-api.c">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\lib-api.h">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\VCWizards\BlackBerry\Shared\main-cascades.cpp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

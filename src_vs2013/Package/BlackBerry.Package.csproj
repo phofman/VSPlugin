@@ -848,6 +848,14 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\..\src_vs2012\Package\Templates\VCWizards\BlackBerry\Shared\lib-api.c">
+      <Link>Templates\VCWizards\BlackBerry\Shared\lib-api.c</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\src_vs2012\Package\Templates\VCWizards\BlackBerry\Shared\lib-api.h">
+      <Link>Templates\VCWizards\BlackBerry\Shared\lib-api.h</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="..\..\src_vs2012\Package\Templates\VCWizards\BlackBerry\Shared\main-cascades.cpp">
       <Link>Templates\VCWizards\BlackBerry\Shared\main-cascades.cpp</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
