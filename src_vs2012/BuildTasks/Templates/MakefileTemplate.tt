@@ -86,7 +86,7 @@ Simulator-Debug: "<#= TargetFile #>"
             break;
         case "StaticLibrary":
             {
-                #>qcc -A "<#= OutDir #><#= TargetFile #> $(OBJS) $(USER_OBJS) $(LIBS) <#= CompilerFlags #> -w1<#
+                #>qcc -A "<#= OutDir #><#= TargetFile #>" $(OBJS) $(USER_OBJS) $(LIBS) <#= CompilerFlags #> -w1<#
             }
             break;
         case "DynamicLibrary":

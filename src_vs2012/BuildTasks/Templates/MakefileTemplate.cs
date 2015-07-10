@@ -277,7 +277,7 @@ LIBS :=
             
             #line default
             #line hidden
-            this.Write(" $(OBJS) $(USER_OBJS) $(LIBS) ");
+            this.Write("\" $(OBJS) $(USER_OBJS) $(LIBS) ");
             
             #line 89 "T:\vs-plugin\src_vs2012\BuildTasks\Templates\MakefileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(CompilerFlags));
