@@ -1398,15 +1398,30 @@ namespace BlackBerry.Package.Components
 
         public bool IsBlackBerryConfigurationActive()
         {
-            if (_dte.Solution != null && _dte.Solution.SolutionBuild != null && _dte.Solution.SolutionBuild.ActiveConfiguration != null)
+            foreach (String startupProject in (Array)_dte.Solution.SolutionBuild.StartupProjects)
             {
-                foreach (SolutionContext context in _dte.Solution.SolutionBuild.ActiveConfiguration.SolutionContexts)
+                foreach (Project project in _dte.Solution.Projects)
                 {
-                    string platformName = context.PlatformName;
-                    if (platformName == ConfigNameBlackBerry)
-                        return true;
+                    if (project.UniqueName == startupProject)
+                    {
+                        var configuration = project.ConfigurationManager.ActiveConfiguration;
+                        if (configuration != null && configuration.PlatformName == ConfigNameBlackBerry)
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
+
+            //if (_dte.Solution != null && _dte.Solution.SolutionBuild != null && _dte.Solution.SolutionBuild.ActiveConfiguration != null)
+            //{
+            //    foreach (SolutionContext context in _dte.Solution.SolutionBuild.ActiveConfiguration.SolutionContexts)
+            //    {
+            //        string platformName = context.PlatformName;
+            //        if (platformName == ConfigNameBlackBerry)
+            //            return true;
+            //    }
+            //}
 
             return false;
         }
