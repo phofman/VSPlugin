@@ -358,9 +358,10 @@ namespace BlackBerry.Package.Components
 
             if (dte.Solution != null && dte.Solution.SolutionBuild != null && dte.Solution.SolutionBuild.StartupProjects != null)
             {
+                var solutionProjects = DteHelper.GetProjects(dte);
                 foreach (string startupProject in (Array) dte.Solution.SolutionBuild.StartupProjects)
                 {
-                    foreach (Project project in dte.Solution.Projects)
+                    foreach (Project project in solutionProjects)
                     {
                         if (project.UniqueName == startupProject)
                         {
@@ -429,25 +430,22 @@ namespace BlackBerry.Package.Components
             }
 
             // check, if any project is placed on incorrect location, not supported by underlying makefile system:
-            if (_dte != null && _dte.Solution != null && _dte.Solution.Projects.Count > 0)
+            foreach (Project project in DteHelper.GetProjects(_dte))
             {
-                foreach (Project project in _dte.Solution.Projects)
+                if (IsBlackBerryProject(project))
                 {
-                    if (IsBlackBerryProject(project))
+                    // is path valid?
+                    var projectPath = Path.GetDirectoryName(project.FullName);
+                    if (!string.IsNullOrEmpty(projectPath) && !IsValidProjectPath(projectPath))
                     {
-                        // is path valid?
-                        var projectPath = Path.GetDirectoryName(project.FullName);
-                        if (!string.IsNullOrEmpty(projectPath) && !IsValidProjectPath(projectPath))
-                        {
-                            _errorManager.Add(TaskErrorCategory.Warning, string.Concat("Project path: \"", projectPath, "\" is invalid and might lead to problems in underlying makefile system. Move the project to the one without spaces and non-ASCII characters."), project, null, OpenGeneralSettings);
-                        }
+                        _errorManager.Add(TaskErrorCategory.Warning, string.Concat("Project path: \"", projectPath, "\" is invalid and might lead to problems in underlying makefile system. Move the project to the one without spaces and non-ASCII characters."), project, null, OpenGeneralSettings);
+                    }
 
-                        // is name valid?
-                        var projectName = project.Name;
-                        if (!string.IsNullOrEmpty(projectPath) && !IsValidProjectName(projectName))
-                        {
-                            _errorManager.Add(TaskErrorCategory.Error, string.Concat("Project name: \"", projectName, "\" is invalid. Remove all spaces and non-ASCII characters."), project, null, OpenGeneralSettings);
-                        }
+                    // is name valid?
+                    var projectName = project.Name;
+                    if (!string.IsNullOrEmpty(projectPath) && !IsValidProjectName(projectName))
+                    {
+                        _errorManager.Add(TaskErrorCategory.Error, string.Concat("Project name: \"", projectName, "\" is invalid. Remove all spaces and non-ASCII characters."), project, null, OpenGeneralSettings);
                     }
                 }
             }
@@ -543,7 +541,7 @@ namespace BlackBerry.Package.Components
             _solutionOpened = true;
             _openedBlackBerryProjects = 0;
 
-            foreach (Project project in _dte.Solution.Projects)
+            foreach (Project project in DteHelper.GetProjects(_dte))
             {
                 if (IsBlackBerryProject(project))
                 {
@@ -1004,9 +1002,10 @@ namespace BlackBerry.Package.Components
                 _buildThese = new List<String>();
                 _startProject = GetBuildStartupProject(_dte);
 
+                var solutionProjects = DteHelper.GetProjects(_dte);
                 foreach (String startupProject in (Array) _dte.Solution.SolutionBuild.StartupProjects)
                 {
-                    foreach (Project project in _dte.Solution.Projects)
+                    foreach (Project project in solutionProjects)
                     {
                         if (project.UniqueName == startupProject)
                         {
@@ -1111,29 +1110,36 @@ namespace BlackBerry.Package.Components
             // when build succeeded:
             if (_dte.Solution.SolutionBuild.LastBuildInfo == 0)
             {
+                var solutionProjects = DteHelper.GetProjects(_dte);
+
                 foreach (string startupProject in (Array) _dte.Solution.SolutionBuild.StartupProjects)
                 {
                     foreach (SolutionContext sc in _dte.Solution.SolutionBuild.ActiveConfiguration.SolutionContexts)
                     {
-                        var project = _dte.Solution.Item(sc.ProjectName);
-                        var debugNativeFlagFileName = ProjectHelper.GetFlagFileNameForDebugNative(project);
-
-                        DeleteFlagFile(debugNativeFlagFileName);
-
-                        if (sc.ProjectName == startupProject)
+                        foreach (Project project in solutionProjects)
                         {
-                            sc.ShouldDeploy = true;
-
-                            if (_startDebugger)
+                            if (project.UniqueName == sc.ProjectName)
                             {
-                                // write file to flag the deploy task that it should use the -debugNative option:
-                                File.WriteAllText(debugNativeFlagFileName, "Use -debugNative.\r\n");
-                                _buildEvents.OnBuildDone += OnBuildDone;
+                                var debugNativeFlagFileName = ProjectHelper.GetFlagFileNameForDebugNative(project);
+
+                                DeleteFlagFile(debugNativeFlagFileName);
+
+                                if (sc.ProjectName == startupProject)
+                                {
+                                    sc.ShouldDeploy = true;
+
+                                    if (_startDebugger)
+                                    {
+                                        // write file to flag the deploy task that it should use the -debugNative option:
+                                        File.WriteAllText(debugNativeFlagFileName, "Use -debugNative.\r\n");
+                                        _buildEvents.OnBuildDone += OnBuildDone;
+                                    }
+                                }
+                                else
+                                {
+                                    sc.ShouldDeploy = false;
+                                }
                             }
-                        }
-                        else
-                        {
-                            sc.ShouldDeploy = false;
                         }
                     }
                 }
@@ -1182,7 +1188,7 @@ namespace BlackBerry.Package.Components
             bool shouldSaveLocally = developer != null && !developer.IsPasswordSaved && !string.IsNullOrEmpty(developer.CskPassword);
 
             // store CSK-password inside a local flag-file, in case dev doesn't want to store it persistently:
-            foreach (Project project in _dte.Solution.Projects)
+            foreach (Project project in DteHelper.GetProjects(_dte))
             {
                 try
                 {
@@ -1358,14 +1364,10 @@ namespace BlackBerry.Package.Components
         {
             if (_dte.Solution != null)
             {
-                var projects = _dte.Solution.Projects;
-                if (projects != null)
+                foreach (Project project in DteHelper.GetProjects(_dte))
                 {
-                    foreach (Project project in projects)
-                    {
-                        if (IsBlackBerryProject(project))
-                            return true;
-                    }
+                    if (IsBlackBerryProject(project))
+                        return true;
                 }
             }
 
@@ -1398,9 +1400,10 @@ namespace BlackBerry.Package.Components
 
         public bool IsBlackBerryConfigurationActive()
         {
+            var solutionProjects = DteHelper.GetProjects(_dte);
             foreach (String startupProject in (Array)_dte.Solution.SolutionBuild.StartupProjects)
             {
-                foreach (Project project in _dte.Solution.Projects)
+                foreach (Project project in solutionProjects)
                 {
                     if (project.UniqueName == startupProject)
                     {

@@ -24,7 +24,9 @@ using BlackBerry.NativeCore.Tools;
 using BlackBerry.Package.Helpers;
 using BlackBerry.Package.ViewModels;
 using EnvDTE;
+using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using CheckBox = System.Windows.Controls.CheckBox;
 using ComboBox = System.Windows.Controls.ComboBox;
 using UserControl = System.Windows.Controls.UserControl;
@@ -182,24 +184,20 @@ namespace BlackBerry.Package.Editors
         {
             try
             {
-                DTE dte = (DTE)_serviceProvider.GetService(typeof(DTE));
-                string solutionDir = Path.GetDirectoryName(dte.Solution.FullName);
-
-
-                Projects projs = dte.Solution.Projects;
-                foreach (Project proj in projs)
+                var dte = (DTE2)_serviceProvider.GetService(typeof(SDTE));
+                foreach (Project project in DteHelper.GetProjects(dte))
                 {
                     var viewModel = ViewModel;
                     if (viewModel != null)
                     {
 
-                        FileInfo fileInfo1 = new FileInfo(proj.FullName);
+                        FileInfo fileInfo1 = new FileInfo(project.FullName);
                         FileInfo fileInfo2 = new FileInfo(viewModel.Model.Name);
                         FileInfo fileInfo3 = new FileInfo(path);
 
-                        if (viewModel.AppName == proj.Name)
+                        if (viewModel.AppName == project.Name)
                         {
-                            proj.ProjectItems.AddFromFile(path);
+                            project.ProjectItems.AddFromFile(path);
                             viewModel.AddLocalAsset(path);
                         }
                     }

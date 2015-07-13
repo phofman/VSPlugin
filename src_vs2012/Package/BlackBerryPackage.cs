@@ -607,7 +607,7 @@ namespace BlackBerry.Package
         {
             if (process != null)
             {
-                foreach (Project project in _dte.Solution.Projects)
+                foreach (Project project in DteHelper.GetProjects(_dte))
                 {
                     if (BuildPlatformsManager.IsBlackBerryProject(project))
                     {
@@ -647,7 +647,7 @@ namespace BlackBerry.Package
         string IAttachDiscoveryService.FindExecutable(ProcessInfo process)
         {
             // try to automatically select the project:
-            foreach (Project project in _dte.Solution.Projects)
+            foreach (Project project in DteHelper.GetProjects(_dte))
             {
                 if (BuildPlatformsManager.IsBlackBerryProject(project))
                 {
@@ -668,7 +668,7 @@ namespace BlackBerry.Package
             // ask developer via any UI to point the executable (binary):
             var form = new BinaryDiscoveryForm("Select Matching Target Process Binary");
 
-            foreach (Project project in _dte.Solution.Projects)
+            foreach (Project project in DteHelper.GetProjects(_dte))
             {
                 if (BuildPlatformsManager.IsBlackBerryProject(project))
                 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.VCProjectEngine;
 
@@ -22,12 +23,17 @@ namespace BlackBerry.Package.Helpers
                 throw new ArgumentNullException("dte");
 
             var result = new List<Project>();
-            foreach (Project project in dte.Solution.Projects)
+            if (dte.Solution != null)
             {
-                var vc = project.Object as VCProject;
-                if (vc != null)
+                var serviceProvider = new ServiceProvider((Microsoft.VisualStudio.OLE.Interop.IServiceProvider)dte);
+
+                foreach (Project project in ProjectHelper.GetProjects(serviceProvider.GetService(typeof(SVsSolution)) as IVsSolution))
                 {
-                    result.Add(project);
+                    var vc = project.Object as VCProject;
+                    if (vc != null)
+                    {
+                        result.Add(project);
+                    }
                 }
             }
 
