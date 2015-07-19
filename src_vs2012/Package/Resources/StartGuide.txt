@@ -4,9 +4,9 @@
   Unless Momentics (or any previous version of this plugin) was used before, few extra
 MANUAL steps have to be made before this package works smoothly without errors and warnings.
 
-1) Ensure BlackBerry Native SDK (NDK) is installed. It can be any available edition:
+1) Ensure BlackBerry Native SDK (NDK) is installed. It can be any of available editions:
     - distributed by BlackBerry as Gold 3.0+ as MSI installer (https://developer.blackberry.com/native/articles/),
-    - via Momentics,
+    - via Momentics IDE,
     - BBNDK_VS - compacted NDK skeleton - available as separate part of this plugin at
                  https://github.com/phofman/vs-plugin/releases/tag/v3.0.1-bbndk.
    They all provide respective compilers, libraries and headers required to build projects.
@@ -14,13 +14,15 @@ MANUAL steps have to be made before this package works smoothly without errors a
    future releases with minimal effort.
 
 2) Ensure MSBuild extensions are installed.
-   Since the version *v3.4* of this plugin, they are automatically populated from inside Visual Studio by custom utility
-   called *CodeTitans MSBuild Platform Installer*. However administrator privileges are required to complete the process.
-   It is enough to double-click the error message about missing/incompatible version of MSBuild extensions for BlackBerry
-   installed, appearing in "Error List" window to initiate and complete the process.
+   Since the version *v3.4* of this plugin, they are automatically populated from inside Visual Studio by our utility
+   called *CodeTitans MSBuild Platform Installer*. Administrator privileges are required to complete the process.
+   It is enough to double-click the error (or warning) message about missing/incompatible version of MSBuild extensions
+   for BlackBerry installed, appearing in "Error List" window to initiate and complete the process.
 
-   For convenience those extensions are also distributed separately at https://github.com/phofman/vs-plugin/releases/latest.
-   They need to be copied into "C:\Program Files (x86)\MSBuild".
+   MSBuild manipulation can be also issued from Options (BlackBerry -> MSBuild).
+
+   For convenience those MSBuild extensions are also distributed separately at https://github.com/phofman/vs-plugin/releases/latest.
+   They might to be copied into "C:\Program Files (x86)\MSBuild", if you don't wish to use automatic update tools.
    Without them it won't be possible to create new projects, compile and deploy applications.
 
 In case of any problems, please visit the wiki pages at https://github.com/phofman/vs-plugin/wiki/Installation
@@ -36,7 +38,7 @@ Contact info
 
  Paweł Hofman
  CodeTitans.pl
- Wroclaw, Poland
+ Wrocław, Poland
 
 Twitter: https://twitter.com/CodeTitans
 Email:   pawel@codetitans.pl

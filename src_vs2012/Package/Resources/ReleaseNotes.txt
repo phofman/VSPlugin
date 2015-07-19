@@ -1,5 +1,19 @@
 Changes:
 
+v3.6.3 (2015-07-20):
+ * fixed issues for VS2015 distribution:
+   - broken device .bar file deployment
+   - detection of BlackBerry project being deployed
+   - invalid project detection (if folders used to group projects)
+ * fixed processing of images in templates
+ * fixed improper makefile generator for static library builds
+ * added more content to default files included in static/shared library templates
+ * small fix around C++11 missing setting in project properties
+ * improved Qt support for PlayBook
+   - ported few Qt 4.8 samples to use Visual Studio
+   - added more NuGet packages to include headers and libraries and patch bar-descriptor.xml
+   - disabled GCC 4.4 EABI warnings
+
 v3.6.0 (2015-06-30):
  * added support of Visual Studio 2015 (#45)
  * added "Qt 4.8.3 for PlayBook" projects support
