@@ -610,65 +610,65 @@
     <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtPlayBook\README.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\bar-descriptor.xml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\bar-descriptor.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\icon.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\icon.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\calculator.js">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\calculator.js">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\images\button-.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\images\button-.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\images\button-blue.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\images\button-blue.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\images\button-green.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\images\button-green.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\images\button-purple.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\images\button-purple.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\images\button-red.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\images\button-red.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\images\display.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\images\display.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\highscores\score_data.xml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\highscores\score_data.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\background.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\background.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\blueStar.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\blueStar.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\blueStone.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\blueStone.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\greenStar.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\greenStar.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\greenStone.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\greenStone.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\redStar.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\redStar.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\redStone.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\redStone.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\star.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\star.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\pics\yellowStone.png">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\pics\yellowStone.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\samegame.js">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\samegame.js">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\VCWizards\BlackBerry\Shared\bar-descriptor-cascades.xml">
@@ -1034,25 +1034,25 @@
     <Content Include="Templates\Projects\BlackBerry\Qt\Samples\qtproj_calculator.vsz">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\start.qml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\start.qml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\Button.qml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\Button.qml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\Calculator\CalculatorCore\Display.qml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\Calculator\Display.qml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\start.qml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\start.qml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\BoomBlock.qml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\BoomBlock.qml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\Button.qml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\Button.qml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\QtSamples\SameGame\SamegameCore\Dialog.qml">
+    <Content Include="Templates\VCWizards\BlackBerry\Shared\Assets\Qt\SameGame\Dialog.qml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="..\..\src_vs2010\Package\Resources\Images_24bit.bmp">
