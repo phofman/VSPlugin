@@ -305,7 +305,7 @@ namespace BlackBerry.BuildTasks
                 var fullPath = TemplateHelper.GetFullPath(item);
 
                 // skip the ones, that are explicitly excluded:
-                if (!IsExcludedPath(excludedDirectories, fullPath))
+                if (!IsExcludedPath(excludedDirectories, fullPath) && !IsExcludedItem(item))
                 {
                     listCompile.Add(item);
 
@@ -340,6 +340,11 @@ namespace BlackBerry.BuildTasks
                 {
                     foreach (var item in items)
                     {
+                        if (IsExcludedItem(item))
+                        {
+                            continue;
+                        }
+
                         var itemExtension = item.GetMetadata("Extension");
                         for (int i = 0; i < extensions.Length; i++)
                         {
@@ -432,6 +437,12 @@ namespace BlackBerry.BuildTasks
                 }
             }
             return false;
+        }
+
+        private static bool IsExcludedItem(ITaskItem item)
+        {
+            var excluded = item.GetMetadata("ExcludedFromBuild");
+            return excluded != null && string.Compare(excluded, Boolean.TrueString, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         private void NotifyMessage(BuildMessageEventArgs e)
