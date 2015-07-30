@@ -25,7 +25,7 @@ namespace BlackBerry.NativeCore.Components
     /// </summary>
     public sealed class TokenProcessor
     {
-        private readonly static string[] ProcessesExtensions = new[] { ".txt", ".c", ".cpp", ".cs", ".h", ".hpp", ".xml", ".xsd", ".qml", ".vsct", ".pri", ".pro", ".js" };
+        private readonly static string[] ProcessesExtensions = new[] { ".txt", ".c", ".cpp", ".cs", ".h", ".hpp", ".xml", ".xsd", ".qml", ".vsct", ".pri", ".pro", ".js", "" /* for makefile */ };
 
         #region Token Classes
 
