@@ -108,7 +108,7 @@ void ShowMessage(LPCTSTR lpszFunctionName, DWORD lastError, LPCTSTR arguments)
     // Display the error message and exit the process
     lpDisplayBuf = LocalAlloc(LMEM_ZEROINIT, (_tcslen((LPCTSTR)lpMsgBuf) + _tcslen(lpszFunctionName) + 40 + _tcslen(arguments)) * sizeof(TCHAR));
     _stprintf_s((LPTSTR)lpDisplayBuf, LocalSize(lpDisplayBuf) / sizeof(TCHAR), _T("%s failed with error %d: %s\r\n%s"), lpszFunctionName,
-        lastError, lpMsgBuf, arguments);
+        lastError, (LPTSTR)lpMsgBuf, arguments);
 
     PrintMessage(_T("%s"), (LPCTSTR)lpDisplayBuf);
     MessageBox(NULL, (LPCTSTR)lpDisplayBuf, _T("GDB Host Error"), MB_OK);
