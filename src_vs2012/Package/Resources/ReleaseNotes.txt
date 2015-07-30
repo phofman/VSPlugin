@@ -1,5 +1,9 @@
 Changes:
 
+v3.6.4 (2015-07-31):
+ * underlying makefile system respects 'ExcludedFromBuild' (#47)
+ * fixed Cascades templates (not updating makefile with project name)
+
 v3.6.3 (2015-07-20):
  * fixed issues for VS2015 distribution:
    - broken device .bar file deployment
