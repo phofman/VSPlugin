@@ -12,7 +12,7 @@ namespace BlackBerry.NativeCore
         /// <summary>
         /// Global version of the plugin. It is set as a property of all projects.
         /// </summary>
-        public const string VersionString = "3.6.3";
+        public const string VersionString = "3.6.4";
 
         public static string ToolsDirectory
         {
