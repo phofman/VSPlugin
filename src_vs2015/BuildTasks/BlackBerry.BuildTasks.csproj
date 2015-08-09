@@ -189,6 +189,9 @@
       <Link>BlackBerry\Platform.targets</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="BlackBerry\PlatformToolsets\qcc\1033\debugger_miengine.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="..\..\src_vs2012\BuildTasks\Templates\ConfigPriTemplate.tt">
       <Link>Templates\ConfigPriTemplate.tt</Link>
       <Generator>TextTemplatingFilePreprocessor</Generator>

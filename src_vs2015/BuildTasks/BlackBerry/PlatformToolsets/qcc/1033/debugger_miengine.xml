@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--Copyright, Microsoft Corporation, All rights reserved.-->
 <Rule xmlns="http://schemas.microsoft.com/build/2009/properties" PageTemplate="debugger"
-      Name="BlackBerryDebugEngine" DisplayName="BlackBerry Native Debugger" Description="BlackBerry Native Debugger options">
+      Name="MicrosoftMIEngine" DisplayName="Microsoft Native Debugger" Description="Microsoft Native Debugger options">
   <Rule.DataSource>
     <DataSource Persistence="UserFile" />
   </Rule.DataSource>
