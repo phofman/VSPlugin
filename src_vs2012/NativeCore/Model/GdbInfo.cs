@@ -12,7 +12,7 @@ namespace BlackBerry.NativeCore.Model
         /// <summary>
         /// Init constructor.
         /// </summary>
-        public GdbInfo(NdkDefinition ndk, DeviceDefinition device, RuntimeDefinition runtime, IEnumerable<string> additionalLibraryPaths)
+        public GdbInfo(NdkDefinition ndk, DeviceDefinition device, RuntimeDefinition runtime, string compilerVersion, IEnumerable<string> additionalLibraryPaths)
         {
             if (ndk == null)
                 throw new ArgumentNullException("ndk");
@@ -28,7 +28,7 @@ namespace BlackBerry.NativeCore.Model
             NDK = ndk;
             Device = device;
             Runtime = runtime;
-            LibraryPaths = CreateLibraryPaths(ndk, runtime, device.Type, additionalLibraryPaths);
+            LibraryPaths = CreateLibraryPaths(ndk, runtime, device.Type, compilerVersion, additionalLibraryPaths);
             Executable = Path.Combine(NDK.HostPath, "usr", "bin", GetName(device.Type));
             Arguments = "--interpreter=mi2";
         }
@@ -36,8 +36,8 @@ namespace BlackBerry.NativeCore.Model
         /// <summary>
         /// Init constructor.
         /// </summary>
-        public GdbInfo(NdkInfo ndk, DeviceDefinition device, RuntimeDefinition runtime, IEnumerable<string> additionalLibraryPaths)
-            : this(ndk != null ? ndk.ToDefinition() : null, device, runtime, additionalLibraryPaths)
+        public GdbInfo(NdkInfo ndk, DeviceDefinition device, RuntimeDefinition runtime, string compilerVersion, IEnumerable<string> additionalLibraryPaths)
+            : this(ndk != null ? ndk.ToDefinition() : null, device, runtime, compilerVersion, additionalLibraryPaths)
         {
         }
 
@@ -94,7 +94,7 @@ namespace BlackBerry.NativeCore.Model
             }
         }
 
-        private static string[] CreateLibraryPaths(NdkDefinition ndk, RuntimeDefinition runtime, DeviceDefinitionType deviceType, IEnumerable<string> additionalLibraryPaths)
+        private static string[] CreateLibraryPaths(NdkDefinition ndk, RuntimeDefinition runtime, DeviceDefinitionType deviceType, string compilerVersion, IEnumerable<string> additionalLibraryPaths)
         {
             if (ndk == null)
                 throw new ArgumentNullException("ndk");
@@ -113,6 +113,11 @@ namespace BlackBerry.NativeCore.Model
             if (runtime != null)
             {
                 libraries.Add(Path.Combine(runtime.Folder, archFolder, "lib"));
+                if (!string.IsNullOrEmpty(compilerVersion))
+                {
+                    libraries.Add(Path.Combine(runtime.Folder, archFolder, "lib", "gcc", compilerVersion));
+                }
+
                 libraries.Add(Path.Combine(runtime.Folder, archFolder, "user", "lib"));
                 libraries.Add(Path.Combine(runtime.Folder, archFolder, "user", "lib", "qt4"));
             }

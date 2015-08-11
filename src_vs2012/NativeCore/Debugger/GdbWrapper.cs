@@ -94,7 +94,7 @@ namespace BlackBerry.NativeCore.Debugger
             Targets.Connect(device, ConfigDefaults.SshPublicKeyPath, ConfigDefaults.SshPrivateKeyPath, null);
 
             // establish GDB connection:
-            var gdbInfo = new GdbInfo(ndk, device, runtime, null);
+            var gdbInfo = new GdbInfo(ndk, device, runtime, null, null);
             if (_gdbRunner != null)
             {
                 _gdbRunner.Dispose();
@@ -330,7 +330,7 @@ namespace BlackBerry.NativeCore.Debugger
             Targets.Connect(device, ConfigDefaults.SshPublicKeyPath, ConfigDefaults.SshPrivateKeyPath, null);
 
             // start own GDB, if any specified:
-            var info = new GdbInfo(ndk, device, null, null);
+            var info = new GdbInfo(ndk, device, null, null, null);
             var gdb = new GdbRunner(info);
             gdb.ExecuteAsync();
 
