@@ -48,7 +48,7 @@ namespace BlackBerry.Package.Components
     /// Manager class helpful in hijacking the Visual Studio's UI to initiate the build and deployment of BlackBerry project.
     /// It exposes some detection mechanisms for external usages.
     /// </summary>
-    internal sealed class BuildPlatformsManager : IMSBuildPlatformService
+    internal sealed class BuildPlatformsManager : IMSBuildPlatformService, IVsDebuggerEvents
     {
         private const int ShortConnectionTimeout = 3 * 1000; // 3 sec
 
@@ -162,6 +162,9 @@ namespace BlackBerry.Package.Components
 
         private readonly DTE2 _dte;
 
+        private DBGMODE _debuggerMode;
+        private uint _debuggerEventsCookie;
+
         private List<string> _buildThese;
         private readonly List<string> _filesToDelete;
         private bool _hitPlay;
@@ -219,6 +222,18 @@ namespace BlackBerry.Package.Components
 
             ShowSolutionPlatformSelector();
 
+            // load info about debugger state in IDE:
+            var debugger = _serviceProvider.GetService(typeof(SVsShellDebugger)) as IVsDebugger;
+            if (debugger != null)
+            {
+                ErrorHandler.ThrowOnFailure(debugger.AdviseDebuggerEvents(this, out _debuggerEventsCookie));
+
+                // get the current mode:
+                var result = new DBGMODE[1];
+                ErrorHandler.ThrowOnFailure(debugger.GetMode(result));
+                Mode = result[0];
+            }
+
             // INFO: the references to returned objects must be stored and live as long, as the handlers are needed,
             // since they are COM objects and will be automatically reclaimed on next GC.Collect(), causing handlers to be unsubscribed...
             _eventsDebug = CommandHelper.Register(_dte, VSConstants.GUID_VSStandardCommandSet97, VSConstants.VSStd97CmdID.Start, StartDebugCommandEvents_BeforeExecute, null);
@@ -261,6 +276,24 @@ namespace BlackBerry.Package.Components
         }
 
         #region Properties
+
+        /// <summary>
+        /// Gets the current mode of the debugger.
+        /// </summary>
+        public DBGMODE Mode
+        {
+            get { return _debuggerMode; }
+            private set
+            {
+                value = value & ~DBGMODE.DBGMODE_EncMask;
+
+                if (_debuggerMode != value)
+                {
+                    _debuggerMode = value;
+                    TraceLog.WriteLine("Entered debugger mode: {0}", Mode);
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the currently selected device all actions should be performed against.
@@ -985,7 +1018,7 @@ namespace BlackBerry.Package.Components
 
         private bool StartBuild()
         {
-            if (DebugEngineStatus.IsRunning)
+            if (Mode != DBGMODE.DBGMODE_Design)
             {
                 TraceLog.WriteLine("BUILD: StartBuild - Debugger running");
 
@@ -1578,6 +1611,16 @@ namespace BlackBerry.Package.Components
             }
 
             return 1;
+        }
+
+        #endregion
+
+        #region IVsDebuggerEvents Implementation
+
+        int IVsDebuggerEvents.OnModeChange(DBGMODE dbgmodeNew)
+        {
+            Mode = dbgmodeNew;
+            return VSConstants.S_OK;
         }
 
         #endregion
