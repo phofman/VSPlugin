@@ -39,6 +39,8 @@ using Microsoft.VisualStudio.CommandBars;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.VCProjectEngine;
+using System.Xml.Linq;
+using BlackBerry.NativeCore.QConn.Model;
 
 namespace BlackBerry.Package.Components
 {
@@ -48,6 +50,8 @@ namespace BlackBerry.Package.Components
     /// </summary>
     internal sealed class BuildPlatformsManager : IMSBuildPlatformService
     {
+        private const int ShortConnectionTimeout = 3 * 1000; // 3 sec
+
         #region Internal Classes
 
         /// <summary>
@@ -948,7 +952,7 @@ namespace BlackBerry.Package.Components
         /// <param name="cancelDefault"> Cancel the default execution of the command. </param>
         private void StartDebugCommandEvents_BeforeExecute(string guid, int id, object customIn, object customOut, ref bool cancelDefault)
         {
-            TraceLog.WriteLine("BUILD: Start Debug");
+            TraceLog.WriteLine("BUILD: Start Debug, GUID: {0}:{1}:{2}", guid, id, customIn != null ? customIn.ToString() : "null");
             _startDebugger = true;
             cancelDefault = StartBuild();
         }
@@ -1275,7 +1279,7 @@ namespace BlackBerry.Package.Components
 
                     if (string.IsNullOrEmpty(executablePath) || !File.Exists(executablePath))
                     {
-                        var attachDiscoveryService = (IAttachDiscoveryService) Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(IAttachDiscoveryService));
+                        var attachDiscoveryService = (IAttachDiscoveryService)Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(IAttachDiscoveryService));
                         Debug.Assert(attachDiscoveryService != null, "Invalid project references (make sure VisualStudio.Shell.dll is not references, as it duplicates the Package definition from VisualStudio.Shell.<version>.dll)");
 
                         // ask the developer to specify the path:
@@ -1283,9 +1287,37 @@ namespace BlackBerry.Package.Components
                     }
                 }
 
-                if (LaunchDebugTarget(_startProject.Name, ndk, device, runtime, null, executablePath))
+                // get selected debugger from IDE:
+                var debuggerFlavorName = ProjectHelper.GetValue(_startProject, "DebuggerGeneralProperties", "DebuggerFlavor");
+                var compilerVersion = ProjectHelper.GetValue(_startProject, "ConfigurationGeneral", "TargetCompilerVersion");
+
+                // ensure secure connection to the device can be established:
+                Targets.Connect(device, null);
+                Targets.Wait(ShortConnectionTimeout, device);
+
+                if (Targets.IsConnected(device))
                 {
-                    ActivateOutputWindowPane("Debug");
+                    var existingProcess = GetTargetApplicationProcess(device, _startProject.Name);
+                    if (existingProcess == null)
+                    {
+                        existingProcess = GetTargetApplicationProcess(device, executablePath);
+                    }
+
+                    if (existingProcess != null)
+                    {
+                        // start monitoring for console logs:
+                        Targets.Trace(device, existingProcess, true);
+
+                        if (LaunchDebugTarget(debuggerFlavorName, existingProcess.ID, ndk, device, runtime, compilerVersion, executablePath))
+                        {
+                            ActivateOutputWindowPane("Debug");
+                        }
+                    }
+                    else
+                    {
+                        TraceLog.WarnLine("BUILD: Unable to find expected running application (\"{0}\", \"{1}\")", _startProject.Name, executablePath);
+                    }
+
                 }
             }
         }
@@ -1293,11 +1325,11 @@ namespace BlackBerry.Package.Components
         /// <summary> 
         /// Launch an executable using the BlackBerry debug engine. 
         /// </summary>
-        /// <param name="pidOrTargetAppName">Process ID in string format or the binary name for debugger to attach to.</param>
-        /// <returns> TRUE if successful, False if not. </returns>
-        private bool LaunchDebugTarget(string pidOrTargetAppName, NdkInfo ndk, DeviceDefinition target, RuntimeInfo runtime, string sshPublicKeyPath, string executablePath)
+        /// <param name="pid">Process ID in for debugger to attach to.</param>
+        /// <returns> True if successful, False if not. </returns>
+        private bool LaunchDebugTarget(string debuggerFlavorName, uint pid, NdkInfo ndk, DeviceDefinition target, RuntimeInfo runtime, string compilerVersion, string executablePath)
         {
-            TraceLog.WriteLine("BUILD: Starting debugger (\"{0}\", \"{1}\")", pidOrTargetAppName, executablePath);
+            TraceLog.WriteLine("BUILD: Starting debugger (\"{0}\", \"{1}\")", pid, executablePath);
 
             IVsDebugger dbg = (IVsDebugger) _serviceProvider.GetService(typeof(SVsShellDebugger));
             IVsUIShell shell = (IVsUIShell) _serviceProvider.GetService(typeof(SVsUIShell));
@@ -1306,26 +1338,24 @@ namespace BlackBerry.Package.Components
             info.cbSize = (uint)Marshal.SizeOf(info);
             info.dlo = DEBUG_LAUNCH_OPERATION.DLO_CreateProcess;
             info.bstrExe = executablePath; // The executable path
-
-            // Store all debugger arguments in a string
-            var nvc = new Dictionary<string, string>();
-            nvc["pidOrName"] = pidOrTargetAppName;
-            if (!string.IsNullOrEmpty(sshPublicKeyPath))
-            {
-                nvc["sshKeyPath"] = sshPublicKeyPath;
-            }
-            CollectionHelper.AppendDevice(nvc, target);
-            CollectionHelper.AppendNDK(nvc, ndk.ToDefinition());
-            if (runtime != null)
-            {
-                CollectionHelper.AppendRuntime(nvc, runtime.ToDefinition());
-            }
-            info.bstrArg = CollectionHelper.Serialize(nvc);
-
             info.bstrRemoteMachine = null; // debug locally
             info.fSendStdoutToOutputWindow = 0; // Let stdout stay with the application.
-            info.clsidCustom = new Guid(AD7Engine.DebugEngineGuid); // Set the launching engine as the BlackBerry debug-engine
             info.grfLaunch = 0;
+
+            switch (debuggerFlavorName)
+            {
+                default:
+                case "BlackBerryDebugEngine":
+                    info.bstrArg = CreateArgsForBlackBerryDebugEngine(pid, ndk != null ? ndk.ToDefinition() : null, target, runtime != null ? runtime.ToDefinition() : null);
+                    info.clsidCustom = new Guid(AD7Engine.DebugEngineGuid); // Set the launching engine as the BlackBerry debug-engine
+                    break;
+                case "MicrosoftMIEngine":
+                    info.bstrOptions = CreateArgsForMicrosoftMIEngine(false, pid, ndk != null ? ndk.ToDefinition() : null, target, runtime != null ? runtime.ToDefinition() : null, compilerVersion);
+                    info.clsidCustom = new Guid("EA6637C6-17DF-45B5-A183-0951C54243BC"); // Set the launching engine as Microsoft MIEngine debug-engine (https://github.com/Microsoft/MIEngine)
+                    // new Guid("6C8966F1-B174-4F4B-9F11-711DD2AEF119"); // 
+                    info.bstrArg = null;
+                    break;
+            }
 
             IntPtr pInfo = Marshal.AllocCoTaskMem((int)info.cbSize);
             Marshal.StructureToPtr(info, pInfo, false);
@@ -1336,11 +1366,14 @@ namespace BlackBerry.Package.Components
                 if (result != VSConstants.S_OK)
                 {
                     string message;
-                    shell.GetErrorInfo(out message);
-                    message = message.Trim();
+                    if (shell.GetErrorInfo(out message) == VSConstants.S_OK)
+                    {
+                        message = message != null ? message.Trim() : "- nothing -";
 
-                    TraceLog.WriteLine("LaunchDebugTargets: " + message);
-                    MessageBoxHelper.Show(message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TraceLog.WriteLine("LaunchDebugTargets: " + message);
+                        MessageBoxHelper.Show(message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     return false;
                 }
             }
@@ -1353,6 +1386,94 @@ namespace BlackBerry.Package.Components
             }
 
             return true;
+        }
+
+        private string CreateArgsForMicrosoftMIEngine(bool attach, uint pid, NdkDefinition ndk, DeviceDefinition device, RuntimeDefinition runtime, string compilerVersion)
+        {
+            /*
+              <BlackBerryLaunchOptions xmlns="http://schemas.microsoft.com/vstudio/MDDDebuggerOptions/2014"
+                TargetAddress="192.168.2.148"
+                GdbPath="C:\bbndk\gold_2_0\host_10_2_0_15\win32\x86\usr\bin\ntoarm-gdb.exe"
+                GdbHostPath="C:\package\BlackBerry.GdbHost.exe"
+                NdkHostPath="C:\bbndk\gold_2_0\host_10_2_0_15\win32\x86"
+                NdkTargetPath="C:\bbndk\gold_2_0\target_10_2_0_1155\qnx6"
+                PID="123456"
+                TargetType="Phone"
+                TargetArchitecture="arm"
+                Attach="false"
+                   />
+            */
+
+            var gdbInfo = new GdbInfo(ndk, device, runtime, compilerVersion, null);
+
+            XNamespace xmlns = "http://schemas.microsoft.com/vstudio/MDDDebuggerOptions/2014";
+            XElement element = new XElement(xmlns + "BlackBerryLaunchOptions");
+            element.SetAttributeValue("PID", pid);
+            element.SetAttributeValue("TargetAddress", device.IP);
+            element.SetAttributeValue("TargetType", GetTargetType(device, ndk));
+            element.SetAttributeValue("TargetArchitecture", device.Type == DeviceDefinitionType.Simulator ? "x86" : "arm");
+            element.SetAttributeValue("GdbPath", gdbInfo.Executable);
+            element.SetAttributeValue("GdbHostPath", ConfigDefaults.GdbHostPath);
+            element.SetAttributeValue("NdkHostPath", ndk.HostPath);
+            element.SetAttributeValue("NdkTargetPath", ndk.TargetPath);
+            element.SetAttributeValue("Attach", attach ? "true" : "false");
+
+            if (gdbInfo.LibraryPaths != null && gdbInfo.LibraryPaths.Length > 0)
+            {
+                element.SetAttributeValue("AdditionalSOLibSearchPath", string.Join(";", gdbInfo.LibraryPaths));
+            }
+
+            return element.ToString();
+        }
+
+        private SystemInfoProcess GetTargetApplicationProcess(DeviceDefinition device, string pidOrTargetAppName)
+        {
+            uint pid;
+
+            // this should succeed as connection to the device should be established already...
+            var qClient = Targets.Get(device);
+            if (qClient == null || qClient.FileService == null)
+            {
+                throw new InvalidOperationException("Missing the client connected to target - this should never happen");
+            }
+
+            // load PID of the process to attach:
+            if (!uint.TryParse(pidOrTargetAppName, out pid))
+            {
+                return qClient.SysInfoService.FindProcess(pidOrTargetAppName);
+            }
+            else
+            {
+                return qClient.SysInfoService.FindProcess(pid);
+            }
+        }
+
+        private string GetTargetType(DeviceDefinition target, NdkDefinition ndk)
+        {
+            if (ndk == null || target == null)
+                return "Unknown";
+
+            if (target.Type == DeviceDefinitionType.Simulator)
+                return "Simulator";
+            return ndk.Type == DeviceFamilyType.Tablet ? "Tablet" : "Phone";
+        }
+
+        /// <summary>
+        /// Creates dedicated arguments for the BlackBerry debugger.
+        /// </summary>
+        private string CreateArgsForBlackBerryDebugEngine(uint pid, NdkDefinition ndk, DeviceDefinition target, RuntimeDefinition runtime)
+        {
+            // Store all debugger arguments in a string
+            var nvc = new Dictionary<string, string>();
+            nvc["pidOrName"] = pid.ToString();
+            CollectionHelper.AppendDevice(nvc, target);
+            CollectionHelper.AppendNDK(nvc, ndk);
+            if (runtime != null)
+            {
+                CollectionHelper.AppendRuntime(nvc, runtime);
+            }
+
+            return CollectionHelper.Serialize(nvc);
         }
 
         #endregion
