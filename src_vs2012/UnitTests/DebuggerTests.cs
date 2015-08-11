@@ -56,7 +56,7 @@ namespace UnitTests
             var device = new DeviceDefinition("Test Device", Defaults.IP, Defaults.Password, DeviceDefinitionType.Device);
 
             // get the description of GDB for a device:
-            var gdb = new GdbInfo(ndk, device, runtime, null);
+            var gdb = new GdbInfo(ndk, device, runtime, null, null);
             Assert.IsNotNull(gdb);
 
             // start the GDB:
