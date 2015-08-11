@@ -247,7 +247,10 @@ namespace BlackBerry.DebugEngine
 
         private void Dispose(bool disposing)
         {
-            _gdbOutput.Dispose();
+            if (_gdbOutput != null)
+            {
+                _gdbOutput.Dispose();
+            }
         }
 
         #endregion
