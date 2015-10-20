@@ -1040,7 +1040,7 @@ namespace BlackBerry.Package.Components
                 _startProject = GetBuildStartupProject(_dte);
 
                 var solutionProjects = DteHelper.GetProjects(_dte);
-                foreach (String startupProject in (Array) _dte.Solution.SolutionBuild.StartupProjects)
+                foreach (string startupProject in (Array) _dte.Solution.SolutionBuild.StartupProjects)
                 {
                     foreach (Project project in solutionProjects)
                     {
@@ -1242,9 +1242,16 @@ namespace BlackBerry.Package.Components
 
             if (shouldSaveLocally)
             {
-                foreach (Project project in (Array) _dte.Solution.SolutionBuild.StartupProjects)
+                var solutionProjects = DteHelper.GetProjects(_dte);
+                foreach (string startupProject in (Array) _dte.Solution.SolutionBuild.StartupProjects)
                 {
-                    WriteCskPassword(project, developer);
+                    foreach (var project in solutionProjects)
+                    {
+                        if (project.UniqueName == startupProject)
+                        {
+                            WriteCskPassword(project, developer);
+                        }
+                    }
                 }
 
                 foreach (Project project in (Array) _dte.ActiveSolutionProjects)
@@ -1555,7 +1562,7 @@ namespace BlackBerry.Package.Components
         public bool IsBlackBerryConfigurationActive()
         {
             var solutionProjects = DteHelper.GetProjects(_dte);
-            foreach (String startupProject in (Array)_dte.Solution.SolutionBuild.StartupProjects)
+            foreach (string startupProject in (Array)_dte.Solution.SolutionBuild.StartupProjects)
             {
                 foreach (Project project in solutionProjects)
                 {
