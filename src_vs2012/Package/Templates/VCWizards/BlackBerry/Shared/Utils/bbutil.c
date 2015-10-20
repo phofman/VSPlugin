@@ -233,24 +233,25 @@ int bbutil_init_egl(screen_context_t ctx)
     }
 
     const char *env = getenv("WIDTH");
+    int width;
 
     if (0 == env) {
-        perror("failed getenv for WIDTH");
-        bbutil_terminate();
-        return EXIT_FAILURE;
+        // set default width for PlayBook
+        width = 1024;
+    } else {
+        width = atoi(env);
     }
-
-    int width = atoi(env);
 
     env = getenv("HEIGHT");
+    int height;
 
     if (0 == env) {
-        perror("failed getenv for HEIGHT");
-        bbutil_terminate();
-        return EXIT_FAILURE;
+        // set default height for PlayBook
+        height = 600;
+    } else {
+        height = atoi(env);
     }
 
-    int height = atoi(env);
     int size[2] = { width, height };
 
     rc = screen_set_window_property_iv(screen_win, SCREEN_PROPERTY_BUFFER_SIZE, size);
