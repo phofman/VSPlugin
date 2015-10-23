@@ -3,7 +3,7 @@ Wizard={0cb934ba-06c8-4919-9498-bc6517940bcd}
 Param="TITLE = BlackBerry Qt4 QML for PlayBook Application"
 Param="PROJECT = native-default.vcxproj"
 Param="FILTERS = assets;config;src;trans"
-Param="FILE = Shared/Assets/QtSamples/bar-descriptor.xml -> bar-descriptor.xml"
+Param="FILE = Shared/Assets/Qt/bar-descriptor.xml -> bar-descriptor.xml"
 Param="FILE = Shared/Assets/QtPlayBook/main-qml.cpp -> src/main.cpp"
 Param="FILE = Shared/Assets/QtPlayBook/assets/start.qml -> assets/start.qml"
 Param="FILE = * Shared/Assets/QtPlayBook/README.txt -> README.txt"
