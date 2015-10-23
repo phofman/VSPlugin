@@ -1540,11 +1540,15 @@ namespace BlackBerry.Package.Components
         /// </summary>
         public static bool IsBlackBerryProject(Project project)
         {
-            if (project == null || !(project.Object is VCProject))
+            if (project == null)
                 return false;
 
             try
             {
+                var shim = project.Object as VCProject;
+                if (shim == null || shim.Name == "Miscellaneous Files")
+                    return false;
+
                 var platformName = project.ConfigurationManager != null && project.ConfigurationManager.ActiveConfiguration != null
                     ? project.ConfigurationManager.ActiveConfiguration.PlatformName
                     : null;
