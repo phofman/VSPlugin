@@ -182,8 +182,8 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   </ItemDefinitionGroup>
   
   <PropertyGroup>
-    <DebuggerFlavor>BlackBerryDebugEngine</DebuggerFlavor>
-    <DebuggerFlavor>MicrosoftMIEngine</DebuggerFlavor>
+    <DebuggerFlavor Condition="'$(DebuggerFlavor)' == ''">BlackBerryDebugEngine</DebuggerFlavor>
+    <!--<DebuggerFlavor>MicrosoftMIEngine</DebuggerFlavor>-->
   </PropertyGroup>
 
   <Import Project="$(VCTargetsPath)\Platforms\BlackBerry\ImportAfter\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\BlackBerry\ImportAfter')" />
