@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" ?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="08caa30b-124a-411b-a589-f1a907ec0131" Version="3.6.4" Language="en-US" Publisher="CodeTitans" />
+    <Identity Id="08caa30b-124a-411b-a589-f1a907ec0131" Version="3.7.0" Language="en-US" Publisher="CodeTitans" />
     <DisplayName>BlackBerry Native Plugin for Visual Studio 2015</DisplayName>
     <Description xml:space="preserve">Package providing Cascades and Native SDK support inside Visual Studio for PlayBook and BlackBerry 10 devices</Description>
     <MoreInfo>http://github.com/phofman/vs-plugin</MoreInfo>
