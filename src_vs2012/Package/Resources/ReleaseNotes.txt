@@ -1,5 +1,13 @@
 Changes:
 
+v3.7.0 (2015-10-27):
+ * added support of MIEngine - Microsoft supported GDB wrapper (VS2015+ only, https://github.com/Microsoft/MIEngine)
+ * small fixes around QML templates for PlayBook (missing files and runtime env-vars)
+ * fixed several possible crashes:
+   - at startup due to improper SolutionBuild.StartupProjects usage
+   - double GDB-output dispose
+   - missing debugee process running on target device, while attaching
+
 v3.6.4 (2015-07-31):
  * underlying makefile system respects 'ExcludedFromBuild' (#47)
  * fixed Cascades templates (not updating makefile with project name)
