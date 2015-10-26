@@ -1337,10 +1337,21 @@ namespace BlackBerry.Package.Components
 
                 if (Targets.IsConnected(device))
                 {
-                    var existingProcess = GetTargetApplicationProcess(device, _startProject.Name);
-                    if (existingProcess == null)
+                    SystemInfoProcess existingProcess = null;
+
+                    try
                     {
-                        existingProcess = GetTargetApplicationProcess(device, executablePath);
+
+                        existingProcess = GetTargetApplicationProcess(device, _startProject.Name);
+                        if (existingProcess == null)
+                        {
+                            existingProcess = GetTargetApplicationProcess(device, executablePath);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        TraceLog.WriteException(ex);
+                        TraceLog.WarnLine("BUILD: Unable to find started application");
                     }
 
                     if (existingProcess != null)
@@ -1385,14 +1396,17 @@ namespace BlackBerry.Package.Components
             switch (debuggerFlavorName)
             {
                 default:
+                    MessageBoxHelper.Show("Selected debugger is not supported. Please specify:\r\n * \"BlackBerry Native Debugger\"\r\n * or \"Microsoft Native Debugger\" (VS2015+ only).", null, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+
                 case "BlackBerryDebugEngine":
                     info.bstrArg = CreateArgsForBlackBerryDebugEngine(pid, ndk != null ? ndk.ToDefinition() : null, target, runtime != null ? runtime.ToDefinition() : null);
                     info.clsidCustom = new Guid(AD7Engine.DebugEngineGuid); // Set the launching engine as the BlackBerry debug-engine
                     break;
+
                 case "MicrosoftMIEngine":
                     info.bstrOptions = CreateArgsForMicrosoftMIEngine(false, pid, ndk != null ? ndk.ToDefinition() : null, target, runtime != null ? runtime.ToDefinition() : null, compilerVersion);
                     info.clsidCustom = new Guid("EA6637C6-17DF-45B5-A183-0951C54243BC"); // Set the launching engine as Microsoft MIEngine debug-engine (https://github.com/Microsoft/MIEngine)
-                    // new Guid("6C8966F1-B174-4F4B-9F11-711DD2AEF119"); // 
                     info.bstrArg = null;
                     break;
             }
