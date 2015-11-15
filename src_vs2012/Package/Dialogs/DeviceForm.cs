@@ -26,6 +26,7 @@ namespace BlackBerry.Package.Dialogs
         private DeviceInfoRunner _runner;
         private ulong _pin;
         private string _loadedDeviceName;
+        private DeviceDefinition _orgDevice;
 
         public DeviceForm(string title)
         {
@@ -141,13 +142,20 @@ namespace BlackBerry.Package.Dialogs
                 DeviceName = string.Empty;
                 DeviceIP = string.Empty;
                 DevicePassword = string.Empty;
+                _orgDevice = null;
                 return;
             }
 
             DeviceClass = GetDeviceClass(device.Type, device.IP);
             DeviceName = device.Name;
             DeviceIP = device.IP;
-            DevicePassword = DeviceClass == DialogDeviceClass.Simulator ? DefaultPasswordForSimulator : device.Password;
+            _orgDevice = device;
+
+            //No need for checking if a device is simulator if password is DefaultPasswordForSimulator
+            if (device.Password.Equals(DefaultPasswordForSimulator) || string.IsNullOrEmpty(device.Password) && DeviceClass == DialogDeviceClass.Simulator)
+                DevicePassword = DefaultPasswordForSimulator;
+            else
+                DevicePassword = device.Password;
 
             GoToIPControl();
         }
@@ -286,23 +294,39 @@ namespace BlackBerry.Package.Dialogs
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPassword.ReadOnly = DeviceClass == DialogDeviceClass.Simulator;
-
             if (DeviceClass == DialogDeviceClass.Simulator)
             {
-                if (DeviceName != "Simulator")
+                if (DeviceName != "Simulator" && _orgDevice == null)
                 {
                     DeviceName = "Simulator";
                     DeviceIP = "192.168.32.1";
                     DevicePassword = DefaultPasswordForSimulator;
                 }
+                else 
+                {
+                    DeviceName = _orgDevice.Name;
+                    DeviceIP = _orgDevice.IP;
+                    DevicePassword = _orgDevice.Password;
+
+                    // got to Password control:
+                    ActiveControl = txtPassword;
+                    txtPassword.SelectionLength = 0;
+                    txtPassword.SelectionStart = txtPassword.Text.Length;
+                    
+                }
             }
             else if (DeviceClass == DialogDeviceClass.UsbDevice)
             {
-                if (DeviceName != "USB")
+                if (DeviceName != "USB" && _orgDevice == null)
                 {
                     DeviceName = "USB";
                     DeviceIP = "169.254.0.1";
+                }
+                else
+                {
+                    DeviceName = _orgDevice.Name;
+                    DeviceIP = _orgDevice.IP;
+                    DevicePassword = _orgDevice.Password;
                 }
 
                 // got to Password control:
