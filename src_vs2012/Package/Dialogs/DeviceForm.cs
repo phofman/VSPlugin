@@ -147,7 +147,7 @@ namespace BlackBerry.Package.Dialogs
             DeviceClass = GetDeviceClass(device.Type, device.IP);
             DeviceName = device.Name;
             DeviceIP = device.IP;
-            DevicePassword = DeviceClass == DialogDeviceClass.Simulator ? DefaultPasswordForSimulator : device.Password;
+            DevicePassword = device.Password;
 
             GoToIPControl();
         }
@@ -286,8 +286,6 @@ namespace BlackBerry.Package.Dialogs
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPassword.ReadOnly = DeviceClass == DialogDeviceClass.Simulator;
-
             if (DeviceClass == DialogDeviceClass.Simulator)
             {
                 if (DeviceName != "Simulator")
