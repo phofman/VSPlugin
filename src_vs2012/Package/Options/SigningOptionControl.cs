@@ -39,7 +39,7 @@ namespace BlackBerry.Package.Options
             Author = _vm.Developer.Name;
             lblWarning.Visible = string.IsNullOrEmpty(Author);
 
-            bttRegister.Enabled = !_vm.Developer.IsBB10Registered || !_vm.Developer.IsTabletRegistered;
+            bttRegister.Enabled = !_vm.Developer.IsBB10Registered || (_vm.Developer.IsBB10Registered && _vm.Developer.Token.ExpirationDays > 0) || !_vm.Developer.IsTabletRegistered;
             bttUnregister.Enabled = _vm.Developer.HasCertificate;
           //  bttBackup.Enabled = bttUnregister.Enabled;
             lblStatus.Text = _vm.Developer.ToShortStatusDescription();
